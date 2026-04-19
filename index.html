@@ -84,15 +84,19 @@
   .hero-card-num { font-size: 0.7rem; font-weight: 500; letter-spacing: 0.1em; color: var(--sky); margin-bottom: 0.5rem; }
   .hero-card h3 { font-family: 'Lora', serif; font-size: 0.98rem; color: #e8f0fb; margin-bottom: 0.3rem; font-weight: 400; }
   .hero-card p { font-size: 0.82rem; color: rgba(232,240,251,0.45); font-weight: 300; }
+  .hero-card-live { border-color: rgba(74,127,212,0.35) !important; background: rgba(74,127,212,0.08) !important; }
+  .hero-card-live .hero-card-num { color: var(--sky-light); }
 
   /* WAS ICH AUTOMATISIERE */
   #was-ich { background: var(--white); padding: 5.5rem 2rem; }
-  .was-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; margin-top: 2.5rem; max-width: 900px; }
+  .was-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.25rem; margin-top: 2.5rem; max-width: 1080px; }
   .was-card { background: var(--mist); border: 1px solid rgba(74,127,212,0.12); border-radius: 16px; padding: 1.75rem; transition: transform 0.25s, box-shadow 0.25s; }
   .was-card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(74,127,212,0.12); }
   .was-card-icon { width: 40px; height: 40px; background: var(--ink); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; margin-bottom: 1rem; }
   .was-card h4 { font-family: 'Lora', serif; font-size: 0.98rem; color: var(--ink); font-weight: 600; margin-bottom: 0.4rem; }
   .was-card p { font-size: 0.85rem; color: var(--text-muted); font-weight: 300; line-height: 1.6; }
+  .was-card-highlight { border-color: rgba(74,127,212,0.3) !important; background: var(--mist) !important; position: relative; }
+  .was-card-highlight::after { content: 'Live'; position: absolute; top: 1rem; right: 1rem; background: var(--sky); color: var(--white); font-size: 0.65rem; font-weight: 500; letter-spacing: 0.08em; padding: 0.2rem 0.6rem; border-radius: 100px; }
   .was-more { margin-top: 2rem; font-size: 0.85rem; color: var(--text-muted); font-weight: 300; display: flex; align-items: center; gap: 0.6rem; }
   .was-more::before { content: ''; display: inline-block; width: 20px; height: 1px; background: var(--sky-light); }
 
@@ -251,6 +255,11 @@
           <h3>Rechnungen & Dokumente</h3>
           <p>Automatisch erstellt und versendet – sobald ein Auftrag abgeschlossen wird.</p>
         </div>
+        <div class="hero-card hero-card-live fade-up">
+          <div class="hero-card-num">Beispiel 04 · Live-Referenz</div>
+          <h3>Social Media vollautomatisiert</h3>
+          <p>Dieser <a href="https://x.com/laeuftvonallein" target="_blank" rel="noopener" style="color:var(--sky-light);text-decoration:none;">@laeuftvonallein</a>-Account auf X läuft ohne manuellen Aufwand – als lebendes Beispiel meiner eigenen Arbeit.</p>
+        </div>
       </div>
     </div>
   </section>
@@ -276,6 +285,11 @@
           <div class="was-card-icon">🧾</div>
           <h4>Rechnungen automatisch erstellen</h4>
           <p>Sobald ein Auftrag abgeschlossen ist, wird die Rechnung erstellt und direkt an den Kunden versendet.</p>
+        </div>
+        <div class="was-card was-card-highlight">
+          <div class="was-card-icon">𝕏</div>
+          <h4>Social Media automatisieren</h4>
+          <p>Beiträge werden automatisch erstellt und gepostet – basierend auf Themen, Terminen oder neuen Inhalten. <a href="https://x.com/laeuftvonallein" target="_blank" rel="noopener" style="color:var(--sky);text-decoration:none;">Live-Beispiel ansehen →</a></p>
         </div>
       </div>
       <p class="was-more">Und vieles mehr – abhängig von deinen Prozessen und Tools.</p>
@@ -418,6 +432,12 @@
             <li><a href="mailto:info@laeuftvonallein.de">info@laeuftvonallein.de</a></li>
             <li><a href="#" onclick="showPage('impressum')">Impressum</a></li>
             <li><a href="#" onclick="showPage('datenschutz')">Datenschutz</a></li>
+          </ul>
+        </div>
+        <div class="footer-links-col">
+          <h4>Social</h4>
+          <ul>
+            <li><a href="https://x.com/laeuftvonallein" target="_blank" rel="noopener">𝕏 @laeuftvonallein</a></li>
           </ul>
         </div>
       </div>
