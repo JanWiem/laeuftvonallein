@@ -267,6 +267,10 @@
 
   /* ─── Was ich automatisiere ──────────────────────────────────── */
   #was-ich { background: var(--white); padding: 5.5rem 2rem; }
+  #was-ich .container > .section-label,
+  #was-ich .container > h2,
+  #was-ich .container > .lead { text-align: center; max-width: none; }
+  #was-ich .container > .section-label { display: block; }
   .was-grid {
     display: grid; grid-template-columns: repeat(4, 1fr);
     gap: 1.2rem; margin-top: 2.5rem; max-width: 1080px;
@@ -298,27 +302,18 @@
     color: var(--navy); margin-bottom: 0.45rem; line-height: 1.3;
   }
   .was-card p { font-size: 0.85rem; color: var(--text-muted); font-weight: 300; line-height: 1.65; }
-  /* Live badge on Social card */
-  .was-card-highlight { position: relative; }
-  .was-card-highlight::after {
-    content: 'Live'; position: absolute; top: 1rem; right: 1rem;
-    background: var(--blue); color: var(--white);
-    font-size: 0.62rem; font-weight: 600; letter-spacing: 0.06em;
-    padding: 0.2rem 0.65rem; border-radius: 100px;
-  }
   .was-more {
     margin-top: 2rem; font-size: 0.88rem;
     color: var(--text-muted); font-weight: 300; font-style: italic;
-    display: flex; align-items: center; gap: 0.6rem;
-    max-width: 1080px;
-  }
-  .was-more::before {
-    content: ''; display: inline-block;
-    width: 20px; height: 1px; background: var(--blue-light); flex-shrink: 0;
+    text-align: center; justify-content: center;
+    display: block; max-width: 1080px;
   }
 
   /* ─── Vorgehen ───────────────────────────────────────────────── */
   #wie { background: var(--bg); padding: 5.5rem 2rem; }
+  #wie .container > .section-label,
+  #wie .container > h2 { text-align: center; }
+  #wie .container > .section-label { display: block; }
   .schritte {
     display: grid; grid-template-columns: repeat(3, 1fr);
     gap: 2rem; margin-top: 2.5rem; position: relative;
@@ -374,18 +369,18 @@
   .booking-inner .lead { color: rgba(232,240,251,0.55); margin: 0 auto 2.5rem; }
   .booking-box {
     background: rgba(232,240,251,0.05); border: 1px solid rgba(232,240,251,0.11);
-    border-radius: var(--radius-lg); padding: 2.5rem 3rem;
-    display: flex; align-items: center; gap: 2.5rem;
+    border-radius: var(--radius-lg); padding: 2.75rem 2.5rem;
+    display: flex; flex-direction: column;
+    align-items: center; text-align: center; gap: 0.7rem;
   }
-  .booking-box-meta { text-align: left; flex: 1; }
   .booking-box-icon {
     width: 58px; height: 58px; background: rgba(74,127,212,0.20);
     border-radius: 14px; display: flex; align-items: center;
-    justify-content: center; font-size: 1.5rem; flex-shrink: 0;
+    justify-content: center; font-size: 1.5rem; margin-bottom: 0.3rem;
   }
   .booking-box strong {
     display: block; font-family: var(--font-serif);
-    font-size: 1.1rem; color: #E8F0FB; font-weight: 500; margin-bottom: 0.35rem;
+    font-size: 1.05rem; color: #E8F0FB; font-weight: 500;
   }
   .booking-box p {
     font-size: 0.88rem; color: rgba(232,240,251,0.48);
@@ -393,18 +388,53 @@
   }
 
   /* ─── Über mich ──────────────────────────────────────────────── */
-  .ueber-section { background: var(--blue-pale); padding: 5rem 2rem; }
-  .ueber-inner { max-width: 700px; margin: 0 auto; }
-  .ueber-inner h2 { margin-bottom: 1.25rem; }
+  .ueber-section { background: var(--white); padding: 5.5rem 2rem; }
+  .ueber-inner {
+    max-width: 1080px; margin: 0 auto;
+    display: grid; grid-template-columns: 1fr 1.4fr;
+    gap: 72px; align-items: center;
+  }
+  /* Avatar */
+  .about-avatar-wrap { position: relative; }
+  .about-avatar-bg {
+    width: 100%; aspect-ratio: 1; max-width: 300px;
+    border-radius: var(--radius-lg);
+    background: linear-gradient(145deg, var(--blue-pale) 0%, rgba(74,127,212,0.10) 100%);
+    display: flex; align-items: center; justify-content: center;
+    position: relative; overflow: hidden;
+  }
+  .about-avatar-bg::after {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(135deg, transparent 55%, rgba(74,127,212,0.10) 100%);
+  }
+  .about-initials {
+    font-family: var(--font-serif); font-size: 3.8rem; font-weight: 500;
+    color: var(--blue); opacity: 0.5; letter-spacing: -2px;
+  }
+  .about-location {
+    position: absolute; bottom: -14px; right: -14px;
+    background: var(--white); border: 1px solid var(--border);
+    border-radius: var(--radius-sm); padding: 9px 16px;
+    box-shadow: var(--shadow-sm); font-size: 0.82rem;
+    font-weight: 500; color: var(--navy);
+    display: flex; align-items: center; gap: 5px;
+  }
+  /* Content side */
+  .about-role {
+    font-size: 0.72rem; font-weight: 600; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--blue); margin-bottom: 1.5rem;
+  }
+  .ueber-inner h2 { margin-bottom: 0.4rem; }
   .ueber-inner p {
     font-size: 1rem; color: var(--text-muted);
-    font-weight: 300; line-height: 1.9; margin-bottom: 1.25rem;
+    font-weight: 300; line-height: 1.9; margin-bottom: 1.1rem;
   }
-  .trust-badges { display: flex; flex-wrap: wrap; gap: 0.65rem; margin-top: 1.75rem; }
+  /* Blue pill tags */
+  .trust-badges { display: flex; flex-wrap: wrap; gap: 0.55rem; margin-top: 1.5rem; }
   .trust-badge {
-    background: var(--white); border: 1px solid rgba(74,127,212,0.18);
-    border-radius: 100px; padding: 0.4rem 1.1rem;
-    font-size: 0.78rem; font-weight: 500; color: var(--navy-mid);
+    background: var(--blue-pale); color: var(--blue);
+    border-radius: 100px; padding: 0.38rem 1rem;
+    font-size: 0.78rem; font-weight: 500;
   }
 
   /* ─── Legal Pages ────────────────────────────────────────────── */
@@ -480,11 +510,7 @@
     border-radius: 20px; padding: 2.5rem 3rem;
     width: 100%; max-width: 380px; text-align: center;
   }
-  .pw-logo {
-    font-family: var(--font-sans); font-size: 1.1rem;
-    font-weight: 400; color: #E8F0FB; margin-bottom: 0.4rem;
-  }
-  .pw-logo strong { color: var(--blue-light); font-weight: 700; }
+  .pw-logo { display: flex; justify-content: center; margin-bottom: 1.2rem; }
   .pw-sub { font-size: 0.83rem; color: rgba(232,240,251,0.4); font-weight: 300; margin-bottom: 2rem; }
   .pw-input {
     width: 100%; padding: 0.8rem 1.1rem;
@@ -509,9 +535,8 @@
   /* ─── Responsive ─────────────────────────────────────────────── */
   @media (max-width: 900px) {
     .was-grid { grid-template-columns: 1fr 1fr; }
-    .booking-box { flex-direction: column; text-align: center; }
-    .booking-box-meta { text-align: center; }
-    .booking-box p { margin: 0 auto; }
+    .ueber-inner { grid-template-columns: 1fr; gap: 40px; }
+    .about-avatar-bg { max-width: 180px; }
   }
   @media (max-width: 768px) {
     nav { padding: 0 1.5rem; }
@@ -544,7 +569,19 @@
 <!-- ═══ PASSWORD OVERLAY ═══════════════════════════════════════════ -->
 <div id="pw-overlay">
   <div class="pw-box">
-    <div class="pw-logo">läuft von <strong>allein</strong></div>
+    <div class="pw-logo">
+      <svg width="52" height="52" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <defs>
+          <linearGradient id="pwg" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#6B9AE8"/>
+            <stop offset="100%" stop-color="#9BBFF5"/>
+          </linearGradient>
+        </defs>
+        <circle cx="49.3" cy="22" r="3.5" fill="url(#pwg)"/>
+        <path d="M 49.3,22 A 20,20 0 1,1 29.2,12.2" stroke="url(#pwg)" stroke-width="3.5" stroke-linecap="round"/>
+        <polygon points="38,11 30,16 29,8" fill="url(#pwg)"/>
+      </svg>
+    </div>
     <p class="pw-sub">Diese Seite ist passwortgeschützt.</p>
     <input type="password" id="pw-input" class="pw-input" placeholder="Passwort eingeben"
            onkeydown="if(event.key==='Enter') checkPw()">
@@ -593,11 +630,11 @@
         <span class="hero-chip-dot"></span>
         Prozessautomatisierung · München
       </div>
-      <h1 class="fade-up">Weniger <em>Reibung.</em><br>Mehr Zeit für das,<br>was zählt.</h1>
+      <h1 class="fade-up">Mehr Zeit für<br><em>das, was zählt.</em></h1>
       <p class="hero-sub fade-up">Ich automatisiere wiederkehrende Prozesse in kleinen Unternehmen – mit einfachen No/Low-Code-Tools, ohne IT-Abteilung.</p>
       <div class="hero-btns fade-up">
-        <a href="#" class="btn-primary" onclick="scrollToSection('booking')">Kostenloses Erstgespräch buchen</a>
-        <a href="#" class="btn-ghost" onclick="scrollToSection('wie')">So funktioniert es</a>
+        <a href="#" class="btn-primary" onclick="scrollToSection('booking')">Kostenloses Erstgespräch buchen <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        <a href="#" class="btn-ghost" onclick="scrollToSection('wie')">So funktioniert es <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><path d="M12 5v14M5 12l7 7 7-7"/></svg></a>
       </div>
     </div>
 
@@ -620,7 +657,7 @@
         </div>
         <div class="hero-card fade-up">
           <span class="hero-card-icon">🌐</span>
-          <div class="hero-card-num">Beispiel 04 · Live-Referenz</div>
+          <div class="hero-card-num">Beispiel 04</div>
           <h3>Social Media vollautomatisiert</h3>
           <span class="live-badge">
             <span class="live-dot"></span>
@@ -635,7 +672,7 @@
   <section id="was-ich">
     <div class="container">
       <span class="section-label">Auswahl möglicher Leistungen</span>
-      <h2>Was ich <em>automatisieren</em> kann</h2>
+      <h2>Was ich automatisieren kann</h2>
       <p class="lead">Jedes Unternehmen ist anders – diese Beispiele zeigen, womit ich typischerweise anfange. Im Erstgespräch finden wir gemeinsam heraus, was für dich am meisten bringt.</p>
       <div class="was-grid">
         <div class="was-card">
@@ -653,10 +690,10 @@
           <h4>Rechnungen automatisch erstellen</h4>
           <p>Sobald ein Auftrag abgeschlossen ist, wird die Rechnung erstellt und direkt an den Kunden versendet.</p>
         </div>
-        <div class="was-card was-card-highlight">
+        <div class="was-card">
           <div class="was-card-icon">🌐</div>
           <h4>Social Media automatisieren</h4>
-          <p>Beiträge werden automatisch erstellt und gepostet – basierend auf Themen, Terminen oder neuen Inhalten. <a href="https://x.com/laeuftvonallein" target="_blank" rel="noopener" style="color:var(--blue);text-decoration:none;">Live-Beispiel ansehen →</a></p>
+          <p>Beiträge werden automatisch erstellt und gepostet – basierend auf Themen, Terminen oder neuen Inhalten.</p>
         </div>
       </div>
       <p class="was-more">Und vieles mehr – abhängig von deinen Prozessen und Tools.</p>
@@ -666,24 +703,24 @@
   <!-- VORGEHEN -->
   <section id="wie">
     <div class="container">
-      <span class="section-label">Mein Vorgehen</span>
-      <h2>In <em>3 Schritten</em> zur Lösung</h2>
+      <span class="section-label">Vorgehen</span>
+      <h2>In drei Schritten zur Automatisierung</h2>
       <div class="schritte">
         <div class="schritt">
           <div class="schritt-num">1</div>
           <h4>Analyse</h4>
-          <p>Wir schauen gemeinsam, welche Prozesse in deinem Alltag die meiste Zeit kosten. Kostenloses Erstgespräch, 45 Minuten.</p>
+          <p>Im kostenlosen Erstgespräch schauen wir uns deinen größten Zeitfresser an – und prüfen gemeinsam, ob Automatisierung Sinn macht.</p>
         </div>
         <div class="schritt">
           <div class="schritt-num">2</div>
-          <h4>Aufbau</h4>
-          <p>Ich baue die Automatisierung mit modernen No/Low-Code-Tools – transparent und ohne versteckte Abhängigkeiten.</p>
+          <h4>Automatisierung</h4>
+          <p>Ich baue die Lösung mit No/Low-Code-Tools – transparent und ohne versteckte Abhängigkeiten.</p>
           <span class="schritt-tool-tag">⚙️ n8n, Make.com &amp; mehr</span>
         </div>
         <div class="schritt">
           <div class="schritt-num">3</div>
           <h4>Übergabe</h4>
-          <p>Du bekommst alles erklärt und kannst selbst Anpassungen vornehmen. Die Lösung gehört dir.</p>
+          <p>Du bekommst alles erklärt und kannst selbst Anpassungen vornehmen. Die Lösung gehört dir – keine laufenden Kosten für mich.</p>
         </div>
       </div>
     </div>
@@ -692,36 +729,47 @@
   <!-- BOOKING -->
   <section class="booking-section" id="booking">
     <div class="booking-inner">
-      <span class="section-label">Termin buchen</span>
-      <h2>Kostenloses <em>Erstgespräch</em></h2>
-      <p class="lead">45 Minuten via Google Meet. Wir analysieren gemeinsam deinen größten Zeitfresser – und du weißt danach, ob Automatisierung für dich Sinn macht.</p>
+      <h2>Kostenloses Erstgespräch</h2>
+      <p class="lead">Wir analysieren gemeinsam deinen größten Zeitfresser – und du weißt danach, ob Automatisierung für dich Sinn macht.</p>
       <div class="booking-box">
         <div class="booking-box-icon">📅</div>
-        <div class="booking-box-meta">
-          <strong>Kostenloses Erstgespräch buchen</strong>
-          <p>45 Minuten via Google Meet – wähle direkt einen passenden Termin aus.</p>
-        </div>
-        <a href="https://calendar.app.google/vXAGb7DQjwTJtg9t6" target="_blank" rel="noopener" class="btn-primary" style="flex-shrink:0;">Termin auswählen →</a>
+        <strong>45 Minuten via Google Meet</strong>
+        <p>Kostenlos &amp; unverbindlich · Wähle direkt einen passenden Termin aus</p>
+        <a href="https://calendar.app.google/vXAGb7DQjwTJtg9t6" target="_blank" rel="noopener" class="btn-primary" style="margin-top:0.75rem;">Termin auswählen →</a>
       </div>
     </div>
   </section>
 
   <!-- ÜBER MICH -->
   <section class="ueber-section" id="ueber">
-    <div class="container">
-      <div class="ueber-inner">
+    <div class="ueber-inner">
+
+      <!-- Avatar links -->
+      <div class="about-avatar-wrap">
+        <div class="about-avatar-bg">
+          <span class="about-initials">JHW</span>
+        </div>
+        <div class="about-location">📍 München</div>
+      </div>
+
+      <!-- Inhalt rechts -->
+      <div>
         <span class="section-label">Über mich</span>
         <h2>Jan-Hendrik <em>Wiemann</em></h2>
+        <div class="about-role">Prozessautomatisierung · No-Code</div>
         <p>Ich arbeite seit vielen Jahren in digitalen Unternehmen. Dabei beobachte ich immer wieder: Ein großer Hebel liegt meistens in den Prozessen, die täglich wiederholt werden – und die trotzdem noch per Hand erledigt werden.</p>
         <p>Genau dort helfe ich kleinen Unternehmen: Ich identifiziere diese Prozesse und automatisiere sie mit einfachen, erschwinglichen No/Low-Code-Tools. Keine IT-Kenntnisse nötig, keine komplizierte Software.</p>
         <div class="trust-badges">
-          <span class="trust-badge">Langjährige Erfahrung in Produkt und Vertrieb</span>
+          <span class="trust-badge">n8n</span>
+          <span class="trust-badge">Make.com</span>
           <span class="trust-badge">No-Code</span>
           <span class="trust-badge">Low-Code</span>
           <span class="trust-badge">KI-Automatisierung</span>
-          <span class="trust-badge">München</span>
+          <span class="trust-badge">Langjährige Erfahrung in Produkt und Vertrieb</span>
+          <span class="trust-badge">München &amp; deutschlandweit</span>
         </div>
       </div>
+
     </div>
   </section>
 
