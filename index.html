@@ -562,6 +562,91 @@
   @media (max-width: 480px) {
     .hero-cards { grid-template-columns: 1fr; }
   }
+
+  /* ─── Was-card detail link ───────────────────────────────────── */
+  .was-card-link {
+    display: inline-flex; align-items: center; gap: 5px;
+    margin-top: 1rem; font-size: 0.8rem; font-weight: 500;
+    color: var(--blue); text-decoration: none;
+    transition: gap var(--t), color var(--t); cursor: pointer;
+  }
+  .was-card-link:hover { gap: 9px; color: var(--navy); }
+  .was-card[data-page] { cursor: pointer; }
+
+  /* ─── Case Study / Detail Page ───────────────────────────────── */
+  .case-page { background: var(--white); padding: 8rem 2rem 5rem; min-height: 100vh; }
+  .case-inner { max-width: 760px; margin: 0 auto; }
+  .case-inner h2 { margin-bottom: 1.2rem; }
+  .case-inner h3 {
+    font-family: var(--font-serif); font-size: 1.1rem; font-weight: 600;
+    color: var(--navy); margin: 2.5rem 0 0.6rem;
+  }
+  .case-inner p {
+    font-size: 0.97rem; color: var(--text-muted);
+    font-weight: 300; line-height: 1.85; margin-bottom: 0.75rem;
+  }
+  .case-back {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    font-size: 0.85rem; color: var(--text-muted);
+    text-decoration: none; margin-bottom: 2.5rem; transition: color var(--t);
+  }
+  .case-back:hover { color: var(--navy); }
+  .case-badge {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: rgba(74,127,212,0.10); border: 1px solid rgba(74,127,212,0.22);
+    color: var(--blue); font-size: 0.7rem; font-weight: 600;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    padding: 0.3rem 0.9rem; border-radius: 100px; margin-bottom: 1.1rem;
+    display: block; width: fit-content;
+  }
+  .case-lead {
+    font-size: 1.05rem; color: var(--text-muted);
+    font-weight: 300; line-height: 1.85; margin-bottom: 2rem;
+  }
+  .case-highlight {
+    background: var(--bg); border-left: 3px solid var(--blue);
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    padding: 1.1rem 1.5rem; margin: 1.5rem 0;
+    font-size: 0.95rem; color: var(--text-muted); font-weight: 300; line-height: 1.8;
+  }
+  .case-list {
+    list-style: none; margin: 0.5rem 0 1.2rem;
+    display: flex; flex-direction: column; gap: 0.4rem;
+  }
+  .case-list li {
+    font-size: 0.93rem; color: var(--text-muted);
+    font-weight: 300; display: flex; align-items: baseline; gap: 0.6rem;
+  }
+  .case-list li::before {
+    content: '✓'; color: var(--blue); font-weight: 600; flex-shrink: 0;
+  }
+  .tech-pills { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 0.8rem 0 2rem; }
+  .tech-pill {
+    background: var(--blue-pale); color: var(--blue);
+    border-radius: 100px; padding: 0.3rem 0.9rem;
+    font-size: 0.78rem; font-weight: 500;
+  }
+  .case-divider { border: none; border-top: 1px solid var(--border); margin: 2.5rem 0; }
+
+  /* X-Thread */
+  .x-thread-label {
+    font-size: 0.72rem; font-weight: 600; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--blue); margin-bottom: 1.2rem; display: block;
+  }
+  .x-posts { display: flex; flex-direction: column; gap: 0.9rem; }
+  .x-post {
+    background: var(--bg); border: 1px solid var(--border);
+    border-radius: var(--radius-md); padding: 1.2rem 1.4rem;
+  }
+  .x-post-num {
+    font-size: 0.68rem; font-weight: 600; letter-spacing: 0.08em;
+    color: var(--blue); text-transform: uppercase; margin-bottom: 0.55rem;
+  }
+  .x-post p {
+    font-size: 0.88rem; line-height: 1.75; color: var(--navy);
+    font-weight: 300; margin-bottom: 0;
+  }
+  .case-cta { margin-top: 2rem; }
 </style>
 </head>
 <body>
@@ -651,9 +736,9 @@
           <h3>Termine &amp; Bestätigungen</h3>
         </div>
         <div class="hero-card fade-up">
-          <span class="hero-card-icon">🧾</span>
+          <span class="hero-card-icon">📊</span>
           <div class="hero-card-num">Beispiel 03</div>
-          <h3>Rechnungen &amp; Dokumente</h3>
+          <h3>Preismonitoring automatisiert</h3>
         </div>
         <div class="hero-card fade-up">
           <span class="hero-card-icon">🌐</span>
@@ -685,10 +770,11 @@
           <h4>Terminbestätigungen &amp; Erinnerungen</h4>
           <p>Buchungen lösen automatisch Bestätigungen, Erinnerungen und Folge-Nachrichten aus – ohne manuelles Eingreifen.</p>
         </div>
-        <div class="was-card">
-          <div class="was-card-icon">🧾</div>
-          <h4>Rechnungen automatisch erstellen</h4>
-          <p>Sobald ein Auftrag abgeschlossen ist, wird die Rechnung erstellt und direkt an den Kunden versendet.</p>
+        <div class="was-card" data-page="preismonitoring" onclick="showPage('preismonitoring')">
+          <div class="was-card-icon">📊</div>
+          <h4>Preismonitoring</h4>
+          <p>Täglich automatisch Preise über mehrere Online-Shops vergleichen – das Ergebnis landet jeden Morgen als übersichtliche E-Mail im Postfach.</p>
+          <span class="was-card-link" onclick="event.stopPropagation(); showPage('preismonitoring')">Details ansehen <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
         </div>
         <div class="was-card">
           <div class="was-card-icon">🌐</div>
@@ -824,6 +910,77 @@
       <p>Sie haben das Recht auf Auskunft (Art. 15), Berichtigung (Art. 16), Löschung (Art. 17), Einschränkung der Verarbeitung (Art. 18), Datenübertragbarkeit (Art. 20) sowie Widerspruch gegen die Verarbeitung (Art. 21 DSGVO). Wenden Sie sich hierfür an: <a href="mailto:info@laeuftvonallein.de">info@laeuftvonallein.de</a>.</p>
       <h3>9. Beschwerderecht</h3>
       <p>Sie haben das Recht, sich bei einer Datenschutzaufsichtsbehörde zu beschweren (Art. 77 DSGVO). Die zuständige Aufsichtsbehörde in Bayern ist das Bayerische Landesamt für Datenschutzaufsicht (BayLDA), Promenade 18, 91522 Ansbach, <a href="https://www.lda.bayern.de" target="_blank" rel="noopener">www.lda.bayern.de</a>.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ CASE STUDY: PREISMONITORING ══════════════════════════════ -->
+<div id="page-preismonitoring" class="page">
+  <div class="case-page">
+    <div class="case-inner">
+      <a href="#" class="case-back" onclick="showPage('main'); setTimeout(()=>scrollToSection('was-ich'),100)">← Zurück zur Übersicht</a>
+      <span class="case-badge">📊 Live-Beispiel · Beispiel 03</span>
+      <h2>Preismonitoring automatisiert</h2>
+      <p class="case-lead">Täglich wissen, wer am günstigsten ist – ohne selbst nachzuschauen. Hier zeige ich, wie das aussieht und wie ich es gebaut habe.</p>
+
+      <h3>Was ist das?</h3>
+      <p>Automatisiertes Preismonitoring für beliebige Produkte über mehrere Online-Shops. Das System läuft als Cron-Job auf einem Server, prüft täglich um 08:00 Uhr die aktuellen Preise – und verschickt danach eine übersichtliche HTML-E-Mail mit Ranking und 7-Tage-Preisverlauf.</p>
+      <div class="case-highlight">
+        Einmal eingerichtet läuft das komplett ohne Eingriff. Neues Produkt hinzufügen: eine JSON-Datei bearbeiten, fertig.
+      </div>
+
+      <h3>Wie funktioniert es?</h3>
+      <p>Das Problem beim einfachen Scraping: Die meisten Shops laden Preise per JavaScript nach. Ein normaler HTTP-Request sieht nur den leeren HTML-Rahmen – kein Preis.</p>
+      <p>Die Lösung: <strong style="font-weight:500; color:var(--navy);">Playwright</strong> startet Chromium im Hintergrund, wartet bis die Seite fertig gerendert ist, und liest dann den echten Preis aus. Jeder Shop bekommt die Strategie, die bei ihm funktioniert – von JSON-LD über CSS-Selektoren bis zu spezifischen Shopware- und Shopify-Besonderheiten.</p>
+
+      <h3>Was kommt raus?</h3>
+      <p>Täglich eine HTML-E-Mail mit:</p>
+      <ul class="case-list">
+        <li>Alle konfigurierten Shops, sortiert nach Preis</li>
+        <li>Günstigster Preis pro Tag grün hinterlegt</li>
+        <li>Preisverlauf der letzten 7 Tage</li>
+        <li>Shop-Namen als klickbare Links direkt zur Produktseite</li>
+        <li>Preisvergleichsportale (idealo, billiger.de) als direkte Vergleichslinks</li>
+      </ul>
+
+      <h3>Tech-Stack</h3>
+      <div class="tech-pills">
+        <span class="tech-pill">Python 3</span>
+        <span class="tech-pill">Playwright</span>
+        <span class="tech-pill">BeautifulSoup</span>
+        <span class="tech-pill">Hetzner VPS</span>
+        <span class="tech-pill">Cron</span>
+        <span class="tech-pill">Gmail SMTP</span>
+      </div>
+
+      <hr class="case-divider">
+
+      <span class="x-thread-label">So habe ich darüber geschrieben – 𝕏 @laeuftvonallein</span>
+      <div class="x-posts">
+        <div class="x-post">
+          <div class="x-post-num">1 / 4</div>
+          <p>Ich wollte für ein bestimmtes Produkt wissen: Wer ist gerade am günstigsten?<br><br>Nicht einmal, sondern täglich. Automatisch. Mit E-Mail-Bericht.<br><br>Also hab ich mir ein Preismonitoring gebaut — mit Python, einem Headless-Browser und ~30 Zeilen Konfiguration. 🧵</p>
+        </div>
+        <div class="x-post">
+          <div class="x-post-num">2 / 4</div>
+          <p>Das Problem mit einfachem Scraping:<br><br>Die meisten Shops laden Preise per JavaScript nach. Ein normaler HTTP-Request sieht nur den leeren HTML-Rahmen — kein Preis.<br><br>Lösung: Playwright startet Chromium im Hintergrund, wartet bis die Seite fertig gerendert ist, liest dann den echten Preis aus.<br><br>Läuft auf einem ~8 €/Monat Hetzner-Server.</p>
+        </div>
+        <div class="x-post">
+          <div class="x-post-num">3 / 4</div>
+          <p>Jeder Shop ist anders:<br><br>Shopware liefert Preise manchmal als Ganzzahl in Cent (1148 statt 11,48 €).<br>Shopify hat mehrere Varianten auf einer Seite — man muss den richtigen Preis fischen.<br>Manche Shops (Incapsula, Idealo) blocken jeden Bot komplett.<br><br>Die Lösung: eine kleine Strategie-Schicht. Jeder Shop bekommt die Methode, die bei ihm funktioniert.</p>
+        </div>
+        <div class="x-post">
+          <div class="x-post-num">4 / 4</div>
+          <p>Das Ergebnis: täglich um 8 Uhr landet eine HTML-E-Mail im Postfach.<br><br>Tabelle: alle Shops, sortiert nach Preis. Günstigster grün. Preisverlauf der letzten 7 Tage. Shop-Namen als klickbare Links.<br><br>Konfiguration neuer Produkte: eine JSON-Datei, ein neuer Block. Fertig.<br><br>Werkzeuge: Python, Playwright, BeautifulSoup, Cron. Keine externe API, keine monatlichen Kosten.</p>
+        </div>
+      </div>
+
+      <hr class="case-divider">
+
+      <p>Interessiert, ob so etwas auch für deinen Betrieb Sinn macht?</p>
+      <div class="case-cta">
+        <a href="https://calendar.app.google/vXAGb7DQjwTJtg9t6" target="_blank" rel="noopener" class="btn-primary">Kostenloses Erstgespräch buchen <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      </div>
     </div>
   </div>
 </div>
