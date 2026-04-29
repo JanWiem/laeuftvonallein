@@ -352,8 +352,62 @@
     font-size: 0.75rem; font-weight: 500; color: var(--blue);
   }
 
+  /* ─── Audit Teaser (Einstiegsangebot) ────────────────────────── */
+  #audit-teaser {
+    background: var(--white);
+    padding: 5.5rem 2rem;
+    text-align: center;
+  }
+  .audit-teaser-inner {
+    max-width: 820px; margin: 0 auto;
+  }
+  .audit-teaser-inner h2 { margin-bottom: 0.7rem; }
+  .audit-teaser-lead {
+    font-size: 1.02rem; color: var(--text-muted);
+    font-weight: 300; line-height: 1.85;
+    max-width: 640px; margin: 0 auto 2.2rem;
+  }
+  .audit-teaser-lead strong { color: var(--navy); font-weight: 500; }
+  .audit-flow {
+    display: flex; justify-content: center; align-items: center;
+    flex-wrap: wrap; gap: 0.55rem;
+    margin: 1.5rem 0 2rem;
+  }
+  .audit-flow-step {
+    background: var(--bg); border: 1px solid var(--border);
+    border-radius: 100px; padding: 0.55rem 1.15rem;
+    font-size: 0.85rem; font-weight: 500; color: var(--navy);
+    transition: border-color var(--t), background var(--t);
+  }
+  .audit-flow-step:hover {
+    border-color: rgba(74,127,212,0.35);
+    background: var(--blue-pale);
+  }
+  .audit-flow-arrow {
+    color: var(--blue); font-weight: 600;
+    font-size: 0.9rem; opacity: 0.6;
+  }
+  .audit-price-anchor {
+    display: inline-flex; align-items: center; gap: 0.6rem;
+    background: var(--navy); color: #E8F0FB;
+    border-radius: 100px; padding: 0.5rem 1.4rem;
+    font-size: 0.85rem; font-weight: 500;
+    margin-bottom: 1.5rem;
+  }
+  .audit-price-anchor strong {
+    color: var(--blue-light); font-weight: 700;
+    font-family: var(--font-serif); letter-spacing: -0.01em;
+  }
+  .audit-teaser-link {
+    display: inline-flex; align-items: center; gap: 7px;
+    color: var(--blue); font-weight: 600;
+    text-decoration: none; font-size: 0.95rem;
+    transition: gap var(--t), color var(--t);
+  }
+  .audit-teaser-link:hover { gap: 11px; color: var(--navy); }
+
   /* ─── KI-Sparring Teaser ─────────────────────────────────────── */
-  #ki-sparring-teaser { background: var(--white); padding: 5.5rem 2rem; }
+  #ki-sparring-teaser { background: var(--bg); padding: 5.5rem 2rem; }
   .sparring-inner {
     max-width: 1080px; margin: 0 auto;
     display: grid; grid-template-columns: 1fr 1.4fr;
@@ -752,6 +806,30 @@
     </div>
   </section>
 
+  <!-- ZEITFRESSER-AUDIT TEASER -->
+  <section id="audit-teaser">
+    <div class="audit-teaser-inner">
+      <span class="section-label">Einstiegsangebot</span>
+      <h2>Klarheit, bevor wir <em>bauen</em></h2>
+      <p class="audit-teaser-lead">Im <strong>Zeitfresser-Audit</strong> nehme ich alle wiederkehrenden Prozesse in deinem Betrieb auf, priorisiere sie nach eingesparter Zeit und Aufwand – und du bekommst eine schriftliche Roadmap mit konkreten Empfehlungen. Fest gepreist, in einer Woche fertig.</p>
+      <div class="audit-flow">
+        <span class="audit-flow-step">Discovery-Call</span>
+        <span class="audit-flow-arrow">→</span>
+        <span class="audit-flow-step">Analyse</span>
+        <span class="audit-flow-arrow">→</span>
+        <span class="audit-flow-step">Roadmap</span>
+        <span class="audit-flow-arrow">→</span>
+        <span class="audit-flow-step">Walk-through</span>
+      </div>
+      <div class="audit-price-anchor">
+        <strong>390&nbsp;€</strong>
+        <span>pauschal · Audit-Gebühr wird auf die Umsetzung angerechnet</span>
+      </div>
+      <br>
+      <a href="/zeitfresser-audit" class="audit-teaser-link">Was konkret drin ist <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+    </div>
+  </section>
+
   <!-- KI-SPARRING TEASER -->
   <section id="ki-sparring-teaser">
     <div class="sparring-inner">
@@ -891,6 +969,7 @@
           <ul>
             <li><a href="#" onclick="showPage('main'); setTimeout(()=>scrollToSection('was-ich'),100)">Was ich automatisiere</a></li>
             <li><a href="#" onclick="showPage('main'); setTimeout(()=>scrollToSection('wie'),100)">Vorgehen</a></li>
+            <li><a href="/zeitfresser-audit">Zeitfresser-Audit</a></li>
             <li><a href="/ki-sparring">KI-Sparring</a></li>
             <li><a href="#" onclick="showPage('main'); setTimeout(()=>scrollToSection('ueber'),100)">Über mich</a></li>
           </ul>
