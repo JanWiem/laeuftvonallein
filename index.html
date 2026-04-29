@@ -352,6 +352,37 @@
     font-size: 0.75rem; font-weight: 500; color: var(--blue);
   }
 
+  /* ─── KI-Sparring Teaser ─────────────────────────────────────── */
+  #ki-sparring-teaser { background: var(--white); padding: 5.5rem 2rem; }
+  .sparring-inner {
+    max-width: 1080px; margin: 0 auto;
+    display: grid; grid-template-columns: 1fr 1.4fr;
+    gap: 64px; align-items: center;
+  }
+  .sparring-inner h2 { margin-bottom: 0.5rem; }
+  .sparring-inner .section-label { display: inline-block; }
+  .sparring-text {
+    font-size: 1rem; color: var(--text-muted);
+    font-weight: 300; line-height: 1.85; margin-bottom: 1.25rem;
+  }
+  .sparring-text strong { color: var(--navy); font-weight: 500; }
+  .sparring-meta {
+    display: flex; flex-wrap: wrap; gap: 0.55rem;
+    margin: 0.5rem 0 1.5rem;
+  }
+  .sparring-meta span {
+    background: var(--blue-pale); color: var(--blue);
+    border-radius: 100px; padding: 0.32rem 0.95rem;
+    font-size: 0.78rem; font-weight: 500;
+  }
+  .sparring-link {
+    display: inline-flex; align-items: center; gap: 7px;
+    color: var(--blue); font-weight: 600;
+    text-decoration: none; font-size: 0.95rem;
+    transition: gap var(--t), color var(--t);
+  }
+  .sparring-link:hover { gap: 11px; color: var(--navy); }
+
   /* ─── Booking ────────────────────────────────────────────────── */
   .booking-section {
     background: linear-gradient(145deg, var(--navy) 0%, var(--navy-mid) 100%);
@@ -533,6 +564,7 @@
     .was-grid { grid-template-columns: 1fr 1fr; }
     .ueber-inner { grid-template-columns: 1fr; gap: 40px; }
     .about-avatar-bg { max-width: 180px; }
+    .sparring-inner { grid-template-columns: 1fr; gap: 24px; }
   }
   @media (max-width: 768px) {
     nav { padding: 0 1.5rem; }
@@ -720,6 +752,26 @@
     </div>
   </section>
 
+  <!-- KI-SPARRING TEASER -->
+  <section id="ki-sparring-teaser">
+    <div class="sparring-inner">
+      <div>
+        <span class="section-label">Neu im Angebot</span>
+        <h2>KI-<em>Sparring</em><br>für Entscheider</h2>
+        <div class="sparring-meta">
+          <span>🧭 Orientierung</span>
+          <span>Geschäftsführung</span>
+          <span>Inhaber:innen</span>
+        </div>
+      </div>
+      <div>
+        <p class="sparring-text">Manchmal geht es nicht ums Bauen, sondern ums Sortieren. Wenn du als Geschäftsführer:in oder Entscheider:in bei KI nicht den Überblick verlieren, aber auch nicht jedem Trend hinterherrennen willst – dafür gibt es <strong>KI-Sparring</strong>.</p>
+        <p class="sparring-text">Ein Format zur Orientierung, nicht zur großen Strategie. Bewusst überschaubar – vom 90-Minuten-Fokus bis zum 3-Sessions-Paket.</p>
+        <a href="/ki-sparring" class="sparring-link">Mehr dazu <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      </div>
+    </div>
+  </section>
+
   <!-- BOOKING -->
   <section class="booking-section" id="booking">
     <div class="booking-inner">
@@ -839,6 +891,7 @@
           <ul>
             <li><a href="#" onclick="showPage('main'); setTimeout(()=>scrollToSection('was-ich'),100)">Was ich automatisiere</a></li>
             <li><a href="#" onclick="showPage('main'); setTimeout(()=>scrollToSection('wie'),100)">Vorgehen</a></li>
+            <li><a href="/ki-sparring">KI-Sparring</a></li>
             <li><a href="#" onclick="showPage('main'); setTimeout(()=>scrollToSection('ueber'),100)">Über mich</a></li>
           </ul>
         </div>
