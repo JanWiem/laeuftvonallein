@@ -437,6 +437,130 @@
   }
   .sparring-link:hover { gap: 11px; color: var(--navy); }
 
+  /* ─── Kontaktformular ───────────────────────────────────────── */
+  .kontakt-section { background: var(--bg); padding: 5.5rem 2rem; }
+  .kontakt-inner { max-width: 760px; margin: 0 auto; }
+  .kontakt-inner .section-label { display: inline-block; margin-bottom: 1rem; }
+  .kontakt-inner h2 { margin-bottom: 0.75rem; }
+  .kontakt-inner > .lead { margin-bottom: 2.75rem; }
+  .kontakt-form {
+    background: var(--white); border: 1px solid var(--border);
+    border-radius: var(--radius-lg); padding: 2.75rem 2.5rem;
+    box-shadow: var(--shadow-sm);
+  }
+  .kontakt-row {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 1.25rem; margin-bottom: 1.25rem;
+  }
+  .kontakt-field { display: flex; flex-direction: column; gap: 0.45rem; }
+  .kontakt-field.full { grid-column: 1 / -1; }
+  .kontakt-field label {
+    font-size: 0.78rem; font-weight: 600; letter-spacing: 0.08em;
+    text-transform: uppercase; color: var(--text-muted);
+  }
+  .kontakt-field label span { color: var(--blue); margin-left: 2px; }
+  .kontakt-field input,
+  .kontakt-field textarea,
+  .kontakt-field select {
+    width: 100%; padding: 0.78rem 1rem;
+    background: var(--bg); border: 1px solid var(--border);
+    border-radius: var(--radius-sm); color: var(--text);
+    font-family: var(--font-sans); font-size: 0.95rem; font-weight: 300;
+    outline: none; transition: border-color var(--t), box-shadow var(--t);
+    appearance: none; -webkit-appearance: none;
+  }
+  .kontakt-field input::placeholder,
+  .kontakt-field textarea::placeholder { color: rgba(90,110,140,0.45); }
+  .kontakt-field input:focus,
+  .kontakt-field textarea:focus,
+  .kontakt-field select:focus {
+    border-color: var(--blue);
+    box-shadow: 0 0 0 3px rgba(74,127,212,0.12);
+    background: var(--white);
+  }
+  .kontakt-field textarea { resize: vertical; min-height: 120px; line-height: 1.65; }
+  .kontakt-select-wrap { position: relative; }
+  .kontakt-select-wrap::after {
+    content: ''; position: absolute; right: 1rem; top: 50%;
+    transform: translateY(-50%);
+    width: 0; height: 0;
+    border-left: 4px solid transparent; border-right: 4px solid transparent;
+    border-top: 5px solid var(--text-muted); pointer-events: none;
+  }
+  .kontakt-interests {
+    display: flex; flex-wrap: wrap; gap: 0.6rem;
+    margin-top: 0.25rem;
+  }
+  .kontakt-interest-label {
+    display: flex; align-items: center; gap: 0.45rem;
+    padding: 0.42rem 0.95rem;
+    background: var(--bg); border: 1px solid var(--border);
+    border-radius: 100px; cursor: pointer;
+    font-size: 0.82rem; font-weight: 400; color: var(--text-muted);
+    transition: all var(--t); user-select: none;
+  }
+  .kontakt-interest-label:hover { border-color: var(--blue); color: var(--blue); }
+  .kontakt-interest-label input[type="checkbox"] { display: none; }
+  .kontakt-interest-label.checked {
+    background: var(--blue-pale); border-color: var(--blue);
+    color: var(--blue); font-weight: 500;
+  }
+  .kontakt-interest-label.checked::before {
+    content: '✓'; font-size: 0.75rem; font-weight: 700;
+  }
+  /* Honeypot */
+  .kontakt-hp { display: none !important; }
+  .kontakt-footer {
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 1rem; margin-top: 1.75rem;
+  }
+  .kontakt-privacy {
+    font-size: 0.78rem; color: var(--text-muted); font-weight: 300;
+    line-height: 1.55; max-width: 340px;
+  }
+  .kontakt-privacy a { color: var(--blue); text-decoration: none; }
+  .kontakt-privacy a:hover { text-decoration: underline; }
+  .kontakt-submit {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 0.85rem 1.8rem; background: var(--blue);
+    color: var(--white); border: none; border-radius: 100px;
+    font-family: var(--font-sans); font-size: 0.95rem; font-weight: 600;
+    cursor: pointer; transition: background var(--t), transform var(--t), box-shadow var(--t);
+    white-space: nowrap;
+  }
+  .kontakt-submit:hover {
+    background: var(--blue-light);
+    transform: translateY(-1px); box-shadow: var(--shadow-md);
+  }
+  .kontakt-submit:disabled { opacity: 0.55; cursor: not-allowed; transform: none; }
+  .kontakt-submit svg { flex-shrink: 0; transition: transform var(--t); }
+  .kontakt-submit:hover svg { transform: translateX(3px); }
+  .kontakt-success {
+    display: none; text-align: center; padding: 2rem 1rem;
+  }
+  .kontakt-success-icon {
+    width: 60px; height: 60px; background: rgba(74,127,212,0.12);
+    border-radius: 50%; display: flex; align-items: center;
+    justify-content: center; margin: 0 auto 1.25rem; font-size: 1.5rem;
+  }
+  .kontakt-success h3 {
+    font-family: var(--font-serif); font-size: 1.3rem;
+    color: var(--navy); margin-bottom: 0.6rem;
+  }
+  .kontakt-success p { font-size: 0.92rem; color: var(--text-muted); font-weight: 300; }
+  .kontakt-error-msg {
+    display: none; background: rgba(220,80,60,0.07);
+    border: 1px solid rgba(220,80,60,0.25); border-radius: var(--radius-sm);
+    padding: 0.75rem 1rem; margin-top: 1rem;
+    font-size: 0.85rem; color: #c0433a; font-weight: 300;
+  }
+  @media (max-width: 640px) {
+    .kontakt-row { grid-template-columns: 1fr; }
+    .kontakt-form { padding: 2rem 1.5rem; }
+    .kontakt-footer { flex-direction: column; }
+    .kontakt-submit { width: 100%; justify-content: center; }
+  }
+
   /* ─── Booking ────────────────────────────────────────────────── */
   .booking-section {
     background: linear-gradient(145deg, var(--navy) 0%, var(--navy-mid) 100%);
@@ -692,6 +816,7 @@
     <li><a href="#" onclick="showPage('main'); setTimeout(()=>scrollToSection('was-ich'),100)">Was ich automatisiere</a></li>
     <li><a href="#" onclick="showPage('main'); setTimeout(()=>scrollToSection('wie'),100)">Vorgehen</a></li>
     <li><a href="#" onclick="showPage('main'); setTimeout(()=>scrollToSection('ueber'),100)">Über mich</a></li>
+    <li><a href="#" onclick="showPage('main'); setTimeout(()=>scrollToSection('kontakt'),100)">Kontakt</a></li>
     <li><a href="https://calendar.app.google/vXAGb7DQjwTJtg9t6" target="_blank" rel="noopener" class="nav-cta">Termin buchen</a></li>
   </ul>
   <button class="nav-hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menü">
@@ -850,6 +975,87 @@
     </div>
   </section>
 
+  <!-- KONTAKTFORMULAR -->
+  <section class="kontakt-section" id="kontakt">
+    <div class="kontakt-inner">
+      <span class="section-label">Anfrage stellen</span>
+      <h2>Schreib mir direkt</h2>
+      <p class="lead">Kein Termin nötig – beschreib kurz, was dich beschäftigt. Ich melde mich innerhalb von 24&nbsp;Stunden.</p>
+      <div class="kontakt-form" id="kontakt-form-wrap">
+        <div id="kontakt-fields">
+          <div class="kontakt-row">
+            <div class="kontakt-field">
+              <label for="kf-name">Name <span>*</span></label>
+              <input type="text" id="kf-name" name="name" placeholder="Dein Name" autocomplete="name" required>
+            </div>
+            <div class="kontakt-field">
+              <label for="kf-firma">Unternehmen</label>
+              <input type="text" id="kf-firma" name="firma" placeholder="Optional" autocomplete="organization">
+            </div>
+          </div>
+          <div class="kontakt-row">
+            <div class="kontakt-field">
+              <label for="kf-email">E-Mail <span>*</span></label>
+              <input type="email" id="kf-email" name="email" placeholder="du@unternehmen.de" autocomplete="email" required>
+            </div>
+            <div class="kontakt-field">
+              <label for="kf-telefon">Telefon</label>
+              <input type="tel" id="kf-telefon" name="telefon" placeholder="Optional" autocomplete="tel">
+            </div>
+          </div>
+          <div class="kontakt-row" style="margin-bottom:1.25rem">
+            <div class="kontakt-field full">
+              <label>Worum geht es? <span>*</span></label>
+              <div class="kontakt-interests" id="kf-interests">
+                <label class="kontakt-interest-label" onclick="toggleInterest(this)">
+                  <input type="checkbox" name="interesse" value="Zeitfresser-Audit"> Zeitfresser-Audit
+                </label>
+                <label class="kontakt-interest-label" onclick="toggleInterest(this)">
+                  <input type="checkbox" name="interesse" value="KI-Sparring"> KI-Sparring
+                </label>
+                <label class="kontakt-interest-label" onclick="toggleInterest(this)">
+                  <input type="checkbox" name="interesse" value="Automatisierungsprojekt"> Automatisierungsprojekt
+                </label>
+                <label class="kontakt-interest-label" onclick="toggleInterest(this)">
+                  <input type="checkbox" name="interesse" value="Erstgespräch"> Erstgespräch
+                </label>
+                <label class="kontakt-interest-label" onclick="toggleInterest(this)">
+                  <input type="checkbox" name="interesse" value="Sonstiges"> Sonstiges
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="kontakt-row" style="margin-bottom:0">
+            <div class="kontakt-field full">
+              <label for="kf-nachricht">Nachricht <span>*</span></label>
+              <textarea id="kf-nachricht" name="nachricht" placeholder="Was beschäftigt dich? Wo liegt der größte Zeitfresser in deinem Betrieb?" required></textarea>
+            </div>
+          </div>
+          <!-- Honeypot anti-spam -->
+          <div class="kontakt-hp" aria-hidden="true">
+            <input type="text" name="_hp" tabindex="-1" autocomplete="off">
+          </div>
+          <div class="kontakt-error-msg" id="kf-error"></div>
+          <div class="kontakt-footer">
+            <p class="kontakt-privacy">
+              Mit dem Absenden stimmst du der Verarbeitung deiner Daten zur Bearbeitung deiner Anfrage zu.
+              Mehr dazu in der <a href="#" onclick="showPage('datenschutz')">Datenschutzerklärung</a>.
+            </p>
+            <button type="button" class="kontakt-submit" id="kf-submit" onclick="submitKontakt()">
+              Anfrage senden
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </button>
+          </div>
+        </div>
+        <div class="kontakt-success" id="kf-success">
+          <div class="kontakt-success-icon">✅</div>
+          <h3>Anfrage eingegangen!</h3>
+          <p>Danke – ich melde mich innerhalb von 24&nbsp;Stunden bei dir.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- BOOKING -->
   <section class="booking-section" id="booking">
     <div class="booking-inner">
@@ -933,7 +1139,9 @@
       <p>Beim Abruf dieser Website werden durch den Hosting-Anbieter automatisch Informationen in Server-Logfiles erfasst: IP-Adresse, Datum und Uhrzeit, aufgerufene Seite, verwendeter Browser und Betriebssystem. Diese Daten sind nicht einer bestimmten Person zuzuordnen und werden nicht mit anderen Datenquellen zusammengeführt. Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse am technischen Betrieb). Speicherdauer: bis zu 7 Tage, danach automatische Löschung.</p>
       <h3>4. Google Fonts</h3>
       <p>Diese Website bindet Schriftarten über Google Fonts (Google LLC, 1600 Amphitheatre Parkway, Mountain View, CA 94043, USA) ein. Beim Laden der Seite wird eine Verbindung zu Google-Servern hergestellt, dabei kann Ihre IP-Adresse übertragen werden. Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO. Weitere Informationen: <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">policies.google.com/privacy</a>.</p>
-      <h3>5. Kontaktaufnahme per E-Mail</h3>
+      <h3>5. Kontaktformular</h3>
+      <p>Wenn Sie das Kontaktformular auf dieser Website nutzen, werden die von Ihnen eingegebenen Daten (Name, E-Mail-Adresse, Unternehmen, Telefon, Interesse, Nachricht) zur Bearbeitung Ihrer Anfrage verarbeitet. Die Daten werden über einen automatisierten Prozess (n8n) in eine interne Datenbank übernommen und per E-Mail an den Betreiber weitergeleitet. Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO (Vertragsanbahnung) bzw. lit. f DSGVO (berechtigtes Interesse). Eine Weitergabe an Dritte ohne Ihre Einwilligung findet nicht statt. Speicherdauer: bis zum Abschluss der Anfrage, bei Vertragsanbahnung bis zu 3 Jahre nach Abschluss des Kontakts.</p>
+      <h3>6. Kontaktaufnahme per E-Mail</h3>
       <p>Wenn Sie uns per E-Mail kontaktieren, werden Ihre Angaben (Name, E-Mail-Adresse, Nachrichteninhalt) zur Bearbeitung der Anfrage und für etwaige Rückfragen gespeichert. Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO (Vertragsanbahnung) bzw. lit. f DSGVO (berechtigtes Interesse). Eine Weitergabe ohne Einwilligung findet nicht statt. Speicherdauer: bis zum Abschluss der Anfrage, bei Vertragsanbahnung bis zu 3 Jahre nach Abschluss des Kontakts.</p>
       <h3>6. Google Calendar (Terminbuchung)</h3>
       <p>Für die Online-Terminbuchung wird Google Calendar (Google LLC, 1600 Amphitheatre Parkway, Mountain View, CA 94043, USA) genutzt. Bei der Buchung werden Name, E-Mail-Adresse und gewünschter Termin an Google übermittelt und dort verarbeitet. Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO. Es kann zu einer Datenübertragung in die USA kommen; Google ist nach dem EU-US Data Privacy Framework zertifiziert und hat Standardvertragsklauseln gemäß Art. 46 Abs. 2 DSGVO abgeschlossen. Speicherdauer: bis zur Durchführung des Termins, danach nach gesetzlichen Aufbewahrungsfristen. Weitere Informationen: <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">policies.google.com/privacy</a>.</p>
@@ -972,6 +1180,7 @@
             <li><a href="/zeitfresser-audit">Zeitfresser-Audit</a></li>
             <li><a href="/ki-sparring">KI-Sparring</a></li>
             <li><a href="#" onclick="showPage('main'); setTimeout(()=>scrollToSection('ueber'),100)">Über mich</a></li>
+            <li><a href="#" onclick="showPage('main'); setTimeout(()=>scrollToSection('kontakt'),100)">Kontakt</a></li>
           </ul>
         </div>
         <div class="footer-links-col">
@@ -998,6 +1207,75 @@
 </footer>
 
 <script>
+  // ─── Kontaktformular ───────────────────────────────────────────
+
+  function toggleInterest(label) {
+    label.classList.toggle('checked');
+  }
+
+  async function submitKontakt() {
+    const btn = document.getElementById('kf-submit');
+    const errorEl = document.getElementById('kf-error');
+    errorEl.style.display = 'none';
+
+    // Honeypot check
+    const hp = document.querySelector('input[name="_hp"]');
+    if (hp && hp.value) return;
+
+    // Validation
+    const name = document.getElementById('kf-name').value.trim();
+    const email = document.getElementById('kf-email').value.trim();
+    const nachricht = document.getElementById('kf-nachricht').value.trim();
+    if (!name || !email || !nachricht) {
+      errorEl.textContent = 'Bitte fülle alle Pflichtfelder aus (Name, E-Mail, Nachricht).';
+      errorEl.style.display = 'block';
+      return;
+    }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      errorEl.textContent = 'Bitte gib eine gültige E-Mail-Adresse ein.';
+      errorEl.style.display = 'block';
+      return;
+    }
+
+    const interests = [...document.querySelectorAll('.kontakt-interest-label.checked')]
+      .map(l => l.querySelector('input').value);
+
+    const payload = {
+      name,
+      email,
+      firma: document.getElementById('kf-firma').value.trim() || null,
+      telefon: document.getElementById('kf-telefon').value.trim() || null,
+      interesse: interests.join(', ') || 'Keine Angabe',
+      nachricht,
+      quelle: 'laeuftvonallein.de',
+      timestamp: new Date().toISOString()
+    };
+
+    btn.disabled = true;
+    btn.innerHTML = 'Wird gesendet…';
+
+    try {
+      // TODO: Ersetze diese URL mit deinem n8n Webhook-URL
+      const WEBHOOK_URL = 'https://n8n.laeuftvonallein.de/webhook-test/kontakt-lva';
+
+      const res = await fetch(WEBHOOK_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+
+      document.getElementById('kontakt-fields').style.display = 'none';
+      document.getElementById('kf-success').style.display = 'block';
+    } catch (err) {
+      errorEl.textContent = 'Etwas ist schiefgelaufen. Bitte schreib mir direkt an info@laeuftvonallein.de';
+      errorEl.style.display = 'block';
+      btn.disabled = false;
+      btn.innerHTML = 'Anfrage senden <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><path d="M5 12h14M12 5l7 7-7 7"/></svg>';
+    }
+  }
+
   const PASSWORT = 'laeuftvonallein2025';
 
   function checkPw() {
