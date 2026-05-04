@@ -9,7 +9,6 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
-  /* ─── Variables ──────────────────────────────────────────────── */
   :root {
     --navy:        #0B1D3F;
     --navy-mid:    #142F5E;
@@ -32,46 +31,19 @@
     --shadow-lg:   0 20px 60px rgba(11,29,63,0.14);
     --t:           0.22s ease;
   }
-
-  /* ─── Reset ──────────────────────────────────────────────────── */
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; }
-  body {
-    font-family: var(--font-sans);
-    background: var(--white);
-    color: var(--text);
-    line-height: 1.7;
-    overflow-x: hidden;
-    -webkit-font-smoothing: antialiased;
-  }
+  body { font-family: var(--font-sans); background: var(--white); color: var(--text); line-height: 1.7; overflow-x: hidden; -webkit-font-smoothing: antialiased; }
 
-  /* ─── Page Routing ───────────────────────────────────────────── */
   .page { display: none; }
   .page.active { display: block; }
 
-  /* ─── Utility ────────────────────────────────────────────────── */
   .container { max-width: 1080px; margin: 0 auto; }
-  .section-label {
-    display: inline-block;
-    font-size: 0.72rem; font-weight: 600;
-    letter-spacing: 0.14em; text-transform: uppercase;
-    color: var(--blue); margin-bottom: 0.9rem;
-  }
-  h2 {
-    font-family: var(--font-serif);
-    font-size: clamp(1.9rem, 4vw, 2.7rem);
-    font-weight: 600; color: var(--navy);
-    line-height: 1.2; letter-spacing: -0.02em;
-    margin-bottom: 0.9rem;
-  }
+  .section-label { display: inline-block; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--blue); margin-bottom: 0.9rem; }
+  h2 { font-family: var(--font-serif); font-size: clamp(1.9rem, 4vw, 2.7rem); font-weight: 600; color: var(--navy); line-height: 1.2; letter-spacing: -0.02em; margin-bottom: 0.9rem; }
   h2 em { font-style: italic; color: var(--blue); }
-  .lead {
-    font-size: 1.02rem; color: var(--text-muted);
-    font-weight: 300; max-width: 500px;
-    line-height: 1.85; margin-bottom: 2.5rem;
-  }
+  .lead { font-size: 1.02rem; color: var(--text-muted); font-weight: 300; max-width: 500px; line-height: 1.85; margin-bottom: 2.5rem; }
 
-  /* ─── Navigation ─────────────────────────────────────────────── */
   nav {
     position: fixed; top: 0; left: 0; right: 0; z-index: 100;
     display: flex; align-items: center; justify-content: space-between;
@@ -83,620 +55,138 @@
     transition: box-shadow var(--t);
   }
   nav.scrolled { box-shadow: 0 2px 20px rgba(11,29,63,0.08); }
-
-  .nav-logo {
-    display: flex; align-items: center; gap: 10px;
-    text-decoration: none; color: var(--navy);
-  }
-  .nav-wordmark {
-    font-family: var(--font-sans);
-    font-size: 1.05rem; font-weight: 400;
-    color: var(--navy); line-height: 1;
-  }
+  .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--navy); }
+  .nav-wordmark { font-family: var(--font-sans); font-size: 1.05rem; font-weight: 400; color: var(--navy); line-height: 1; }
   .nav-wordmark strong { color: var(--blue); font-weight: 700; }
-
-  .nav-links {
-    display: flex; align-items: center;
-    gap: 2.25rem; list-style: none;
-  }
-  .nav-links a {
-    font-size: 0.88rem; font-weight: 500;
-    color: var(--text-muted); text-decoration: none;
-    transition: color var(--t);
-  }
+  .nav-links { display: flex; align-items: center; gap: 2.25rem; list-style: none; }
+  .nav-links a { font-size: 0.88rem; font-weight: 500; color: var(--text-muted); text-decoration: none; transition: color var(--t); }
   .nav-links a:hover { color: var(--navy); }
-  .nav-cta {
-    background: var(--navy) !important;
-    color: var(--white) !important;
-    padding: 0.55rem 1.35rem; border-radius: 100px;
-    font-weight: 600 !important; font-size: 0.85rem !important;
-    transition: background var(--t), transform var(--t) !important;
-  }
+  .nav-cta { background: var(--navy) !important; color: var(--white) !important; padding: 0.55rem 1.35rem; border-radius: 100px; font-weight: 600 !important; font-size: 0.85rem !important; transition: background var(--t), transform var(--t) !important; }
   .nav-cta:hover { background: var(--navy-mid) !important; transform: translateY(-1px); }
+  .nav-hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
+  .nav-hamburger span { display: block; width: 22px; height: 2px; background: var(--navy); border-radius: 2px; transition: all 0.3s; }
 
-  .nav-hamburger {
-    display: none; flex-direction: column; gap: 5px;
-    cursor: pointer; background: none; border: none; padding: 4px;
-  }
-  .nav-hamburger span {
-    display: block; width: 22px; height: 2px;
-    background: var(--navy); border-radius: 2px; transition: all 0.3s;
-  }
+  .btn-primary { display: inline-flex; align-items: center; gap: 8px; background: var(--blue); color: var(--white); padding: 0.85rem 2rem; border-radius: 100px; font-size: 0.95rem; font-weight: 600; text-decoration: none; transition: background var(--t), transform var(--t), box-shadow var(--t); box-shadow: 0 4px 20px rgba(74,127,212,0.30); border: none; cursor: pointer; }
+  .btn-primary:hover { background: var(--blue-light); transform: translateY(-2px); box-shadow: 0 8px 28px rgba(74,127,212,0.40); }
+  .btn-ghost { display: inline-flex; align-items: center; gap: 8px; background: transparent; color: rgba(232,240,251,0.75); padding: 0.85rem 1.75rem; border-radius: 100px; font-size: 0.95rem; font-weight: 400; text-decoration: none; border: 1px solid rgba(255,255,255,0.22); transition: border-color var(--t), background var(--t), color var(--t), transform var(--t); }
+  .btn-ghost:hover { border-color: rgba(255,255,255,0.45); background: rgba(255,255,255,0.07); color: #E8F0FB; transform: translateY(-2px); }
 
-  /* ─── Buttons ────────────────────────────────────────────────── */
-  .btn-primary {
-    display: inline-flex; align-items: center; gap: 8px;
-    background: var(--blue); color: var(--white);
-    padding: 0.85rem 2rem; border-radius: 100px;
-    font-size: 0.95rem; font-weight: 600; text-decoration: none;
-    transition: background var(--t), transform var(--t), box-shadow var(--t);
-    box-shadow: 0 4px 20px rgba(74,127,212,0.30);
-    border: none; cursor: pointer;
-  }
-  .btn-primary:hover {
-    background: var(--blue-light); transform: translateY(-2px);
-    box-shadow: 0 8px 28px rgba(74,127,212,0.40);
-  }
-  .btn-ghost {
-    display: inline-flex; align-items: center; gap: 8px;
-    background: transparent; color: rgba(232,240,251,0.75);
-    padding: 0.85rem 1.75rem; border-radius: 100px;
-    font-size: 0.95rem; font-weight: 400; text-decoration: none;
-    border: 1px solid rgba(255,255,255,0.22);
-    transition: border-color var(--t), background var(--t), color var(--t), transform var(--t);
-  }
-  .btn-ghost:hover {
-    border-color: rgba(255,255,255,0.45);
-    background: rgba(255,255,255,0.07);
-    color: #E8F0FB; transform: translateY(-2px);
-  }
-
-  /* ─── Hero ───────────────────────────────────────────────────── */
-  #hero-auto {
-    min-height: 100vh;
-    background: var(--navy);
-    display: grid; grid-template-columns: 1fr 1fr;
-    padding-top: 4rem;
-    position: relative; overflow: hidden;
-  }
-  .hero-dot-bg {
-    position: absolute; inset: 0;
-    background-image: radial-gradient(circle at 1px 1px, rgba(74,127,212,0.18) 1px, transparent 0);
-    background-size: 34px 34px;
-    pointer-events: none;
-    mask-image: radial-gradient(ellipse 80% 80% at 60% 40%, black 0%, transparent 100%);
-  }
-  #hero-auto::after {
-    content: '';
-    position: absolute; right: -80px; top: -80px;
-    width: 600px; height: 600px; border-radius: 50%;
-    background: radial-gradient(circle, rgba(74,127,212,0.20) 0%, transparent 68%);
-    pointer-events: none;
-  }
-  #hero-auto::before {
-    content: '';
-    position: absolute; left: -60px; bottom: -100px;
-    width: 420px; height: 420px; border-radius: 50%;
-    background: radial-gradient(circle, rgba(74,127,212,0.10) 0%, transparent 65%);
-    pointer-events: none;
-  }
-
-  .hero-left {
-    display: flex; flex-direction: column; justify-content: center;
-    padding: 6rem 3.5rem 6rem 5rem;
-    position: relative; z-index: 2;
-  }
-  .hero-chip {
-    display: inline-flex; align-items: center; gap: 0.55rem;
-    background: rgba(74,127,212,0.14); border: 1px solid rgba(74,127,212,0.28);
-    color: #9BBFF5; font-size: 0.72rem; font-weight: 500;
-    letter-spacing: 0.1em; text-transform: uppercase;
-    padding: 0.4rem 1rem; border-radius: 100px;
-    margin-bottom: 2rem; width: fit-content;
-  }
-  .hero-chip-dot {
-    width: 6px; height: 6px; border-radius: 50%;
-    background: var(--blue-light);
-    animation: pulse 2.2s ease-in-out infinite;
-  }
-  @keyframes pulse {
-    0%, 100% { opacity: 1; transform: scale(1); }
-    50% { opacity: 0.45; transform: scale(0.75); }
-  }
-  h1 {
-    font-family: var(--font-serif);
-    font-size: clamp(2.5rem, 4.5vw, 3.6rem);
-    font-weight: 600; color: #E8F0FB;
-    line-height: 1.16; letter-spacing: -0.025em;
-    margin-bottom: 1.4rem;
-  }
+  /* ─── Hero ─────────────────────────────────────────────────────── */
+  #hero-auto { min-height: 100vh; background: var(--navy); display: grid; grid-template-columns: 1fr 1fr; padding-top: 4rem; position: relative; overflow: hidden; }
+  .hero-dot-bg { position: absolute; inset: 0; background-image: radial-gradient(circle at 1px 1px, rgba(74,127,212,0.18) 1px, transparent 0); background-size: 34px 34px; pointer-events: none; mask-image: radial-gradient(ellipse 80% 80% at 60% 40%, black 0%, transparent 100%); }
+  #hero-auto::after { content: ''; position: absolute; right: -80px; top: -80px; width: 600px; height: 600px; border-radius: 50%; background: radial-gradient(circle, rgba(74,127,212,0.20) 0%, transparent 68%); pointer-events: none; }
+  #hero-auto::before { content: ''; position: absolute; left: -60px; bottom: -100px; width: 420px; height: 420px; border-radius: 50%; background: radial-gradient(circle, rgba(74,127,212,0.10) 0%, transparent 65%); pointer-events: none; }
+  .hero-left { display: flex; flex-direction: column; justify-content: center; padding: 6rem 3.5rem 6rem 5rem; position: relative; z-index: 2; }
+  .hero-chip { display: inline-flex; align-items: center; gap: 0.55rem; background: rgba(74,127,212,0.14); border: 1px solid rgba(74,127,212,0.28); color: #9BBFF5; font-size: 0.72rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.4rem 1rem; border-radius: 100px; margin-bottom: 2rem; width: fit-content; }
+  .hero-chip-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--blue-light); animation: pulse 2.2s ease-in-out infinite; }
+  @keyframes pulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.45; transform: scale(0.75); } }
+  h1 { font-family: var(--font-serif); font-size: clamp(2.5rem, 4.5vw, 3.6rem); font-weight: 600; color: #E8F0FB; line-height: 1.16; letter-spacing: -0.025em; margin-bottom: 1.4rem; }
   h1 em { font-style: italic; color: var(--blue-light); }
-  .hero-sub {
-    font-size: 1.02rem; color: rgba(232,240,251,0.78);
-    font-weight: 300; max-width: 390px;
-    margin-bottom: 2.25rem; line-height: 1.82;
-  }
+  .hero-sub { font-size: 1.02rem; color: rgba(232,240,251,0.78); font-weight: 300; max-width: 390px; margin-bottom: 2.25rem; line-height: 1.82; }
   .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
 
-  .hero-right {
-    display: flex; align-items: center; justify-content: center;
-    padding: 4rem 3rem; position: relative; z-index: 2;
-  }
-  .hero-cards {
-    display: grid; grid-template-columns: 1fr 1fr;
-    gap: 14px; width: 100%; max-width: 420px;
-  }
+  .hero-right { display: flex; align-items: center; justify-content: center; padding: 4rem 3rem; position: relative; z-index: 2; }
+  .hero-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; width: 100%; max-width: 420px; }
   .hero-card {
     background: rgba(232,240,251,0.05);
     border: 1px solid rgba(232,240,251,0.10);
     border-radius: 14px; padding: 1.3rem 1.4rem;
     transition: background var(--t), border-color var(--t), transform var(--t);
-    cursor: default;
+    cursor: default; text-decoration: none;
   }
-  .hero-card:hover {
-    background: rgba(74,127,212,0.12);
-    border-color: rgba(74,127,212,0.28);
-    transform: translateY(-3px);
-  }
+  .hero-card:hover { background: rgba(74,127,212,0.12); border-color: rgba(74,127,212,0.28); transform: translateY(-3px); }
+  /* Clickable hero cards */
+  a.hero-card { cursor: pointer; }
   .hero-card-icon { font-size: 1.3rem; display: block; margin-bottom: 0.6rem; }
-  .hero-card-num {
-    font-size: 0.68rem; font-weight: 600;
-    letter-spacing: 0.1em; color: var(--blue-light);
-    text-transform: uppercase; display: block; margin-bottom: 0.35rem;
-  }
-  .hero-card h3 {
-    font-family: var(--font-serif); font-size: 0.93rem;
-    color: #E8F0FB; margin-bottom: 0; font-weight: 400; line-height: 1.4;
-  }
-  .live-badge {
-    display: inline-flex; align-items: center; gap: 5px;
-    background: rgba(74,127,212,0.18); border: 1px solid rgba(74,127,212,0.28);
-    border-radius: 100px; padding: 3px 9px;
-    font-size: 0.68rem; color: #9BBFF5; font-weight: 600;
-    margin-top: 0.5rem;
-  }
-  .live-dot {
-    width: 5px; height: 5px; border-radius: 50%;
-    background: #6B9AE8; animation: pulse 1.8s ease-in-out infinite;
-  }
+  .hero-card-num { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.1em; color: var(--blue-light); text-transform: uppercase; display: block; margin-bottom: 0.35rem; }
+  .hero-card h3 { font-family: var(--font-serif); font-size: 0.93rem; color: #E8F0FB; margin-bottom: 0; font-weight: 400; line-height: 1.4; }
+  .hero-card-arrow { display: block; margin-top: 0.6rem; font-size: 0.68rem; color: rgba(107,154,232,0.6); font-weight: 500; letter-spacing: 0.05em; transition: color var(--t), letter-spacing var(--t); }
+  a.hero-card:hover .hero-card-arrow { color: #9BBFF5; letter-spacing: 0.1em; }
 
-  /* ─── Was ich automatisiere ──────────────────────────────────── */
+  /* ─── Was ich automatisiere ─────────────────────────────────────── */
   #was-ich { background: var(--white); padding: 5.5rem 2rem; }
-  #was-ich .container > .section-label,
-  #was-ich .container > h2,
-  #was-ich .container > .lead { text-align: center; max-width: none; }
+  #was-ich .container > .section-label, #was-ich .container > h2, #was-ich .container > .lead { text-align: center; max-width: none; }
   #was-ich .container > .section-label { display: block; }
-  .was-grid {
-    display: grid; grid-template-columns: repeat(4, 1fr);
-    gap: 1.2rem; margin-top: 2.5rem; max-width: 1080px;
-  }
-  .was-card {
-    background: var(--bg); border: 1px solid var(--border);
-    border-radius: var(--radius-lg); padding: 1.85rem 1.5rem;
-    transition: border-color var(--t), box-shadow var(--t), transform var(--t);
-    position: relative; overflow: hidden;
-  }
-  .was-card::before {
-    content: ''; position: absolute; inset: 0;
-    border-radius: var(--radius-lg);
-    background: linear-gradient(135deg, rgba(74,127,212,0.06) 0%, transparent 60%);
-    opacity: 0; transition: opacity var(--t);
-  }
+  .was-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.2rem; margin-top: 2.5rem; max-width: 1080px; }
+  .was-card { background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 1.85rem 1.5rem; transition: border-color var(--t), box-shadow var(--t), transform var(--t); position: relative; overflow: hidden; }
+  .was-card::before { content: ''; position: absolute; inset: 0; border-radius: var(--radius-lg); background: linear-gradient(135deg, rgba(74,127,212,0.06) 0%, transparent 60%); opacity: 0; transition: opacity var(--t); }
   .was-card:hover { border-color: rgba(74,127,212,0.30); box-shadow: var(--shadow-md); transform: translateY(-4px); }
   .was-card:hover::before { opacity: 1; }
-  .was-card-icon {
-    width: 48px; height: 48px; background: var(--blue-pale);
-    border-radius: var(--radius-sm); display: flex;
-    align-items: center; justify-content: center;
-    font-size: 1.2rem; margin-bottom: 1.1rem;
-    transition: background var(--t);
-  }
+  .was-card-icon { width: 48px; height: 48px; background: var(--blue-pale); border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; font-size: 1.2rem; margin-bottom: 1.1rem; transition: background var(--t); }
   .was-card:hover .was-card-icon { background: rgba(74,127,212,0.18); }
-  .was-card h4 {
-    font-size: 0.97rem; font-weight: 600;
-    color: var(--navy); margin-bottom: 0.45rem; line-height: 1.3;
-  }
+  .was-card h4 { font-size: 0.97rem; font-weight: 600; color: var(--navy); margin-bottom: 0.45rem; line-height: 1.3; }
   .was-card p { font-size: 0.85rem; color: var(--text-muted); font-weight: 300; line-height: 1.65; }
   a.was-card { text-decoration: none; color: inherit; display: block; cursor: pointer; }
-  .was-card-link {
-    display: inline-flex; align-items: center; gap: 5px;
-    margin-top: 1rem; font-size: 0.8rem; font-weight: 500;
-    color: var(--blue); transition: gap var(--t), color var(--t);
-  }
+  .was-card-link { display: inline-flex; align-items: center; gap: 5px; margin-top: 1rem; font-size: 0.8rem; font-weight: 500; color: var(--blue); transition: gap var(--t), color var(--t); }
   a.was-card:hover .was-card-link { gap: 9px; color: var(--navy); }
-  .was-more {
-    margin-top: 2rem; font-size: 0.88rem;
-    color: var(--text-muted); font-weight: 300; font-style: italic;
-    text-align: center; display: block; max-width: 1080px;
-  }
+  .was-more { margin-top: 2rem; font-size: 0.88rem; color: var(--text-muted); font-weight: 300; font-style: italic; text-align: center; display: block; max-width: 1080px; }
 
-  /* ─── Vorgehen ───────────────────────────────────────────────── */
+  /* ─── Vorgehen ──────────────────────────────────────────────────── */
   #wie { background: var(--bg); padding: 5.5rem 2rem; }
-  #wie .container > .section-label,
-  #wie .container > h2 { text-align: center; }
+  #wie .container > .section-label, #wie .container > h2 { text-align: center; }
   #wie .container > .section-label { display: block; }
-  .schritte {
-    display: grid; grid-template-columns: repeat(3, 1fr);
-    gap: 2rem; margin-top: 2.5rem; position: relative;
-  }
-  .schritte::before {
-    content: ''; position: absolute; top: 28px;
-    left: calc(16.66% + 1rem); right: calc(16.66% + 1rem);
-    height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(74,127,212,0.25), transparent);
-    pointer-events: none;
-  }
+  .schritte { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-top: 2.5rem; position: relative; }
+  .schritte::before { content: ''; position: absolute; top: 28px; left: calc(16.66% + 1rem); right: calc(16.66% + 1rem); height: 1px; background: linear-gradient(90deg, transparent, rgba(74,127,212,0.25), transparent); pointer-events: none; }
   .schritt { text-align: center; padding: 0 1rem; }
-  .schritt-num {
-    width: 56px; height: 56px; background: var(--blue-pale);
-    border: 2px solid rgba(74,127,212,0.22);
-    color: var(--blue); border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    font-family: var(--font-serif); font-size: 1.15rem; font-weight: 600;
-    margin: 0 auto 1.25rem; position: relative; z-index: 1;
-    transition: background var(--t), color var(--t), border-color var(--t), transform var(--t);
-  }
-  .schritt:hover .schritt-num {
-    background: var(--blue); color: var(--white);
-    border-color: var(--blue); transform: scale(1.08);
-  }
-  .schritt h4 {
-    font-family: var(--font-serif); font-size: 1.05rem;
-    color: var(--navy); font-weight: 600; margin-bottom: 0.5rem;
-  }
+  .schritt-num { width: 56px; height: 56px; background: var(--blue-pale); border: 2px solid rgba(74,127,212,0.22); color: var(--blue); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: var(--font-serif); font-size: 1.15rem; font-weight: 600; margin: 0 auto 1.25rem; position: relative; z-index: 1; transition: background var(--t), color var(--t), border-color var(--t), transform var(--t); }
+  .schritt:hover .schritt-num { background: var(--blue); color: var(--white); border-color: var(--blue); transform: scale(1.08); }
+  .schritt h4 { font-family: var(--font-serif); font-size: 1.05rem; color: var(--navy); font-weight: 600; margin-bottom: 0.5rem; }
   .schritt p { font-size: 0.9rem; color: var(--text-muted); font-weight: 300; line-height: 1.7; }
-  .schritt-tool-tag {
-    display: inline-flex; align-items: center; gap: 5px;
-    margin-top: 0.85rem; background: var(--blue-pale);
-    border-radius: 100px; padding: 4px 14px;
-    font-size: 0.75rem; font-weight: 500; color: var(--blue);
-  }
+  .schritt-tool-tag { display: inline-flex; align-items: center; gap: 5px; margin-top: 0.85rem; background: var(--blue-pale); border-radius: 100px; padding: 4px 14px; font-size: 0.75rem; font-weight: 500; color: var(--blue); }
 
-  /* ─── Audit Teaser (Einstiegsangebot) ────────────────────────── */
-  #audit-teaser {
-    background: var(--white);
-    padding: 5.5rem 2rem;
-    text-align: center;
-  }
-  .audit-teaser-inner {
-    max-width: 820px; margin: 0 auto;
-  }
-  .audit-teaser-inner h2 { margin-bottom: 0.7rem; }
-  .audit-teaser-lead {
-    font-size: 1.02rem; color: var(--text-muted);
-    font-weight: 300; line-height: 1.85;
-    max-width: 640px; margin: 0 auto 2.2rem;
-  }
-  .audit-teaser-lead strong { color: var(--navy); font-weight: 500; }
-  .audit-flow {
-    display: flex; justify-content: center; align-items: center;
-    flex-wrap: wrap; gap: 0.55rem;
-    margin: 1.5rem 0 2rem;
-  }
-  .audit-flow-step {
-    background: var(--bg); border: 1px solid var(--border);
-    border-radius: 100px; padding: 0.55rem 1.15rem;
-    font-size: 0.85rem; font-weight: 500; color: var(--navy);
-    transition: border-color var(--t), background var(--t);
-  }
-  .audit-flow-step:hover {
-    border-color: rgba(74,127,212,0.35);
-    background: var(--blue-pale);
-  }
-  .audit-flow-arrow {
-    color: var(--blue); font-weight: 600;
-    font-size: 0.9rem; opacity: 0.6;
-  }
-  .audit-price-anchor {
-    display: inline-flex; align-items: center; gap: 0.6rem;
-    background: var(--navy); color: #E8F0FB;
-    border-radius: 100px; padding: 0.5rem 1.4rem;
-    font-size: 0.85rem; font-weight: 500;
-    margin-bottom: 1.5rem;
-  }
-  .audit-price-anchor strong {
-    color: var(--blue-light); font-weight: 700;
-    font-family: var(--font-serif); letter-spacing: -0.01em;
-  }
-  .audit-teaser-link {
-    display: inline-flex; align-items: center; gap: 7px;
-    color: var(--blue); font-weight: 600;
-    text-decoration: none; font-size: 0.95rem;
-    transition: gap var(--t), color var(--t);
-  }
-  .audit-teaser-link:hover { gap: 11px; color: var(--navy); }
-
-  /* ─── KI-Sparring Teaser ─────────────────────────────────────── */
-  #ki-sparring-teaser { background: var(--bg); padding: 5.5rem 2rem; }
-  .sparring-inner {
-    max-width: 1080px; margin: 0 auto;
-    display: grid; grid-template-columns: 1fr 1.4fr;
-    gap: 64px; align-items: center;
-  }
-  .sparring-inner h2 { margin-bottom: 0.5rem; }
-  .sparring-inner .section-label { display: inline-block; }
-  .sparring-text {
-    font-size: 1rem; color: var(--text-muted);
-    font-weight: 300; line-height: 1.85; margin-bottom: 1.25rem;
-  }
-  .sparring-text strong { color: var(--navy); font-weight: 500; }
-  .sparring-meta {
-    display: flex; flex-wrap: wrap; gap: 0.55rem;
-    margin: 0.5rem 0 1.5rem;
-  }
-  .sparring-meta span {
-    background: var(--blue-pale); color: var(--blue);
-    border-radius: 100px; padding: 0.32rem 0.95rem;
-    font-size: 0.78rem; font-weight: 500;
-  }
-  .sparring-link {
-    display: inline-flex; align-items: center; gap: 7px;
-    color: var(--blue); font-weight: 600;
-    text-decoration: none; font-size: 0.95rem;
-    transition: gap var(--t), color var(--t);
-  }
-  .sparring-link:hover { gap: 11px; color: var(--navy); }
-
-  /* ─── Kontaktformular ───────────────────────────────────────── */
-  .kontakt-section { background: var(--bg); padding: 5.5rem 2rem; }
-  .kontakt-inner { max-width: 760px; margin: 0 auto; }
-  .kontakt-inner .section-label { display: inline-block; margin-bottom: 1rem; }
-  .kontakt-inner h2 { margin-bottom: 0.75rem; }
-  .kontakt-inner > .lead { margin-bottom: 2.75rem; }
-  .kontakt-form {
-    background: var(--white); border: 1px solid var(--border);
-    border-radius: var(--radius-lg); padding: 2.75rem 2.5rem;
-    box-shadow: var(--shadow-sm);
-  }
-  .kontakt-row {
-    display: grid; grid-template-columns: 1fr 1fr;
-    gap: 1.25rem; margin-bottom: 1.25rem;
-  }
-  .kontakt-field { display: flex; flex-direction: column; gap: 0.45rem; }
-  .kontakt-field.full { grid-column: 1 / -1; }
-  .kontakt-field label {
-    font-size: 0.78rem; font-weight: 600; letter-spacing: 0.08em;
-    text-transform: uppercase; color: var(--text-muted);
-  }
-  .kontakt-field label span { color: var(--blue); margin-left: 2px; }
-  .kontakt-field input,
-  .kontakt-field textarea,
-  .kontakt-field select {
-    width: 100%; padding: 0.78rem 1rem;
-    background: var(--bg); border: 1px solid var(--border);
-    border-radius: var(--radius-sm); color: var(--text);
-    font-family: var(--font-sans); font-size: 0.95rem; font-weight: 300;
-    outline: none; transition: border-color var(--t), box-shadow var(--t);
-    appearance: none; -webkit-appearance: none;
-  }
-  .kontakt-field input::placeholder,
-  .kontakt-field textarea::placeholder { color: rgba(90,110,140,0.45); }
-  .kontakt-field input:focus,
-  .kontakt-field textarea:focus,
-  .kontakt-field select:focus {
-    border-color: var(--blue);
-    box-shadow: 0 0 0 3px rgba(74,127,212,0.12);
-    background: var(--white);
-  }
-  .kontakt-field textarea { resize: vertical; min-height: 120px; line-height: 1.65; }
-  .kontakt-select-wrap { position: relative; }
-  .kontakt-select-wrap::after {
-    content: ''; position: absolute; right: 1rem; top: 50%;
-    transform: translateY(-50%);
-    width: 0; height: 0;
-    border-left: 4px solid transparent; border-right: 4px solid transparent;
-    border-top: 5px solid var(--text-muted); pointer-events: none;
-  }
-  .kontakt-interests {
-    display: flex; flex-wrap: wrap; gap: 0.6rem;
-    margin-top: 0.25rem;
-  }
-  .kontakt-interest-label {
-    display: flex; align-items: center; gap: 0.45rem;
-    padding: 0.42rem 0.95rem;
-    background: var(--bg); border: 1px solid var(--border);
-    border-radius: 100px; cursor: pointer;
-    font-size: 0.82rem; font-weight: 400; color: var(--text-muted);
-    transition: all var(--t); user-select: none;
-  }
-  .kontakt-interest-label:hover { border-color: var(--blue); color: var(--blue); }
-  .kontakt-interest-label input[type="checkbox"] { display: none; }
-  .kontakt-interest-label.checked {
-    background: var(--blue-pale); border-color: var(--blue);
-    color: var(--blue); font-weight: 500;
-  }
-  .kontakt-interest-label.checked::before {
-    content: '✓'; font-size: 0.75rem; font-weight: 700;
-  }
-  /* Honeypot */
-  .kontakt-hp { display: none !important; }
-  .kontakt-footer {
-    display: flex; align-items: center; justify-content: space-between;
-    flex-wrap: wrap; gap: 1rem; margin-top: 1.75rem;
-  }
-  .kontakt-privacy {
-    font-size: 0.78rem; color: var(--text-muted); font-weight: 300;
-    line-height: 1.55; max-width: 340px;
-  }
-  .kontakt-privacy a { color: var(--blue); text-decoration: none; }
-  .kontakt-privacy a:hover { text-decoration: underline; }
-  .kontakt-submit {
-    display: inline-flex; align-items: center; gap: 8px;
-    padding: 0.85rem 1.8rem; background: var(--blue);
-    color: var(--white); border: none; border-radius: 100px;
-    font-family: var(--font-sans); font-size: 0.95rem; font-weight: 600;
-    cursor: pointer; transition: background var(--t), transform var(--t), box-shadow var(--t);
-    white-space: nowrap;
-  }
-  .kontakt-submit:hover {
-    background: var(--blue-light);
-    transform: translateY(-1px); box-shadow: var(--shadow-md);
-  }
-  .kontakt-submit:disabled { opacity: 0.55; cursor: not-allowed; transform: none; }
-  .kontakt-submit svg { flex-shrink: 0; transition: transform var(--t); }
-  .kontakt-submit:hover svg { transform: translateX(3px); }
-  .kontakt-success {
-    display: none; text-align: center; padding: 2rem 1rem;
-  }
-  .kontakt-success-icon {
-    width: 60px; height: 60px; background: rgba(74,127,212,0.12);
-    border-radius: 50%; display: flex; align-items: center;
-    justify-content: center; margin: 0 auto 1.25rem; font-size: 1.5rem;
-  }
-  .kontakt-success h3 {
-    font-family: var(--font-serif); font-size: 1.3rem;
-    color: var(--navy); margin-bottom: 0.6rem;
-  }
-  .kontakt-success p { font-size: 0.92rem; color: var(--text-muted); font-weight: 300; }
-  .kontakt-error-msg {
-    display: none; background: rgba(220,80,60,0.07);
-    border: 1px solid rgba(220,80,60,0.25); border-radius: var(--radius-sm);
-    padding: 0.75rem 1rem; margin-top: 1rem;
-    font-size: 0.85rem; color: #c0433a; font-weight: 300;
-  }
-  @media (max-width: 640px) {
-    .kontakt-row { grid-template-columns: 1fr; }
-    .kontakt-form { padding: 2rem 1.5rem; }
-    .kontakt-footer { flex-direction: column; }
-    .kontakt-submit { width: 100%; justify-content: center; }
-  }
-
-  /* ─── Booking ────────────────────────────────────────────────── */
-  .booking-section {
-    background: linear-gradient(145deg, var(--navy) 0%, var(--navy-mid) 100%);
-    padding: 5.5rem 2rem; position: relative; overflow: hidden;
-  }
-  .booking-section::before {
-    content: ''; position: absolute;
-    top: -80px; right: 10%; width: 500px; height: 500px;
-    background: radial-gradient(circle, rgba(74,127,212,0.16) 0%, transparent 65%);
-    pointer-events: none;
-  }
+  /* ─── Booking ───────────────────────────────────────────────────── */
+  .booking-section { background: linear-gradient(145deg, var(--navy) 0%, var(--navy-mid) 100%); padding: 5.5rem 2rem; position: relative; overflow: hidden; }
+  .booking-section::before { content: ''; position: absolute; top: -80px; right: 10%; width: 500px; height: 500px; background: radial-gradient(circle, rgba(74,127,212,0.16) 0%, transparent 65%); pointer-events: none; }
   .booking-inner { max-width: 760px; margin: 0 auto; text-align: center; position: relative; z-index: 2; }
   .booking-inner .section-label { color: #9BBFF5; }
   .booking-inner h2 { color: #E8F0FB; }
   .booking-inner h2 em { color: var(--blue-light); }
   .booking-inner .lead { color: rgba(232,240,251,0.55); margin: 0 auto 2.5rem; }
-  .booking-box {
-    background: rgba(232,240,251,0.05); border: 1px solid rgba(232,240,251,0.11);
-    border-radius: var(--radius-lg); padding: 2.75rem 2.5rem;
-    display: flex; flex-direction: column;
-    align-items: center; text-align: center; gap: 0.7rem;
-  }
-  .booking-box-icon {
-    width: 58px; height: 58px; background: rgba(74,127,212,0.20);
-    border-radius: 14px; display: flex; align-items: center;
-    justify-content: center; font-size: 1.5rem; margin-bottom: 0.3rem;
-  }
-  .booking-box strong {
-    display: block; font-family: var(--font-serif);
-    font-size: 1.05rem; color: #E8F0FB; font-weight: 500;
-  }
-  .booking-box p {
-    font-size: 0.88rem; color: rgba(232,240,251,0.48);
-    max-width: 380px; line-height: 1.65; font-weight: 300;
-  }
+  .booking-box { background: rgba(232,240,251,0.05); border: 1px solid rgba(232,240,251,0.11); border-radius: var(--radius-lg); padding: 2.75rem 2.5rem; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 0.7rem; }
+  .booking-box-icon { width: 58px; height: 58px; background: rgba(74,127,212,0.20); border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; margin-bottom: 0.3rem; }
+  .booking-box strong { display: block; font-family: var(--font-serif); font-size: 1.05rem; color: #E8F0FB; font-weight: 500; }
+  .booking-box p { font-size: 0.88rem; color: rgba(232,240,251,0.48); max-width: 380px; line-height: 1.65; font-weight: 300; }
 
-  /* ─── Über mich ──────────────────────────────────────────────── */
+  /* ─── Über mich ─────────────────────────────────────────────────── */
   .ueber-section { background: var(--white); padding: 5.5rem 2rem; }
-  .ueber-inner {
-    max-width: 1080px; margin: 0 auto;
-    display: grid; grid-template-columns: 1fr 1.4fr;
-    gap: 72px; align-items: center;
-  }
+  .ueber-inner { max-width: 1080px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1.4fr; gap: 72px; align-items: center; }
   .about-avatar-wrap { position: relative; }
-  .about-avatar-bg {
-    width: 100%; aspect-ratio: 1; max-width: 300px;
-    border-radius: var(--radius-lg);
-    background: linear-gradient(145deg, var(--blue-pale) 0%, rgba(74,127,212,0.10) 100%);
-    display: flex; align-items: center; justify-content: center;
-    position: relative; overflow: hidden;
-  }
-  .about-avatar-bg::after {
-    content: ''; position: absolute; inset: 0;
-    background: linear-gradient(135deg, transparent 55%, rgba(74,127,212,0.10) 100%);
-  }
-  .about-initials {
-    font-family: var(--font-serif); font-size: 3.8rem; font-weight: 500;
-    color: var(--blue); opacity: 0.5; letter-spacing: -2px;
-  }
-  .about-location {
-    position: absolute; bottom: -14px; right: -14px;
-    background: var(--white); border: 1px solid var(--border);
-    border-radius: var(--radius-sm); padding: 9px 16px;
-    box-shadow: var(--shadow-sm); font-size: 0.82rem;
-    font-weight: 500; color: var(--navy);
-    display: flex; align-items: center; gap: 5px;
-  }
-  .about-role {
-    font-size: 0.72rem; font-weight: 600; letter-spacing: 0.14em;
-    text-transform: uppercase; color: var(--blue); margin-bottom: 1.5rem;
-  }
+  .about-avatar-bg { width: 100%; aspect-ratio: 1; max-width: 300px; border-radius: var(--radius-lg); background: linear-gradient(145deg, var(--blue-pale) 0%, rgba(74,127,212,0.10) 100%); display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
+  .about-avatar-bg::after { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, transparent 55%, rgba(74,127,212,0.10) 100%); }
+  .about-initials { font-family: var(--font-serif); font-size: 3.8rem; font-weight: 500; color: var(--blue); opacity: 0.5; letter-spacing: -2px; }
+  .about-location { position: absolute; bottom: -14px; right: -14px; background: var(--white); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 9px 16px; box-shadow: var(--shadow-sm); font-size: 0.82rem; font-weight: 500; color: var(--navy); display: flex; align-items: center; gap: 5px; }
+  .about-role { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--blue); margin-bottom: 1.5rem; }
   .ueber-inner h2 { margin-bottom: 0.4rem; }
-  .ueber-inner p {
-    font-size: 1rem; color: var(--text-muted);
-    font-weight: 300; line-height: 1.9; margin-bottom: 1.1rem;
-  }
+  .ueber-inner p { font-size: 1rem; color: var(--text-muted); font-weight: 300; line-height: 1.9; margin-bottom: 1.1rem; }
   .trust-badges { display: flex; flex-wrap: wrap; gap: 0.55rem; margin-top: 1.5rem; }
-  .trust-badge {
-    background: var(--blue-pale); color: var(--blue);
-    border-radius: 100px; padding: 0.38rem 1rem;
-    font-size: 0.78rem; font-weight: 500;
-  }
+  .trust-badge { background: var(--blue-pale); color: var(--blue); border-radius: 100px; padding: 0.38rem 1rem; font-size: 0.78rem; font-weight: 500; }
 
-  /* ─── Legal Pages ────────────────────────────────────────────── */
+  /* ─── Legal ─────────────────────────────────────────────────────── */
   .legal-page { background: var(--white); padding: 8rem 2rem 5rem; min-height: 100vh; }
   .legal-inner { max-width: 700px; margin: 0 auto; }
   .legal-inner h2 { margin-bottom: 2rem; }
-  .legal-inner h3 {
-    font-family: var(--font-serif); font-size: 1.1rem; font-weight: 600;
-    color: var(--navy); margin: 2rem 0 0.5rem;
-  }
-  .legal-inner p {
-    font-size: 0.95rem; color: var(--text-muted);
-    font-weight: 300; line-height: 1.85; margin-bottom: 0.75rem;
-  }
+  .legal-inner h3 { font-family: var(--font-serif); font-size: 1.1rem; font-weight: 600; color: var(--navy); margin: 2rem 0 0.5rem; }
+  .legal-inner p { font-size: 0.95rem; color: var(--text-muted); font-weight: 300; line-height: 1.85; margin-bottom: 0.75rem; }
   .legal-inner a { color: var(--blue); text-decoration: none; }
   .legal-inner a:hover { text-decoration: underline; }
-  .legal-back {
-    display: inline-flex; align-items: center; gap: 0.5rem;
-    font-size: 0.85rem; color: var(--text-muted);
-    text-decoration: none; margin-bottom: 2.5rem; transition: color var(--t);
-  }
+  .legal-back { display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.85rem; color: var(--text-muted); text-decoration: none; margin-bottom: 2.5rem; transition: color var(--t); }
   .legal-back:hover { color: var(--navy); }
 
-  /* ─── Footer ─────────────────────────────────────────────────── */
+  /* ─── Footer ────────────────────────────────────────────────────── */
   footer { background: var(--navy); color: rgba(232,240,251,0.5); padding: 3.5rem 2rem 2rem; }
   .footer-inner { max-width: 1080px; margin: 0 auto; }
-  .footer-top {
-    display: flex; justify-content: space-between; align-items: flex-start;
-    margin-bottom: 2rem; padding-bottom: 2rem;
-    border-bottom: 1px solid rgba(232,240,251,0.07);
-  }
+  .footer-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 2rem; padding-bottom: 2rem; border-bottom: 1px solid rgba(232,240,251,0.07); }
   .footer-brand p { font-size: 0.83rem; font-weight: 300; max-width: 250px; margin-top: 0.5rem; line-height: 1.65; }
   .footer-logo { display: flex; align-items: center; gap: 9px; text-decoration: none; }
-  .footer-wordmark {
-    font-family: var(--font-sans); font-size: 1rem;
-    font-weight: 400; color: #E8F0FB; line-height: 1;
-  }
+  .footer-wordmark { font-family: var(--font-sans); font-size: 1rem; font-weight: 400; color: #E8F0FB; line-height: 1; }
   .footer-wordmark strong { color: var(--blue-light); font-weight: 700; }
   .footer-links { display: flex; gap: 3.5rem; }
-  .footer-links-col h4 {
-    font-size: 0.7rem; font-weight: 600; letter-spacing: 0.13em;
-    text-transform: uppercase; color: rgba(232,240,251,0.30); margin-bottom: 0.9rem;
-  }
+  .footer-links-col h4 { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.13em; text-transform: uppercase; color: rgba(232,240,251,0.30); margin-bottom: 0.9rem; }
   .footer-links-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.55rem; }
-  .footer-links-col a {
-    font-size: 0.85rem; font-weight: 300;
-    color: rgba(232,240,251,0.50); text-decoration: none; transition: color var(--t);
-  }
+  .footer-links-col a { font-size: 0.85rem; font-weight: 300; color: rgba(232,240,251,0.50); text-decoration: none; transition: color var(--t); }
   .footer-links-col a:hover { color: #E8F0FB; }
-  .footer-bottom {
-    display: flex; justify-content: space-between; align-items: center;
-    font-size: 0.78rem; font-weight: 300;
-  }
+  .footer-bottom { display: flex; justify-content: space-between; align-items: center; font-size: 0.78rem; font-weight: 300; }
 
-  /* ─── Animations ─────────────────────────────────────────────── */
   @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
   .fade-up { opacity: 0; animation: fadeUp 0.65s ease forwards; }
   .fade-up:nth-child(1) { animation-delay: 0.10s; }
@@ -704,55 +194,29 @@
   .fade-up:nth-child(3) { animation-delay: 0.34s; }
   .fade-up:nth-child(4) { animation-delay: 0.46s; }
 
-  /* ─── Password Overlay ───────────────────────────────────────── */
-  #pw-overlay {
-    position: fixed; inset: 0; z-index: 9999; background: var(--navy);
-    display: flex; align-items: center; justify-content: center; flex-direction: column;
-  }
+  /* ─── Password Overlay ──────────────────────────────────────────── */
+  #pw-overlay { position: fixed; inset: 0; z-index: 9999; background: var(--navy); display: flex; align-items: center; justify-content: center; flex-direction: column; }
   #pw-overlay.hidden { display: none; }
-  .pw-box {
-    background: rgba(232,240,251,0.05); border: 1px solid rgba(232,240,251,0.12);
-    border-radius: 20px; padding: 2.5rem 3rem;
-    width: 100%; max-width: 380px; text-align: center;
-  }
+  .pw-box { background: rgba(232,240,251,0.05); border: 1px solid rgba(232,240,251,0.12); border-radius: 20px; padding: 2.5rem 3rem; width: 100%; max-width: 380px; text-align: center; }
   .pw-logo { display: flex; justify-content: center; margin-bottom: 1.2rem; }
   .pw-sub { font-size: 0.83rem; color: rgba(232,240,251,0.4); font-weight: 300; margin-bottom: 2rem; }
-  .pw-input {
-    width: 100%; padding: 0.8rem 1.1rem;
-    background: rgba(232,240,251,0.07); border: 1px solid rgba(232,240,251,0.15);
-    border-radius: 10px; color: #E8F0FB; font-size: 1rem;
-    font-family: var(--font-sans); outline: none; margin-bottom: 0.85rem;
-    transition: border-color var(--t); text-align: center; letter-spacing: 0.08em;
-  }
+  .pw-input { width: 100%; padding: 0.8rem 1.1rem; background: rgba(232,240,251,0.07); border: 1px solid rgba(232,240,251,0.15); border-radius: 10px; color: #E8F0FB; font-size: 1rem; font-family: var(--font-sans); outline: none; margin-bottom: 0.85rem; transition: border-color var(--t); text-align: center; letter-spacing: 0.08em; }
   .pw-input::placeholder { color: rgba(232,240,251,0.25); letter-spacing: 0; }
   .pw-input:focus { border-color: var(--blue); }
-  .pw-btn {
-    width: 100%; padding: 0.85rem; background: var(--blue);
-    color: var(--white); border: none; border-radius: 10px;
-    font-family: var(--font-sans); font-size: 0.95rem; font-weight: 600;
-    cursor: pointer; transition: background var(--t);
-  }
+  .pw-btn { width: 100%; padding: 0.85rem; background: var(--blue); color: var(--white); border: none; border-radius: 10px; font-family: var(--font-sans); font-size: 0.95rem; font-weight: 600; cursor: pointer; transition: background var(--t); }
   .pw-btn:hover { background: var(--blue-light); }
   .pw-error { font-size: 0.8rem; color: #e07070; margin-top: 0.75rem; min-height: 1.2em; font-weight: 300; }
   @keyframes shake { 0%,100%{transform:translateX(0)} 20%,60%{transform:translateX(-6px)} 40%,80%{transform:translateX(6px)} }
   .pw-input.shake { animation: shake 0.4s ease; }
 
-  /* ─── Responsive ─────────────────────────────────────────────── */
   @media (max-width: 900px) {
     .was-grid { grid-template-columns: 1fr 1fr; }
     .ueber-inner { grid-template-columns: 1fr; gap: 40px; }
     .about-avatar-bg { max-width: 180px; }
-    .sparring-inner { grid-template-columns: 1fr; gap: 24px; }
   }
   @media (max-width: 768px) {
     nav { padding: 0 1.5rem; }
-    .nav-links {
-      display: none; flex-direction: column; position: absolute;
-      top: 100%; left: 0; right: 0; background: var(--white);
-      padding: 1.5rem; gap: 1.25rem;
-      border-bottom: 1px solid rgba(74,127,212,0.1);
-      box-shadow: 0 8px 24px rgba(11,29,63,0.08);
-    }
+    .nav-links { display: none; flex-direction: column; position: absolute; top: 100%; left: 0; right: 0; background: var(--white); padding: 1.5rem; gap: 1.25rem; border-bottom: 1px solid rgba(74,127,212,0.1); box-shadow: 0 8px 24px rgba(11,29,63,0.08); }
     .nav-links.open { display: flex; }
     .nav-hamburger { display: flex; }
     #hero-auto { grid-template-columns: 1fr; }
@@ -765,47 +229,32 @@
     .footer-links { gap: 2rem; flex-wrap: wrap; }
     .footer-bottom { flex-direction: column; gap: 0.5rem; text-align: center; }
   }
-  @media (max-width: 480px) {
-    .hero-cards { grid-template-columns: 1fr; }
-  }
+  @media (max-width: 480px) { .hero-cards { grid-template-columns: 1fr; } }
 </style>
 </head>
 <body>
 
-<!-- ═══ PASSWORD OVERLAY ═══════════════════════════════════════════ -->
 <div id="pw-overlay">
   <div class="pw-box">
     <div class="pw-logo">
-      <svg width="52" height="52" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-        <defs>
-          <linearGradient id="pwg" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0%" stop-color="#6B9AE8"/>
-            <stop offset="100%" stop-color="#9BBFF5"/>
-          </linearGradient>
-        </defs>
+      <svg width="52" height="52" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <defs><linearGradient id="pwg" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#6B9AE8"/><stop offset="100%" stop-color="#9BBFF5"/></linearGradient></defs>
         <circle cx="49.3" cy="22" r="3.5" fill="url(#pwg)"/>
         <path d="M 49.3,22 A 20,20 0 1,1 29.2,12.2" stroke="url(#pwg)" stroke-width="3.5" stroke-linecap="round"/>
         <polygon points="38,11 30,16 29,8" fill="url(#pwg)"/>
       </svg>
     </div>
     <p class="pw-sub">Diese Seite ist passwortgeschützt.</p>
-    <input type="password" id="pw-input" class="pw-input" placeholder="Passwort eingeben"
-           onkeydown="if(event.key==='Enter') checkPw()">
+    <input type="password" id="pw-input" class="pw-input" placeholder="Passwort eingeben" onkeydown="if(event.key==='Enter') checkPw()">
     <button class="pw-btn" onclick="checkPw()">Weiter</button>
     <p class="pw-error" id="pw-error"></p>
   </div>
 </div>
 
-<!-- ═══ NAVIGATION ════════════════════════════════════════════════ -->
 <nav id="nav">
   <a href="#" class="nav-logo" onclick="showPage('main')">
-    <svg width="34" height="34" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-      <defs>
-        <linearGradient id="ng" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0%" stop-color="#4A7FD4"/>
-          <stop offset="100%" stop-color="#0F1F3D"/>
-        </linearGradient>
-      </defs>
+    <svg width="34" height="34" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <defs><linearGradient id="ng" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#4A7FD4"/><stop offset="100%" stop-color="#0F1F3D"/></linearGradient></defs>
       <circle cx="49.3" cy="22" r="3.5" fill="url(#ng)"/>
       <path d="M 49.3,22 A 20,20 0 1,1 29.2,12.2" stroke="url(#ng)" stroke-width="3.5" stroke-linecap="round"/>
       <polygon points="38,11 30,16 29,8" fill="url(#ng)"/>
@@ -816,7 +265,6 @@
     <li><a href="#" onclick="showPage('main'); setTimeout(()=>scrollToSection('was-ich'),100)">Was ich automatisiere</a></li>
     <li><a href="#" onclick="showPage('main'); setTimeout(()=>scrollToSection('wie'),100)">Vorgehen</a></li>
     <li><a href="#" onclick="showPage('main'); setTimeout(()=>scrollToSection('ueber'),100)">Über mich</a></li>
-    <li><a href="#" onclick="showPage('main'); setTimeout(()=>scrollToSection('kontakt'),100)">Kontakt</a></li>
     <li><a href="https://calendar.app.google/vXAGb7DQjwTJtg9t6" target="_blank" rel="noopener" class="nav-cta">Termin buchen</a></li>
   </ul>
   <button class="nav-hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menü">
@@ -824,17 +272,12 @@
   </button>
 </nav>
 
-<!-- ═══ MAIN PAGE ══════════════════════════════════════════════════ -->
 <div id="page-main" class="page active">
 
-  <!-- HERO -->
   <section id="hero-auto">
     <div class="hero-dot-bg"></div>
     <div class="hero-left">
-      <div class="hero-chip fade-up">
-        <span class="hero-chip-dot"></span>
-        Prozessautomatisierung · München
-      </div>
+      <div class="hero-chip fade-up"><span class="hero-chip-dot"></span>Prozessautomatisierung · München</div>
       <h1 class="fade-up">Mehr Zeit für<br><em>das, was zählt.</em></h1>
       <p class="hero-sub fade-up">Ich automatisiere wiederkehrende Prozesse in kleinen Unternehmen – mit einfachen No/Low-Code-Tools, ohne IT-Abteilung.</p>
       <div class="hero-btns fade-up">
@@ -854,25 +297,22 @@
           <div class="hero-card-num">Beispiel 02</div>
           <h3>Termine &amp; Bestätigungen</h3>
         </div>
-        <div class="hero-card fade-up">
+        <a href="/preismonitoring" class="hero-card fade-up">
           <span class="hero-card-icon">📊</span>
           <div class="hero-card-num">Beispiel 03</div>
           <h3>Preismonitoring automatisiert</h3>
-        </div>
-        <div class="hero-card fade-up">
-          <span class="hero-card-icon">🌐</span>
+          <span class="hero-card-arrow">Details ansehen →</span>
+        </a>
+        <a href="/kontaktformular" class="hero-card fade-up">
+          <span class="hero-card-icon">📬</span>
           <div class="hero-card-num">Beispiel 04</div>
-          <h3>Social Media vollautomatisiert</h3>
-          <span class="live-badge">
-            <span class="live-dot"></span>
-            Live auf 𝕏 @laeuftvonallein
-          </span>
-        </div>
+          <h3>Kontaktformular &amp; Lead-Capture</h3>
+          <span class="hero-card-arrow">Details ansehen →</span>
+        </a>
       </div>
     </div>
   </section>
 
-  <!-- WAS ICH AUTOMATISIERE -->
   <section id="was-ich">
     <div class="container">
       <span class="section-label">Auswahl möglicher Leistungen</span>
@@ -895,17 +335,17 @@
           <p>Täglich automatisch Preise über mehrere Online-Shops vergleichen – das Ergebnis landet jeden Morgen als übersichtliche E-Mail im Postfach.</p>
           <span class="was-card-link">Details ansehen <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
         </a>
-        <div class="was-card">
-          <div class="was-card-icon">🌐</div>
-          <h4>Social Media automatisieren</h4>
-          <p>Beiträge werden automatisch erstellt und gepostet – basierend auf Themen, Terminen oder neuen Inhalten.</p>
-        </div>
+        <a class="was-card" href="/kontaktformular">
+          <div class="was-card-icon">📬</div>
+          <h4>Kontaktformular &amp; Lead-Capture</h4>
+          <p>Jede Anfrage landet automatisch im CRM, als Notion-Aufgabe und löst zwei E-Mails aus – in unter zwei Sekunden, ohne manuelle Eingriffe.</p>
+          <span class="was-card-link">Details ansehen <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+        </a>
       </div>
       <p class="was-more">Und vieles mehr – abhängig von deinen Prozessen und Tools.</p>
     </div>
   </section>
 
-  <!-- VORGEHEN -->
   <section id="wie">
     <div class="container">
       <span class="section-label">Vorgehen</span>
@@ -931,132 +371,6 @@
     </div>
   </section>
 
-  <!-- ZEITFRESSER-AUDIT TEASER -->
-  <section id="audit-teaser">
-    <div class="audit-teaser-inner">
-      <span class="section-label">Einstiegsangebot</span>
-      <h2>Klarheit, bevor wir <em>bauen</em></h2>
-      <p class="audit-teaser-lead">Im <strong>Zeitfresser-Audit</strong> nehme ich alle wiederkehrenden Prozesse in deinem Betrieb auf, priorisiere sie nach eingesparter Zeit und Aufwand – und du bekommst eine schriftliche Roadmap mit konkreten Empfehlungen. Fest gepreist, in einer Woche fertig.</p>
-      <div class="audit-flow">
-        <span class="audit-flow-step">Discovery-Call</span>
-        <span class="audit-flow-arrow">→</span>
-        <span class="audit-flow-step">Analyse</span>
-        <span class="audit-flow-arrow">→</span>
-        <span class="audit-flow-step">Roadmap</span>
-        <span class="audit-flow-arrow">→</span>
-        <span class="audit-flow-step">Walk-through</span>
-      </div>
-      <div class="audit-price-anchor">
-        <strong>390&nbsp;€</strong>
-        <span>pauschal · Audit-Gebühr wird auf die Umsetzung angerechnet</span>
-      </div>
-      <br>
-      <a href="/zeitfresser-audit" class="audit-teaser-link">Was konkret drin ist <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
-    </div>
-  </section>
-
-  <!-- KI-SPARRING TEASER -->
-  <section id="ki-sparring-teaser">
-    <div class="sparring-inner">
-      <div>
-        <span class="section-label">Neu im Angebot</span>
-        <h2>KI-<em>Sparring</em><br>für Entscheider</h2>
-        <div class="sparring-meta">
-          <span>🧭 Orientierung</span>
-          <span>Geschäftsführung</span>
-          <span>Inhaber:innen</span>
-        </div>
-      </div>
-      <div>
-        <p class="sparring-text">Manchmal geht es nicht ums Bauen, sondern ums Sortieren. Wenn du als Geschäftsführer:in oder Entscheider:in bei KI nicht den Überblick verlieren, aber auch nicht jedem Trend hinterherrennen willst – dafür gibt es <strong>KI-Sparring</strong>.</p>
-        <p class="sparring-text">Ein Format zur Orientierung, nicht zur großen Strategie. Bewusst überschaubar – vom 90-Minuten-Fokus bis zum 3-Sessions-Paket.</p>
-        <a href="/ki-sparring" class="sparring-link">Mehr dazu <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
-      </div>
-    </div>
-  </section>
-
-  <!-- KONTAKTFORMULAR -->
-  <section class="kontakt-section" id="kontakt">
-    <div class="kontakt-inner">
-      <span class="section-label">Anfrage stellen</span>
-      <h2>Schreib mir direkt</h2>
-      <p class="lead">Kein Termin nötig – beschreib kurz, was dich beschäftigt. Ich melde mich innerhalb von 24&nbsp;Stunden.</p>
-      <div class="kontakt-form" id="kontakt-form-wrap">
-        <div id="kontakt-fields">
-          <div class="kontakt-row">
-            <div class="kontakt-field">
-              <label for="kf-name">Name <span>*</span></label>
-              <input type="text" id="kf-name" name="name" placeholder="Dein Name" autocomplete="name" required>
-            </div>
-            <div class="kontakt-field">
-              <label for="kf-firma">Unternehmen</label>
-              <input type="text" id="kf-firma" name="firma" placeholder="Optional" autocomplete="organization">
-            </div>
-          </div>
-          <div class="kontakt-row">
-            <div class="kontakt-field">
-              <label for="kf-email">E-Mail <span>*</span></label>
-              <input type="email" id="kf-email" name="email" placeholder="du@unternehmen.de" autocomplete="email" required>
-            </div>
-            <div class="kontakt-field">
-              <label for="kf-telefon">Telefon</label>
-              <input type="tel" id="kf-telefon" name="telefon" placeholder="Optional" autocomplete="tel">
-            </div>
-          </div>
-          <div class="kontakt-row" style="margin-bottom:1.25rem">
-            <div class="kontakt-field full">
-              <label>Worum geht es? <span>*</span></label>
-              <div class="kontakt-interests" id="kf-interests">
-                <label class="kontakt-interest-label" onclick="toggleInterest(this)">
-                  <input type="checkbox" name="interesse" value="Zeitfresser-Audit"> Zeitfresser-Audit
-                </label>
-                <label class="kontakt-interest-label" onclick="toggleInterest(this)">
-                  <input type="checkbox" name="interesse" value="KI-Sparring"> KI-Sparring
-                </label>
-                <label class="kontakt-interest-label" onclick="toggleInterest(this)">
-                  <input type="checkbox" name="interesse" value="Automatisierungsprojekt"> Automatisierungsprojekt
-                </label>
-                <label class="kontakt-interest-label" onclick="toggleInterest(this)">
-                  <input type="checkbox" name="interesse" value="Erstgespräch"> Erstgespräch
-                </label>
-                <label class="kontakt-interest-label" onclick="toggleInterest(this)">
-                  <input type="checkbox" name="interesse" value="Sonstiges"> Sonstiges
-                </label>
-              </div>
-            </div>
-          </div>
-          <div class="kontakt-row" style="margin-bottom:0">
-            <div class="kontakt-field full">
-              <label for="kf-nachricht">Nachricht <span>*</span></label>
-              <textarea id="kf-nachricht" name="nachricht" placeholder="Was beschäftigt dich? Wo liegt der größte Zeitfresser in deinem Betrieb?" required></textarea>
-            </div>
-          </div>
-          <!-- Honeypot anti-spam -->
-          <div class="kontakt-hp" aria-hidden="true">
-            <input type="text" name="_hp" tabindex="-1" autocomplete="off">
-          </div>
-          <div class="kontakt-error-msg" id="kf-error"></div>
-          <div class="kontakt-footer">
-            <p class="kontakt-privacy">
-              Mit dem Absenden stimmst du der Verarbeitung deiner Daten zur Bearbeitung deiner Anfrage zu.
-              Mehr dazu in der <a href="#" onclick="showPage('datenschutz')">Datenschutzerklärung</a>.
-            </p>
-            <button type="button" class="kontakt-submit" id="kf-submit" onclick="submitKontakt()">
-              Anfrage senden
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-            </button>
-          </div>
-        </div>
-        <div class="kontakt-success" id="kf-success">
-          <div class="kontakt-success-icon">✅</div>
-          <h3>Anfrage eingegangen!</h3>
-          <p>Danke – ich melde mich innerhalb von 24&nbsp;Stunden bei dir.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- BOOKING -->
   <section class="booking-section" id="booking">
     <div class="booking-inner">
       <h2>Kostenloses Erstgespräch</h2>
@@ -1070,13 +384,10 @@
     </div>
   </section>
 
-  <!-- ÜBER MICH -->
   <section class="ueber-section" id="ueber">
     <div class="ueber-inner">
       <div class="about-avatar-wrap">
-        <div class="about-avatar-bg">
-          <span class="about-initials">JHW</span>
-        </div>
+        <div class="about-avatar-bg"><span class="about-initials">JHW</span></div>
         <div class="about-location">📍 München</div>
       </div>
       <div>
@@ -1098,9 +409,8 @@
     </div>
   </section>
 
-</div><!-- END PAGE-MAIN -->
+</div>
 
-<!-- ═══ IMPRESSUM ══════════════════════════════════════════════════ -->
 <div id="page-impressum" class="page">
   <div class="legal-page">
     <div class="legal-inner">
@@ -1124,7 +434,6 @@
   </div>
 </div>
 
-<!-- ═══ DATENSCHUTZ ════════════════════════════════════════════════ -->
 <div id="page-datenschutz" class="page">
   <div class="legal-page">
     <div class="legal-inner">
@@ -1136,32 +445,27 @@
       <h3>2. Allgemeines zur Datenverarbeitung</h3>
       <p>Personenbezogene Daten werden auf dieser Website nur verarbeitet, soweit dies zur Bereitstellung einer funktionsfähigen Website sowie der angebotenen Inhalte und Leistungen erforderlich ist oder Sie ausdrücklich eingewilligt haben. Rechtsgrundlage ist Art. 6 Abs. 1 lit. b und f DSGVO.</p>
       <h3>3. Server-Logfiles</h3>
-      <p>Beim Abruf dieser Website werden durch den Hosting-Anbieter automatisch Informationen in Server-Logfiles erfasst: IP-Adresse, Datum und Uhrzeit, aufgerufene Seite, verwendeter Browser und Betriebssystem. Diese Daten sind nicht einer bestimmten Person zuzuordnen und werden nicht mit anderen Datenquellen zusammengeführt. Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse am technischen Betrieb). Speicherdauer: bis zu 7 Tage, danach automatische Löschung.</p>
+      <p>Beim Abruf dieser Website werden durch den Hosting-Anbieter automatisch Informationen in Server-Logfiles erfasst: IP-Adresse, Datum und Uhrzeit, aufgerufene Seite, verwendeter Browser und Betriebssystem. Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO. Speicherdauer: bis zu 7 Tage.</p>
       <h3>4. Google Fonts</h3>
-      <p>Diese Website bindet Schriftarten über Google Fonts (Google LLC, 1600 Amphitheatre Parkway, Mountain View, CA 94043, USA) ein. Beim Laden der Seite wird eine Verbindung zu Google-Servern hergestellt, dabei kann Ihre IP-Adresse übertragen werden. Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO. Weitere Informationen: <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">policies.google.com/privacy</a>.</p>
-      <h3>5. Kontaktformular</h3>
-      <p>Wenn Sie das Kontaktformular auf dieser Website nutzen, werden die von Ihnen eingegebenen Daten (Name, E-Mail-Adresse, Unternehmen, Telefon, Interesse, Nachricht) zur Bearbeitung Ihrer Anfrage verarbeitet. Die Daten werden über einen automatisierten Prozess (n8n) in eine interne Datenbank übernommen und per E-Mail an den Betreiber weitergeleitet. Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO (Vertragsanbahnung) bzw. lit. f DSGVO (berechtigtes Interesse). Eine Weitergabe an Dritte ohne Ihre Einwilligung findet nicht statt. Speicherdauer: bis zum Abschluss der Anfrage, bei Vertragsanbahnung bis zu 3 Jahre nach Abschluss des Kontakts.</p>
-      <h3>6. Kontaktaufnahme per E-Mail</h3>
-      <p>Wenn Sie uns per E-Mail kontaktieren, werden Ihre Angaben (Name, E-Mail-Adresse, Nachrichteninhalt) zur Bearbeitung der Anfrage und für etwaige Rückfragen gespeichert. Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO (Vertragsanbahnung) bzw. lit. f DSGVO (berechtigtes Interesse). Eine Weitergabe ohne Einwilligung findet nicht statt. Speicherdauer: bis zum Abschluss der Anfrage, bei Vertragsanbahnung bis zu 3 Jahre nach Abschluss des Kontakts.</p>
-      <h3>6. Google Calendar (Terminbuchung)</h3>
-      <p>Für die Online-Terminbuchung wird Google Calendar (Google LLC, 1600 Amphitheatre Parkway, Mountain View, CA 94043, USA) genutzt. Bei der Buchung werden Name, E-Mail-Adresse und gewünschter Termin an Google übermittelt und dort verarbeitet. Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO. Es kann zu einer Datenübertragung in die USA kommen; Google ist nach dem EU-US Data Privacy Framework zertifiziert und hat Standardvertragsklauseln gemäß Art. 46 Abs. 2 DSGVO abgeschlossen. Speicherdauer: bis zur Durchführung des Termins, danach nach gesetzlichen Aufbewahrungsfristen. Weitere Informationen: <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">policies.google.com/privacy</a>.</p>
-      <h3>7. Google Meet (Online-Erstgespräche)</h3>
-      <p>Für die Durchführung von kostenlosen Erstgesprächen wird Google Meet (Google LLC, 1600 Amphitheatre Parkway, Mountain View, CA 94043, USA) verwendet. Dabei werden personenbezogene Daten der Gesprächsteilnehmer verarbeitet, insbesondere: Name, E-Mail-Adresse, IP-Adresse, Geräteinformationen sowie Audio- und Videodaten während des Gesprächs. Gesprächsaufzeichnungen finden nicht statt. Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO (Durchführung vorvertraglicher Maßnahmen) sowie Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an der effektiven Gesprächsdurchführung). Es kann zu einer Datenübertragung in die USA kommen; Google ist nach dem EU-US Data Privacy Framework zertifiziert und hat Standardvertragsklauseln gemäß Art. 46 Abs. 2 DSGVO abgeschlossen. Verbindungsdaten werden nach Beendigung des Gesprächs gelöscht. Weitere Informationen: <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">policies.google.com/privacy</a>.</p>
-      <h3>8. Ihre Rechte (Art. 15–21 DSGVO)</h3>
-      <p>Sie haben das Recht auf Auskunft (Art. 15), Berichtigung (Art. 16), Löschung (Art. 17), Einschränkung der Verarbeitung (Art. 18), Datenübertragbarkeit (Art. 20) sowie Widerspruch gegen die Verarbeitung (Art. 21 DSGVO). Wenden Sie sich hierfür an: <a href="mailto:info@laeuftvonallein.de">info@laeuftvonallein.de</a>.</p>
-      <h3>9. Beschwerderecht</h3>
-      <p>Sie haben das Recht, sich bei einer Datenschutzaufsichtsbehörde zu beschweren (Art. 77 DSGVO). Die zuständige Aufsichtsbehörde in Bayern ist das Bayerische Landesamt für Datenschutzaufsicht (BayLDA), Promenade 18, 91522 Ansbach, <a href="https://www.lda.bayern.de" target="_blank" rel="noopener">www.lda.bayern.de</a>.</p>
+      <p>Diese Website bindet Schriftarten über Google Fonts ein. Beim Laden wird eine Verbindung zu Google-Servern hergestellt. Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO. Weitere Informationen: <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">policies.google.com/privacy</a>.</p>
+      <h3>5. Kontaktaufnahme per E-Mail</h3>
+      <p>Wenn Sie uns per E-Mail kontaktieren, werden Ihre Angaben zur Bearbeitung der Anfrage gespeichert. Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO.</p>
+      <h3>6. Google Calendar &amp; Google Meet</h3>
+      <p>Für Terminbuchung und Erstgespräche wird Google Calendar/Meet (Google LLC) genutzt. Es kann zu einer Datenübertragung in die USA kommen; Google ist nach dem EU-US Data Privacy Framework zertifiziert. Weitere Informationen: <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">policies.google.com/privacy</a>.</p>
+      <h3>7. Ihre Rechte (Art. 15–21 DSGVO)</h3>
+      <p>Sie haben das Recht auf Auskunft, Berichtigung, Löschung, Einschränkung und Datenübertragbarkeit. Wenden Sie sich an: <a href="mailto:info@laeuftvonallein.de">info@laeuftvonallein.de</a>.</p>
+      <h3>8. Beschwerderecht</h3>
+      <p>Sie haben das Recht, sich bei einer Datenschutzaufsichtsbehörde zu beschweren. Zuständig: BayLDA, Promenade 18, 91522 Ansbach, <a href="https://www.lda.bayern.de" target="_blank" rel="noopener">www.lda.bayern.de</a>.</p>
     </div>
   </div>
 </div>
 
-<!-- ═══ FOOTER ═══════════════════════════════════════════════════ -->
 <footer>
   <div class="footer-inner">
     <div class="footer-top">
       <div class="footer-brand">
         <a href="#" class="footer-logo" onclick="showPage('main')">
-          <svg width="28" height="28" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <svg width="28" height="28" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
             <defs><linearGradient id="fg" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#6B9AE8"/><stop offset="100%" stop-color="#4A7FD4"/></linearGradient></defs>
             <circle cx="49.3" cy="22" r="3.5" fill="url(#fg)"/>
             <path d="M 49.3,22 A 20,20 0 1,1 29.2,12.2" stroke="url(#fg)" stroke-width="3.5" stroke-linecap="round"/>
@@ -1177,10 +481,14 @@
           <ul>
             <li><a href="#" onclick="showPage('main'); setTimeout(()=>scrollToSection('was-ich'),100)">Was ich automatisiere</a></li>
             <li><a href="#" onclick="showPage('main'); setTimeout(()=>scrollToSection('wie'),100)">Vorgehen</a></li>
-            <li><a href="/zeitfresser-audit">Zeitfresser-Audit</a></li>
-            <li><a href="/ki-sparring">KI-Sparring</a></li>
             <li><a href="#" onclick="showPage('main'); setTimeout(()=>scrollToSection('ueber'),100)">Über mich</a></li>
-            <li><a href="#" onclick="showPage('main'); setTimeout(()=>scrollToSection('kontakt'),100)">Kontakt</a></li>
+          </ul>
+        </div>
+        <div class="footer-links-col">
+          <h4>Beispiele</h4>
+          <ul>
+            <li><a href="/preismonitoring">Preismonitoring</a></li>
+            <li><a href="/kontaktformular">Lead-Capture</a></li>
           </ul>
         </div>
         <div class="footer-links-col">
@@ -1207,77 +515,7 @@
 </footer>
 
 <script>
-  // ─── Kontaktformular ───────────────────────────────────────────
-
-  function toggleInterest(label) {
-    label.classList.toggle('checked');
-  }
-
-  async function submitKontakt() {
-    const btn = document.getElementById('kf-submit');
-    const errorEl = document.getElementById('kf-error');
-    errorEl.style.display = 'none';
-
-    // Honeypot check
-    const hp = document.querySelector('input[name="_hp"]');
-    if (hp && hp.value) return;
-
-    // Validation
-    const name = document.getElementById('kf-name').value.trim();
-    const email = document.getElementById('kf-email').value.trim();
-    const nachricht = document.getElementById('kf-nachricht').value.trim();
-    if (!name || !email || !nachricht) {
-      errorEl.textContent = 'Bitte fülle alle Pflichtfelder aus (Name, E-Mail, Nachricht).';
-      errorEl.style.display = 'block';
-      return;
-    }
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-      errorEl.textContent = 'Bitte gib eine gültige E-Mail-Adresse ein.';
-      errorEl.style.display = 'block';
-      return;
-    }
-
-    const interests = [...document.querySelectorAll('.kontakt-interest-label.checked')]
-      .map(l => l.querySelector('input').value);
-
-    const payload = {
-      name,
-      email,
-      firma: document.getElementById('kf-firma').value.trim() || null,
-      telefon: document.getElementById('kf-telefon').value.trim() || null,
-      interesse: interests.join(', ') || 'Keine Angabe',
-      nachricht,
-      quelle: 'laeuftvonallein.de',
-      timestamp: new Date().toISOString()
-    };
-
-    btn.disabled = true;
-    btn.innerHTML = 'Wird gesendet…';
-
-    try {
-      // TODO: Ersetze diese URL mit deinem n8n Webhook-URL
-      const WEBHOOK_URL = 'https://n8n.laeuftvonallein.de/webhook-test/kontakt-lva';
-
-      const res = await fetch(WEBHOOK_URL, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload)
-      });
-
-      if (!res.ok) throw new Error('HTTP ' + res.status);
-
-      document.getElementById('kontakt-fields').style.display = 'none';
-      document.getElementById('kf-success').style.display = 'block';
-    } catch (err) {
-      errorEl.textContent = 'Etwas ist schiefgelaufen. Bitte schreib mir direkt an info@laeuftvonallein.de';
-      errorEl.style.display = 'block';
-      btn.disabled = false;
-      btn.innerHTML = 'Anfrage senden <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><path d="M5 12h14M12 5l7 7-7 7"/></svg>';
-    }
-  }
-
   const PASSWORT = 'laeuftvonallein2025';
-
   function checkPw() {
     const val = document.getElementById('pw-input').value;
     if (val === PASSWORT) {
@@ -1293,35 +531,27 @@
       inp.focus();
     }
   }
-
   if (sessionStorage.getItem('lva_auth') === '1') {
     document.getElementById('pw-overlay').classList.add('hidden');
   }
-
   function showPage(id) {
     document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
     document.getElementById('page-' + id).classList.add('active');
     window.scrollTo({ top: 0, behavior: 'smooth' });
     document.getElementById('nav-links').classList.remove('open');
   }
-
   function scrollToSection(id) {
     const el = document.getElementById(id);
     if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
-
   window.addEventListener('scroll', () => {
     document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 20);
   });
-
   function toggleMenu() {
     document.getElementById('nav-links').classList.toggle('open');
   }
-
   document.querySelectorAll('a[onclick]').forEach(a => {
-    if (a.getAttribute('href') === '#') {
-      a.addEventListener('click', e => e.preventDefault());
-    }
+    if (a.getAttribute('href') === '#') a.addEventListener('click', e => e.preventDefault());
   });
 </script>
 </body>
