@@ -306,10 +306,12 @@
     color: var(--navy); margin-bottom: 0.45rem; line-height: 1.3;
   }
   .was-card p { font-size: 0.85rem; color: var(--text-muted); font-weight: 300; line-height: 1.65; }
-  a.was-card { text-decoration: none; color: inherit; display: block; cursor: pointer; }
+  a.was-card { text-decoration: none; color: inherit; display: flex; flex-direction: column; cursor: pointer; }
+  .was-card { display: flex; flex-direction: column; }
+  .was-card p { flex: 1; }
   .was-card-link {
     display: inline-flex; align-items: center; gap: 5px;
-    margin-top: 1rem; font-size: 0.8rem; font-weight: 500;
+    margin-top: auto; padding-top: 1rem; font-size: 0.8rem; font-weight: 500;
     color: var(--blue); transition: gap var(--t), color var(--t);
   }
   a.was-card:hover .was-card-link { gap: 9px; color: var(--navy); }
@@ -510,11 +512,11 @@
   }
   .kontakt-interest-label:hover { border-color: var(--blue); color: var(--blue); }
   .kontakt-interest-label input[type="checkbox"] { display: none; }
-  .kontakt-interest-label.checked {
+  .kontakt-interest-label:has(input:checked) {
     background: var(--blue-pale); border-color: var(--blue);
     color: var(--blue); font-weight: 500;
   }
-  .kontakt-interest-label.checked::before {
+  .kontakt-interest-label:has(input:checked)::before {
     content: '✓'; font-size: 0.75rem; font-weight: 700;
   }
   .kontakt-hp { display: none !important; }
@@ -1014,19 +1016,19 @@
             <div class="kontakt-field full">
               <label>Worum geht es? <span>*</span></label>
               <div class="kontakt-interests" id="kf-interests">
-                <label class="kontakt-interest-label" onclick="toggleInterest(this)">
+                <label class="kontakt-interest-label">
                   <input type="checkbox" name="interesse" value="Zeitfresser-Audit"> Zeitfresser-Audit
                 </label>
-                <label class="kontakt-interest-label" onclick="toggleInterest(this)">
+                <label class="kontakt-interest-label">
                   <input type="checkbox" name="interesse" value="KI-Sparring"> KI-Sparring
                 </label>
-                <label class="kontakt-interest-label" onclick="toggleInterest(this)">
+                <label class="kontakt-interest-label">
                   <input type="checkbox" name="interesse" value="Automatisierungsprojekt"> Automatisierungsprojekt
                 </label>
-                <label class="kontakt-interest-label" onclick="toggleInterest(this)">
+                <label class="kontakt-interest-label">
                   <input type="checkbox" name="interesse" value="Erstgespräch"> Erstgespräch
                 </label>
-                <label class="kontakt-interest-label" onclick="toggleInterest(this)">
+                <label class="kontakt-interest-label">
                   <input type="checkbox" name="interesse" value="Sonstiges"> Sonstiges
                 </label>
               </div>
@@ -1112,21 +1114,29 @@
   <div class="legal-page">
     <div class="legal-inner">
       <a href="#" class="legal-back" onclick="showPage('main')">← Zurück</a>
+      <br>
       <span class="section-label">Rechtliches</span>
       <h2>Impressum</h2>
       <h3>Anbieterkennzeichnung gemäß § 5 DDG</h3>
       <p>Jan-Hendrik Wiemann<br>läuft von allein<br>Welfenstr. 16a<br>81541 München</p>
       <h3>Kontakt</h3>
       <p>E-Mail: <a href="mailto:info@laeuftvonallein.de">info@laeuftvonallein.de</a></p>
-      <h3>Wirtschafts-Identifikationsnummer</h3>
-      <p>W-IdNr.: [hier eintragen – abrufbar über dein ELSTER-Konto]</p>
-      <h3>Hinweis zur Umsatzsteuer</h3>
-      <p>Als Freiberufler gemäß § 19 UStG (Kleinunternehmerregelung) wird keine Umsatzsteuer berechnet und ausgewiesen.</p>
+      <h3>Berufsbezeichnung / Tätigkeit</h3>
+      <p>Freiberufliche Tätigkeit als IT-Berater und Prozessautomatisierungsexperte (§ 18 Abs. 1 Nr. 1 EStG).<br>Berufsrechtliche Regelungen bestehen nicht; es gilt das allgemeine Dienstleistungs- und Werkvertragsrecht (BGB).</p>
+      <h3>Steuernummer</h3>
+      <p>Die steuerliche Erfassung beim Finanzamt München ist beantragt. Die Steuernummer wird nach Erteilung an dieser Stelle ergänzt.</p>
+      <h3>Umsatzsteuer-Identifikationsnummer (§ 27a UStG)</h3>
+      <p>Die Umsatzsteuer-Identifikationsnummer gemäß § 27a UStG wird nach Erteilung durch das Bundeszentralamt für Steuern an dieser Stelle veröffentlicht. Die Beantragung ist erfolgt.</p>
       <h3>Inhaltlich Verantwortlicher</h3>
       <p>Jan-Hendrik Wiemann, Welfenstr. 16a, 81541 München</p>
+      <h3>Urheberrecht</h3>
+      <p>Die durch den Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten unterliegen dem deutschen Urheberrecht. Die Vervielfältigung, Bearbeitung, Verbreitung und jede Art der Verwertung außerhalb der Grenzen des Urheberrechts bedürfen der schriftlichen Zustimmung des jeweiligen Autors bzw. Erstellers.</p>
       <h3>Haftungsausschluss</h3>
       <p>Die Inhalte dieser Website wurden mit größtmöglicher Sorgfalt erstellt. Für die Richtigkeit, Vollständigkeit und Aktualität der Inhalte kann keine Gewähr übernommen werden.</p>
       <p>Als Diensteanbieter bin ich gemäß § 7 Abs. 1 DDG für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich. Nach §§ 8 bis 10 DDG bin ich jedoch nicht verpflichtet, übermittelte oder gespeicherte fremde Informationen zu überwachen.</p>
+      <p>Bei Bekanntwerden von Rechtsverletzungen werde ich derartige Inhalte umgehend entfernen. Eine diesbezügliche Haftung übernehme ich erst ab dem Zeitpunkt der Kenntnis einer konkreten Rechtsverletzung.</p>
+      <h3>Haftung für Links</h3>
+      <p>Diese Website enthält Links zu externen Websites Dritter, auf deren Inhalte ich keinen Einfluss habe. Für die Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter oder Betreiber der Seiten verantwortlich. Eine permanente inhaltliche Kontrolle der verlinkten Seiten ist ohne konkrete Anhaltspunkte einer Rechtsverletzung nicht zumutbar. Bei Bekanntwerden von Rechtsverletzungen werde ich derartige Links umgehend entfernen.</p>
     </div>
   </div>
 </div>
@@ -1136,27 +1146,30 @@
   <div class="legal-page">
     <div class="legal-inner">
       <a href="#" class="legal-back" onclick="showPage('main')">← Zurück</a>
+      <br>
       <span class="section-label">Rechtliches</span>
       <h2>Datenschutzerklärung</h2>
       <h3>1. Verantwortlicher (Art. 13 Abs. 1 lit. a DSGVO)</h3>
       <p>Jan-Hendrik Wiemann<br>läuft von allein<br>Welfenstr. 16a<br>81541 München<br>E-Mail: <a href="mailto:info@laeuftvonallein.de">info@laeuftvonallein.de</a></p>
       <h3>2. Allgemeines zur Datenverarbeitung</h3>
       <p>Personenbezogene Daten werden auf dieser Website nur verarbeitet, soweit dies zur Bereitstellung einer funktionsfähigen Website sowie der angebotenen Inhalte und Leistungen erforderlich ist oder Sie ausdrücklich eingewilligt haben. Rechtsgrundlage ist Art. 6 Abs. 1 lit. b und f DSGVO.</p>
-      <h3>3. Server-Logfiles</h3>
-      <p>Beim Abruf dieser Website werden durch den Hosting-Anbieter automatisch Informationen in Server-Logfiles erfasst: IP-Adresse, Datum und Uhrzeit, aufgerufene Seite, verwendeter Browser und Betriebssystem. Diese Daten sind nicht einer bestimmten Person zuzuordnen und werden nicht mit anderen Datenquellen zusammengeführt. Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse am technischen Betrieb). Speicherdauer: bis zu 7 Tage, danach automatische Löschung.</p>
-      <h3>4. Google Fonts</h3>
+      <h3>3. Hosting</h3>
+      <p>Diese Website wird bei GitHub Pages (GitHub Inc., 88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, USA) gehostet. Beim Abruf werden durch den Hosting-Anbieter automatisch Informationen in Server-Logfiles erfasst: IP-Adresse, Datum und Uhrzeit, aufgerufene Seite, verwendeter Browser und Betriebssystem. Diese Daten sind nicht einer bestimmten Person zuzuordnen und werden nicht mit anderen Datenquellen zusammengeführt. Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse am technischen Betrieb). Es kann zu einer Datenübertragung in die USA kommen; GitHub ist nach dem EU-US Data Privacy Framework zertifiziert. Speicherdauer: bis zu 7 Tage, danach automatische Löschung.</p>
+      <h3>4. Server-Logfiles (eigener Server)</h3>
+      <p>Das Kontaktformular dieser Website übermittelt Daten an einen selbst betriebenen Server (Hetzner Online GmbH, Industriestr. 25, 91710 Gunzenhausen, Deutschland). Dabei werden keine zusätzlichen personenbezogenen Daten über die im Formular eingegebenen Angaben hinaus erhoben.</p>
+      <h3>5. Google Fonts</h3>
       <p>Diese Website bindet Schriftarten über Google Fonts (Google LLC, 1600 Amphitheatre Parkway, Mountain View, CA 94043, USA) ein. Beim Laden der Seite wird eine Verbindung zu Google-Servern hergestellt, dabei kann Ihre IP-Adresse übertragen werden. Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO. Weitere Informationen: <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">policies.google.com/privacy</a>.</p>
-      <h3>5. Kontaktformular</h3>
-      <p>Wenn Sie das Kontaktformular auf dieser Website nutzen, werden die von Ihnen eingegebenen Daten (Name, E-Mail-Adresse, Unternehmen, Telefon, Interesse, Nachricht) zur Bearbeitung Ihrer Anfrage verarbeitet. Die Daten werden über einen automatisierten Prozess (n8n) in eine interne Datenbank übernommen und per E-Mail an den Betreiber weitergeleitet. Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO (Vertragsanbahnung) bzw. lit. f DSGVO (berechtigtes Interesse). Eine Weitergabe an Dritte ohne Ihre Einwilligung findet nicht statt. Speicherdauer: bis zum Abschluss der Anfrage, bei Vertragsanbahnung bis zu 3 Jahre nach Abschluss des Kontakts.</p>
-      <h3>6. Kontaktaufnahme per E-Mail</h3>
+      <h3>6. Kontaktformular</h3>
+      <p>Wenn Sie das Kontaktformular auf dieser Website nutzen, werden die von Ihnen eingegebenen Daten (Name, E-Mail-Adresse, Unternehmen, Telefon, Interesse, Nachricht) zur Bearbeitung Ihrer Anfrage verarbeitet. Die Daten werden über einen automatisierten Prozess (n8n, betrieben auf einem eigenen Server bei Hetzner Online GmbH in Deutschland) in eine interne Datenbank übernommen und per E-Mail an den Betreiber weitergeleitet. n8n wird dabei als Auftragsverarbeiter gemäß Art. 28 DSGVO eingesetzt; die Verarbeitung erfolgt ausschließlich auf Servern in Deutschland. Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO (Vertragsanbahnung) bzw. lit. f DSGVO (berechtigtes Interesse). Eine Weitergabe an Dritte ohne Ihre Einwilligung findet nicht statt. Speicherdauer: bis zum Abschluss der Anfrage, bei Vertragsanbahnung bis zu 3 Jahre nach Abschluss des Kontakts.</p>
+      <h3>7. Kontaktaufnahme per E-Mail</h3>
       <p>Wenn Sie uns per E-Mail kontaktieren, werden Ihre Angaben (Name, E-Mail-Adresse, Nachrichteninhalt) zur Bearbeitung der Anfrage und für etwaige Rückfragen gespeichert. Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO (Vertragsanbahnung) bzw. lit. f DSGVO (berechtigtes Interesse). Eine Weitergabe ohne Einwilligung findet nicht statt. Speicherdauer: bis zum Abschluss der Anfrage, bei Vertragsanbahnung bis zu 3 Jahre nach Abschluss des Kontakts.</p>
-      <h3>7. Google Calendar (Terminbuchung)</h3>
+      <h3>8. Google Calendar (Terminbuchung)</h3>
       <p>Für die Online-Terminbuchung wird Google Calendar (Google LLC, 1600 Amphitheatre Parkway, Mountain View, CA 94043, USA) genutzt. Bei der Buchung werden Name, E-Mail-Adresse und gewünschter Termin an Google übermittelt und dort verarbeitet. Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO. Es kann zu einer Datenübertragung in die USA kommen; Google ist nach dem EU-US Data Privacy Framework zertifiziert und hat Standardvertragsklauseln gemäß Art. 46 Abs. 2 DSGVO abgeschlossen. Speicherdauer: bis zur Durchführung des Termins, danach nach gesetzlichen Aufbewahrungsfristen. Weitere Informationen: <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">policies.google.com/privacy</a>.</p>
-      <h3>8. Google Meet (Online-Erstgespräche)</h3>
-      <p>Für die Durchführung von kostenlosen Erstgesprächen wird Google Meet (Google LLC, 1600 Amphitheatre Parkway, Mountain View, CA 94043, USA) verwendet. Dabei werden personenbezogene Daten der Gesprächsteilnehmer verarbeitet, insbesondere: Name, E-Mail-Adresse, IP-Adresse, Geräteinformationen sowie Audio- und Videodaten während des Gesprächs. Gesprächsaufzeichnungen finden nicht statt. Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO (Durchführung vorvertraglicher Maßnahmen) sowie Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an der effektiven Gesprächsdurchführung). Es kann zu einer Datenübertragung in die USA kommen; Google ist nach dem EU-US Data Privacy Framework zertifiziert und hat Standardvertragsklauseln gemäß Art. 46 Abs. 2 DSGVO abgeschlossen. Verbindungsdaten werden nach Beendigung des Gesprächs gelöscht. Weitere Informationen: <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">policies.google.com/privacy</a>.</p>
-      <h3>9. Ihre Rechte (Art. 15–21 DSGVO)</h3>
+      <h3>9. Google Meet (Online-Gespräche)</h3>
+      <p>Für die Durchführung von Online-Gesprächen – darunter kostenlose Erstgespräche, Zeitfresser-Audits, KI-Sparring-Sessions sowie sonstige Beratungsgespräche – wird Google Meet (Google LLC, 1600 Amphitheatre Parkway, Mountain View, CA 94043, USA) verwendet. Dabei werden personenbezogene Daten der Gesprächsteilnehmer verarbeitet, insbesondere: Name, E-Mail-Adresse, IP-Adresse, Geräteinformationen sowie Audio- und Videodaten während des Gesprächs. Gesprächsaufzeichnungen finden nicht statt. Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO (Durchführung vorvertraglicher Maßnahmen bzw. Vertragserfüllung) sowie Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an der effektiven Gesprächsdurchführung). Es kann zu einer Datenübertragung in die USA kommen; Google ist nach dem EU-US Data Privacy Framework zertifiziert und hat Standardvertragsklauseln gemäß Art. 46 Abs. 2 DSGVO abgeschlossen. Verbindungsdaten werden nach Beendigung des Gesprächs gelöscht. Weitere Informationen: <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">policies.google.com/privacy</a>.</p>
+      <h3>10. Ihre Rechte (Art. 15–21 DSGVO)</h3>
       <p>Sie haben das Recht auf Auskunft (Art. 15), Berichtigung (Art. 16), Löschung (Art. 17), Einschränkung der Verarbeitung (Art. 18), Datenübertragbarkeit (Art. 20) sowie Widerspruch gegen die Verarbeitung (Art. 21 DSGVO). Wenden Sie sich hierfür an: <a href="mailto:info@laeuftvonallein.de">info@laeuftvonallein.de</a>.</p>
-      <h3>10. Beschwerderecht</h3>
+      <h3>11. Beschwerderecht</h3>
       <p>Sie haben das Recht, sich bei einer Datenschutzaufsichtsbehörde zu beschweren (Art. 77 DSGVO). Die zuständige Aufsichtsbehörde in Bayern ist das Bayerische Landesamt für Datenschutzaufsicht (BayLDA), Promenade 18, 91522 Ansbach, <a href="https://www.lda.bayern.de" target="_blank" rel="noopener">www.lda.bayern.de</a>.</p>
     </div>
   </div>
@@ -1209,6 +1222,7 @@
         <div class="footer-links-col">
           <h4>Social</h4>
           <ul>
+            <li><a href="https://www.linkedin.com/in/janwiemann" target="_blank" rel="noopener">LinkedIn</a></li>
             <li><a href="https://x.com/laeuftvonallein" target="_blank" rel="noopener">𝕏 @laeuftvonallein</a></li>
           </ul>
         </div>
@@ -1223,11 +1237,6 @@
 
 <script>
   // ─── Kontaktformular ───────────────────────────────────────────
-
-  function toggleInterest(label) {
-    label.classList.toggle('checked');
-  }
-
   async function submitKontakt() {
     const btn = document.getElementById('kf-submit');
     const errorEl = document.getElementById('kf-error');
@@ -1252,8 +1261,8 @@
       return;
     }
 
-    const interests = [...document.querySelectorAll('.kontakt-interest-label.checked')]
-      .map(l => l.querySelector('input').value);
+    const interests = [...document.querySelectorAll('.kontakt-interest-label input:checked')]
+      .map(i => i.value);
 
     const payload = {
       name,
