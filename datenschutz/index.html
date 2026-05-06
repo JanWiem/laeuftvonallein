@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Datenschutzerklärung – läuft von allein</title>
+<meta name="description" content="Datenschutzerklärung von läuft von allein – Jan-Hendrik Wiemann, München.">
+<meta name="robots" content="noindex, follow">
+  <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="shortcut icon" href="/favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <link rel="manifest" href="/site.webmanifest" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  /* ─── Variables ──────────────────────────────────────────────── */
+  :root {
+    --navy:        #0B1D3F;
+    --navy-mid:    #142F5E;
+    --navy-light:  #1E4080;
+    --blue:        #4A7FD4;
+    --blue-light:  #6B9AE8;
+    --blue-pale:   #E8F0FB;
+    --bg:          #F7FAFF;
+    --white:       #FAFCFF;
+    --text:        #0B1D3F;
+    --text-muted:  #5A6E8C;
+    --border:      rgba(74,127,212,0.14);
+    --font-sans:   'Outfit', ui-sans-serif, system-ui, sans-serif;
+    --font-serif:  'Lora', Georgia, serif;
+    --radius-sm:   8px;
+    --radius-md:   16px;
+    --radius-lg:   24px;
+    --shadow-sm:   0 2px 8px rgba(11,29,63,0.06);
+    --shadow-md:   0 8px 32px rgba(11,29,63,0.10);
+    --t:           0.22s ease;
+  }
+
+  /* ─── Reset ──────────────────────────────────────────────────── */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: var(--font-sans);
+    background: var(--white);
+    color: var(--text);
+    line-height: 1.7;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ─── Navigation ─────────────────────────────────────────────── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 2.5rem; height: 64px;
+    background: rgba(247,250,255,0.90);
+    backdrop-filter: blur(18px) saturate(1.4);
+    -webkit-backdrop-filter: blur(18px) saturate(1.4);
+    border-bottom: 1px solid rgba(74,127,212,0.10);
+    transition: box-shadow var(--t);
+  }
+  nav.scrolled { box-shadow: 0 2px 20px rgba(11,29,63,0.08); }
+  .nav-logo {
+    display: flex; align-items: center; gap: 10px;
+    text-decoration: none; color: var(--navy);
+  }
+  .nav-wordmark {
+    font-family: var(--font-sans);
+    font-size: 1.05rem; font-weight: 400;
+    color: var(--navy); line-height: 1;
+  }
+  .nav-wordmark strong { color: var(--blue); font-weight: 700; }
+  .nav-links {
+    display: flex; align-items: center;
+    gap: 2.25rem; list-style: none;
+  }
+  .nav-links a {
+    font-size: 0.88rem; font-weight: 500;
+    color: var(--text-muted); text-decoration: none;
+    transition: color var(--t);
+  }
+  .nav-links a:hover { color: var(--navy); }
+  .nav-cta {
+    background: var(--navy) !important;
+    color: var(--white) !important;
+    padding: 0.55rem 1.35rem; border-radius: 100px;
+    font-weight: 600 !important; font-size: 0.85rem !important;
+    transition: background var(--t), transform var(--t) !important;
+  }
+  .nav-cta:hover { background: var(--navy-mid) !important; transform: translateY(-1px); }
+  .nav-hamburger {
+    display: none; flex-direction: column; gap: 5px;
+    cursor: pointer; background: none; border: none; padding: 4px;
+  }
+  .nav-hamburger span {
+    display: block; width: 22px; height: 2px;
+    background: var(--navy); border-radius: 2px; transition: all 0.3s;
+  }
+
+  /* ─── Buttons ────────────────────────────────────────────────── */
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--blue); color: var(--white);
+    padding: 0.85rem 2rem; border-radius: 100px;
+    font-size: 0.95rem; font-weight: 600; text-decoration: none;
+    transition: background var(--t), transform var(--t), box-shadow var(--t);
+    box-shadow: 0 4px 20px rgba(74,127,212,0.30);
+    border: none; cursor: pointer;
+  }
+  .btn-primary:hover {
+    background: var(--blue-light); transform: translateY(-2px);
+    box-shadow: 0 8px 28px rgba(74,127,212,0.40);
+  }
+
+  /* ─── Case Study Page ────────────────────────────────────────── */
+  .case-page {
+    background: var(--white);
+    padding: 8rem 2rem 5rem;
+    min-height: 100vh;
+  }
+  .case-inner { max-width: 760px; margin: 0 auto; }
+
+  h2 {
+    font-family: var(--font-serif);
+    font-size: clamp(1.9rem, 4vw, 2.7rem);
+    font-weight: 600; color: var(--navy);
+    line-height: 1.2; letter-spacing: -0.02em;
+    margin-bottom: 1.2rem;
+  }
+  .case-inner h3 {
+    font-family: var(--font-serif); font-size: 1.1rem; font-weight: 600;
+    color: var(--navy); margin: 2.5rem 0 0.6rem;
+  }
+  .case-inner p {
+    font-size: 0.97rem; color: var(--text-muted);
+    font-weight: 300; line-height: 1.85; margin-bottom: 0.75rem;
+  }
+  .case-back {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    font-size: 0.85rem; color: var(--text-muted);
+    text-decoration: none; margin-bottom: 2.5rem; transition: color var(--t);
+  }
+  .case-back:hover { color: var(--navy); }
+  .case-badge {
+    display: block; width: fit-content;
+    background: rgba(74,127,212,0.10); border: 1px solid rgba(74,127,212,0.22);
+    color: var(--blue); font-size: 0.7rem; font-weight: 600;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    padding: 0.3rem 0.9rem; border-radius: 100px; margin-bottom: 1.1rem;
+  }
+  .case-lead {
+    font-size: 1.05rem; color: var(--text-muted);
+    font-weight: 300; line-height: 1.85; margin-bottom: 2rem;
+  }
+  .case-highlight {
+    background: var(--bg); border-left: 3px solid var(--blue);
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    padding: 1.1rem 1.5rem; margin: 1.5rem 0;
+    font-size: 0.95rem; color: var(--text-muted); font-weight: 300; line-height: 1.8;
+  }
+  .case-list {
+    list-style: none; margin: 0.5rem 0 1.2rem;
+    display: flex; flex-direction: column; gap: 0.4rem;
+  }
+  .case-list li {
+    font-size: 0.93rem; color: var(--text-muted);
+    font-weight: 300; display: flex; align-items: baseline; gap: 0.6rem;
+  }
+  .case-list li::before {
+    content: '✓'; color: var(--blue); font-weight: 600; flex-shrink: 0;
+  }
+  .tech-pills { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 0.8rem 0 2rem; }
+  .tech-pill {
+    background: var(--blue-pale); color: var(--blue);
+    border-radius: 100px; padding: 0.3rem 0.9rem;
+    font-size: 0.78rem; font-weight: 500;
+  }
+  .case-divider { border: none; border-top: 1px solid var(--border); margin: 2.5rem 0; }
+
+  /* ─── Ablauf-Diagramm ────────────────────────────────────────── */
+  .flow-diagram {
+    margin: 1.5rem 0 2rem;
+    display: flex; flex-direction: column; gap: 0;
+  }
+  .flow-step {
+    display: flex; align-items: flex-start; gap: 1.1rem;
+  }
+  .flow-left {
+    display: flex; flex-direction: column; align-items: center;
+    flex-shrink: 0; padding-top: 0.2rem;
+  }
+  .flow-icon {
+    width: 40px; height: 40px; border-radius: 50%;
+    background: var(--blue-pale); border: 1.5px solid rgba(74,127,212,0.25);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1rem; flex-shrink: 0;
+  }
+  .flow-connector {
+    width: 1.5px; flex: 1; min-height: 28px;
+    background: linear-gradient(to bottom, rgba(74,127,212,0.25), rgba(74,127,212,0.08));
+    margin: 4px 0;
+  }
+  .flow-content {
+    padding: 0.15rem 0 1.4rem;
+  }
+  .flow-content strong {
+    display: block; font-size: 0.93rem; font-weight: 600;
+    color: var(--navy); margin-bottom: 0.2rem;
+  }
+  .flow-content span {
+    font-size: 0.85rem; color: var(--text-muted); font-weight: 300; line-height: 1.6;
+  }
+  .flow-branch {
+    display: flex; gap: 0.75rem; margin-top: 1.5rem; flex-wrap: wrap;
+  }
+  .flow-branch-item {
+    flex: 1; min-width: 200px;
+    background: var(--bg); border: 1px solid var(--border);
+    border-radius: var(--radius-md); padding: 1rem 1.2rem;
+  }
+  .flow-branch-item.yes { border-left: 3px solid var(--blue); }
+  .flow-branch-item.no { border-left: 3px solid rgba(90,110,140,0.3); }
+  .flow-branch-label {
+    font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em;
+    text-transform: uppercase; margin-bottom: 0.4rem;
+  }
+  .flow-branch-item.yes .flow-branch-label { color: var(--blue); }
+  .flow-branch-item.no .flow-branch-label { color: var(--text-muted); }
+  .flow-branch-item p {
+    font-size: 0.85rem; color: var(--text-muted);
+    font-weight: 300; line-height: 1.6; margin-bottom: 0;
+  }
+
+  /* ─── Sheet-Tabelle ──────────────────────────────────────────── */
+  .sheet-table {
+    width: 100%; border-collapse: collapse;
+    margin: 1rem 0 1.5rem; font-size: 0.85rem;
+    border-radius: var(--radius-md); overflow: hidden;
+    border: 1px solid var(--border);
+  }
+  .sheet-table th {
+    background: var(--blue-pale); color: var(--blue);
+    font-weight: 600; font-size: 0.72rem; letter-spacing: 0.08em;
+    text-transform: uppercase; padding: 0.65rem 1rem; text-align: left;
+    border-bottom: 1px solid rgba(74,127,212,0.18);
+  }
+  .sheet-table td {
+    padding: 0.65rem 1rem; color: var(--text-muted);
+    font-weight: 300; line-height: 1.5;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+  }
+  .sheet-table tr:last-child td { border-bottom: none; }
+  .sheet-table tr:hover td { background: var(--bg); }
+  .typ-badge {
+    display: inline-block;
+    background: var(--blue-pale); color: var(--blue);
+    border-radius: 100px; padding: 1px 8px;
+    font-size: 0.72rem; font-weight: 600;
+    letter-spacing: 0.06em;
+  }
+
+  /* ─── X-Thread ───────────────────────────────────────────────── */
+  .x-thread-label {
+    font-size: 0.72rem; font-weight: 600; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--blue); margin-bottom: 1.2rem; display: block;
+  }
+  .x-posts { display: flex; flex-direction: column; gap: 0.9rem; }
+  .x-post {
+    background: var(--bg); border: 1px solid var(--border);
+    border-radius: var(--radius-md); padding: 1.2rem 1.4rem;
+  }
+  .x-post-num {
+    font-size: 0.68rem; font-weight: 600; letter-spacing: 0.08em;
+    color: var(--blue); text-transform: uppercase; margin-bottom: 0.55rem;
+  }
+  .x-post p {
+    font-size: 0.88rem; line-height: 1.75; color: var(--navy);
+    font-weight: 300; margin-bottom: 0;
+  }
+  .case-cta { margin-top: 2rem; }
+
+  /* ─── Footer ─────────────────────────────────────────────────── */
+  footer { background: var(--navy); color: rgba(232,240,251,0.5); padding: 3.5rem 2rem 2rem; }
+  .footer-inner { max-width: 1080px; margin: 0 auto; }
+  .footer-top {
+    display: flex; justify-content: space-between; align-items: flex-start;
+    margin-bottom: 2rem; padding-bottom: 2rem;
+    border-bottom: 1px solid rgba(232,240,251,0.07);
+  }
+  .footer-brand p { font-size: 0.83rem; font-weight: 300; max-width: 250px; margin-top: 0.5rem; line-height: 1.65; }
+  .footer-logo { display: flex; align-items: center; gap: 9px; text-decoration: none; }
+  .footer-wordmark {
+    font-family: var(--font-sans); font-size: 1rem;
+    font-weight: 400; color: #E8F0FB; line-height: 1;
+  }
+  .footer-wordmark strong { color: var(--blue-light); font-weight: 700; }
+  .footer-links { display: flex; gap: 3.5rem; }
+  .footer-links-col h4 {
+    font-size: 0.7rem; font-weight: 600; letter-spacing: 0.13em;
+    text-transform: uppercase; color: rgba(232,240,251,0.30); margin-bottom: 0.9rem;
+  }
+  .footer-links-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.55rem; }
+  .footer-links-col a {
+    font-size: 0.85rem; font-weight: 300;
+    color: rgba(232,240,251,0.50); text-decoration: none; transition: color var(--t);
+  }
+  .footer-links-col a:hover { color: #E8F0FB; }
+  .footer-bottom {
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 0.78rem; font-weight: 300;
+  }
+
+  /* ─── Password Overlay ───────────────────────────────────────── */
+  #pw-overlay {
+    position: fixed; inset: 0; z-index: 9999; background: var(--navy);
+    display: flex; align-items: center; justify-content: center; flex-direction: column;
+  }
+  #pw-overlay.hidden { display: none; }
+  .pw-box {
+    background: rgba(232,240,251,0.05); border: 1px solid rgba(232,240,251,0.12);
+    border-radius: 20px; padding: 2.5rem 3rem;
+    width: 100%; max-width: 380px; text-align: center;
+  }
+  .pw-logo { display: flex; justify-content: center; margin-bottom: 1.2rem; }
+  .pw-sub { font-size: 0.83rem; color: rgba(232,240,251,0.4); font-weight: 300; margin-bottom: 2rem; }
+  .pw-input {
+    width: 100%; padding: 0.8rem 1.1rem;
+    background: rgba(232,240,251,0.07); border: 1px solid rgba(232,240,251,0.15);
+    border-radius: 10px; color: #E8F0FF; font-size: 1rem;
+    font-family: var(--font-sans); outline: none; margin-bottom: 0.85rem;
+    transition: border-color var(--t); text-align: center; letter-spacing: 0.08em;
+  }
+  .pw-input::placeholder { color: rgba(232,240,251,0.25); letter-spacing: 0; }
+  .pw-input:focus { border-color: var(--blue); }
+  .pw-btn {
+    width: 100%; padding: 0.85rem; background: var(--blue);
+    color: var(--white); border: none; border-radius: 10px;
+    font-family: var(--font-sans); font-size: 0.95rem; font-weight: 600;
+    cursor: pointer; transition: background var(--t);
+  }
+  .pw-btn:hover { background: var(--blue-light); }
+  .pw-error { font-size: 0.8rem; color: #e07070; margin-top: 0.75rem; min-height: 1.2em; font-weight: 300; }
+  @keyframes shake { 0%,100%{transform:translateX(0)} 20%,60%{transform:translateX(-6px)} 40%,80%{transform:translateX(6px)} }
+  .pw-input.shake { animation: shake 0.4s ease; }
+
+  
+  /* ─── Legal Pages ────────────────────────────────────────────── */
+  .legal-page { background: var(--white); padding: 8rem 2rem 5rem; min-height: 100vh; }
+  .legal-inner { max-width: 700px; margin: 0 auto; }
+  .legal-inner h2 { margin-bottom: 2rem; }
+  .legal-inner h3 {
+    font-family: var(--font-serif); font-size: 1.1rem; font-weight: 600;
+    color: var(--navy); margin: 2rem 0 0.5rem;
+  }
+  .legal-inner p {
+    font-size: 0.95rem; color: var(--text-muted);
+    font-weight: 300; line-height: 1.85; margin-bottom: 0.75rem;
+  }
+  .legal-inner a { color: var(--blue); text-decoration: none; }
+  .legal-inner a:hover { text-decoration: underline; }
+  .legal-back {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    font-size: 0.85rem; color: var(--text-muted);
+    text-decoration: none; margin-bottom: 2.5rem; transition: color var(--t);
+  }
+  .legal-back:hover { color: var(--navy); }
+/* ─── Responsive ─────────────────────────────────────────────── */
+  @media (max-width: 768px) {
+    nav { padding: 0 1.5rem; }
+    .nav-links {
+      display: none; flex-direction: column; position: absolute;
+      top: 100%; left: 0; right: 0; background: var(--white);
+      padding: 1.5rem; gap: 1.25rem;
+      border-bottom: 1px solid rgba(74,127,212,0.1);
+      box-shadow: 0 8px 24px rgba(11,29,63,0.08);
+    }
+    .nav-links.open { display: flex; }
+    .nav-hamburger { display: flex; }
+    .footer-top { flex-direction: column; gap: 2rem; }
+    .footer-links { gap: 2rem; flex-wrap: wrap; }
+    .footer-bottom { flex-direction: column; gap: 0.5rem; text-align: center; }
+    .sheet-table { font-size: 0.78rem; }
+    .sheet-table th, .sheet-table td { padding: 0.5rem 0.75rem; }
+    .flow-branch { flex-direction: column; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══ NAVIGATION ════════════════════════════════════════════════ -->
+<nav id="nav">
+  <a href="/" class="nav-logo">
+    <svg width="34" height="34" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <defs>
+        <linearGradient id="ng" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stop-color="#4A7FD4"/>
+          <stop offset="100%" stop-color="#0F1F3D"/>
+        </linearGradient>
+      </defs>
+      <circle cx="49.3" cy="22" r="3.5" fill="url(#ng)"/>
+      <path d="M 49.3,22 A 20,20 0 1,1 29.2,12.2" stroke="url(#ng)" stroke-width="3.5" stroke-linecap="round"/>
+      <polygon points="38,11 30,16 29,8" fill="url(#ng)"/>
+    </svg>
+    <span class="nav-wordmark">läuft von <strong>allein</strong></span>
+  </a>
+  <ul class="nav-links" id="nav-links">
+    <li><a href="/#was-ich">Was ich automatisiere</a></li>
+    <li><a href="/#wie">Vorgehen</a></li>
+    <li><a href="/#ueber">Über mich</a></li>
+    <li><a href="/#kontakt">Kontakt</a></li>
+    <li><a href="https://calendar.app.google/vXAGb7DQjwTJtg9t6" target="_blank" rel="noopener" class="nav-cta">Termin buchen</a></li>
+  </ul>
+  <button class="nav-hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menü">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="legal-page">
+  <div class="legal-inner">
+    <a href="/" class="legal-back">← Zurück</a>
+    <br>
+    <span class="section-label">Rechtliches</span>
+    <h2>Datenschutzerklärung</h2>
+    <h3>1. Verantwortlicher (Art. 13 Abs. 1 lit. a DSGVO)</h3>
+    <p>Jan-Hendrik Wiemann<br>läuft von allein<br>Welfenstr. 16a<br>81541 München<br>E-Mail: <a href="mailto:info@laeuftvonallein.de">info@laeuftvonallein.de</a></p>
+    <h3>2. Allgemeines zur Datenverarbeitung</h3>
+    <p>Personenbezogene Daten werden auf dieser Website nur verarbeitet, soweit dies zur Bereitstellung einer funktionsfähigen Website sowie der angebotenen Inhalte und Leistungen erforderlich ist oder Sie ausdrücklich eingewilligt haben. Rechtsgrundlage ist Art. 6 Abs. 1 lit. b und f DSGVO.</p>
+    <h3>3. Hosting</h3>
+    <p>Diese Website wird bei GitHub Pages (GitHub Inc., 88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, USA) gehostet. Beim Abruf werden durch den Hosting-Anbieter automatisch Informationen in Server-Logfiles erfasst: IP-Adresse, Datum und Uhrzeit, aufgerufene Seite, verwendeter Browser und Betriebssystem. Diese Daten sind nicht einer bestimmten Person zuzuordnen und werden nicht mit anderen Datenquellen zusammengeführt. Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse am technischen Betrieb). Es kann zu einer Datenübertragung in die USA kommen; GitHub ist nach dem EU-US Data Privacy Framework zertifiziert. Speicherdauer: bis zu 7 Tage, danach automatische Löschung.</p>
+    <h3>4. Server-Logfiles (eigener Server)</h3>
+    <p>Das Kontaktformular dieser Website übermittelt Daten an einen selbst betriebenen Server (Hetzner Online GmbH, Industriestr. 25, 91710 Gunzenhausen, Deutschland). Dabei werden keine zusätzlichen personenbezogenen Daten über die im Formular eingegebenen Angaben hinaus erhoben.</p>
+    <h3>5. Google Fonts</h3>
+    <p>Diese Website bindet Schriftarten über Google Fonts (Google LLC, 1600 Amphitheatre Parkway, Mountain View, CA 94043, USA) ein. Beim Laden der Seite wird eine Verbindung zu Google-Servern hergestellt, dabei kann Ihre IP-Adresse übertragen werden. Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO. Weitere Informationen: <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">policies.google.com/privacy</a>.</p>
+    <h3>6. Kontaktformular</h3>
+    <p>Wenn Sie das Kontaktformular auf dieser Website nutzen, werden die von Ihnen eingegebenen Daten (Name, E-Mail-Adresse, Unternehmen, Telefon, Interesse, Nachricht) zur Bearbeitung Ihrer Anfrage verarbeitet. Die Daten werden über einen automatisierten Prozess (n8n, betrieben auf einem eigenen Server bei Hetzner Online GmbH in Deutschland) in eine interne Datenbank übernommen und per E-Mail an den Betreiber weitergeleitet. n8n wird dabei als Auftragsverarbeiter gemäß Art. 28 DSGVO eingesetzt; die Verarbeitung erfolgt ausschließlich auf Servern in Deutschland. Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO (Vertragsanbahnung) bzw. lit. f DSGVO (berechtigtes Interesse). Eine Weitergabe an Dritte ohne Ihre Einwilligung findet nicht statt. Speicherdauer: bis zum Abschluss der Anfrage, bei Vertragsanbahnung bis zu 3 Jahre nach Abschluss des Kontakts.</p>
+    <h3>7. Kontaktaufnahme per E-Mail</h3>
+    <p>Wenn Sie uns per E-Mail kontaktieren, werden Ihre Angaben (Name, E-Mail-Adresse, Nachrichteninhalt) zur Bearbeitung der Anfrage und für etwaige Rückfragen gespeichert. Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO (Vertragsanbahnung) bzw. lit. f DSGVO (berechtigtes Interesse). Eine Weitergabe ohne Einwilligung findet nicht statt. Speicherdauer: bis zum Abschluss der Anfrage, bei Vertragsanbahnung bis zu 3 Jahre nach Abschluss des Kontakts.</p>
+    <h3>8. Google Calendar (Terminbuchung)</h3>
+    <p>Für die Online-Terminbuchung wird Google Calendar (Google LLC, 1600 Amphitheatre Parkway, Mountain View, CA 94043, USA) genutzt. Bei der Buchung werden Name, E-Mail-Adresse und gewünschter Termin an Google übermittelt und dort verarbeitet. Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO. Es kann zu einer Datenübertragung in die USA kommen; Google ist nach dem EU-US Data Privacy Framework zertifiziert und hat Standardvertragsklauseln gemäß Art. 46 Abs. 2 DSGVO abgeschlossen. Speicherdauer: bis zur Durchführung des Termins, danach nach gesetzlichen Aufbewahrungsfristen. Weitere Informationen: <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">policies.google.com/privacy</a>.</p>
+    <h3>9. Google Meet (Online-Gespräche)</h3>
+    <p>Für die Durchführung von Online-Gesprächen – darunter kostenlose Erstgespräche, Zeitfresser-Audits, KI-Sparring-Sessions sowie sonstige Beratungsgespräche – wird Google Meet (Google LLC, 1600 Amphitheatre Parkway, Mountain View, CA 94043, USA) verwendet. Dabei werden personenbezogene Daten der Gesprächsteilnehmer verarbeitet, insbesondere: Name, E-Mail-Adresse, IP-Adresse, Geräteinformationen sowie Audio- und Videodaten während des Gesprächs. Gesprächsaufzeichnungen finden nicht statt. Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO (Durchführung vorvertraglicher Maßnahmen bzw. Vertragserfüllung) sowie Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an der effektiven Gesprächsdurchführung). Es kann zu einer Datenübertragung in die USA kommen; Google ist nach dem EU-US Data Privacy Framework zertifiziert und hat Standardvertragsklauseln gemäß Art. 46 Abs. 2 DSGVO abgeschlossen. Verbindungsdaten werden nach Beendigung des Gesprächs gelöscht. Weitere Informationen: <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">policies.google.com/privacy</a>.</p>
+    <h3>10. Ihre Rechte (Art. 15–21 DSGVO)</h3>
+    <p>Sie haben das Recht auf Auskunft (Art. 15), Berichtigung (Art. 16), Löschung (Art. 17), Einschränkung der Verarbeitung (Art. 18), Datenübertragbarkeit (Art. 20) sowie Widerspruch gegen die Verarbeitung (Art. 21 DSGVO). Wenden Sie sich hierfür an: <a href="mailto:info@laeuftvonallein.de">info@laeuftvonallein.de</a>.</p>
+    <h3>11. Beschwerderecht</h3>
+    <p>Sie haben das Recht, sich bei einer Datenschutzaufsichtsbehörde zu beschweren (Art. 77 DSGVO). Die zuständige Aufsichtsbehörde in Bayern ist das Bayerische Landesamt für Datenschutzaufsicht (BayLDA), Promenade 18, 91522 Ansbach, <a href="https://www.lda.bayern.de" target="_blank" rel="noopener">www.lda.bayern.de</a>.</p>
+  </div>
+</div>
+
+<!-- ═══ FOOTER ═══════════════════════════════════════════════════ -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="/" class="footer-logo">
+          <svg width="28" height="28" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <defs><linearGradient id="fg" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#6B9AE8"/><stop offset="100%" stop-color="#4A7FD4"/></linearGradient></defs>
+            <circle cx="49.3" cy="22" r="3.5" fill="url(#fg)"/>
+            <path d="M 49.3,22 A 20,20 0 1,1 29.2,12.2" stroke="url(#fg)" stroke-width="3.5" stroke-linecap="round"/>
+            <polygon points="38,11 30,16 29,8" fill="url(#fg)"/>
+          </svg>
+          <span class="footer-wordmark">läuft von <strong>allein</strong></span>
+        </a>
+        <p>Prozessautomatisierung für kleine Unternehmen. München &amp; deutschlandweit.</p>
+      </div>
+      <div class="footer-links">
+        <div class="footer-links-col">
+          <h4>Navigation</h4>
+          <ul>
+            <li><a href="/#was-ich">Was ich automatisiere</a></li>
+            <li><a href="/#wie">Vorgehen</a></li>
+            <li><a href="/zeitfresser-audit">Zeitfresser-Audit</a></li>
+            <li><a href="/ki-sparring">KI-Sparring</a></li>
+            <li><a href="/#ueber">Über mich</a></li>
+            <li><a href="/#kontakt">Kontakt</a></li>
+          </ul>
+        </div>
+        <div class="footer-links-col">
+          <h4>Beispiele</h4>
+          <ul>
+            <li><a href="/email-autoentwurf">Kundenanfragen beantworten</a></li>
+            <li><a href="/preismonitoring">Preismonitoring</a></li>
+            <li><a href="/kontaktformular">Kontaktformular</a></li>
+          </ul>
+        </div>
+        <div class="footer-links-col">
+          <h4>Rechtliches</h4>
+          <ul>
+            <li><a href="mailto:info@laeuftvonallein.de">info@laeuftvonallein.de</a></li>
+            <li><a href="/impressum">Impressum</a></li>
+            <li><a href="/datenschutz">Datenschutz</a></li>
+          </ul>
+        </div>
+        <div class="footer-links-col">
+          <h4>Social</h4>
+          <ul>
+            <li><a href="https://www.linkedin.com/in/janwiemann" target="_blank" rel="noopener">LinkedIn</a></li>
+            <li><a href="https://x.com/laeuftvonallein" target="_blank" rel="noopener">𝕏 @laeuftvonallein</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 läuft von allein · Jan-Hendrik Wiemann</span>
+      <span>München</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  window.addEventListener('scroll', () => {
+    document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 20);
+  });
+  function toggleMenu() {
+    document.getElementById('nav-links').classList.toggle('open');
+  }
+  document.querySelectorAll('a[onclick]').forEach(a => {
+    if (a.getAttribute('href') === '#') {
+      a.addEventListener('click', e => e.preventDefault());
+    }
+  });
+</script>
+</body>
+</html>
