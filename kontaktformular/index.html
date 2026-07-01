@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Kontaktformular & Lead-Erfassung automatisiert – läuft von allein</title>
-  <meta name="description" content="Wie jede Kontaktanfrage automatisch ins CRM landet, eine Notion-Aufgabe erzeugt und den Lead per E-Mail bestätigt – einmal eingerichtet, läuft von allein.">
+  <title>Keine Anfrage geht verloren – automatische Lead-Erfassung | läuft von allein</title>
+  <meta name="description" content="So wird aus jeder Kontaktanfrage automatisch eine Aufgabe: erfasst, weitergeleitet, bestätigt. Weniger manueller Aufwand, schnellere Reaktion, keine verlorenen Leads.">
   <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <link rel="shortcut icon" href="/favicon.ico" />
@@ -118,6 +118,7 @@
       margin: 1.25rem 0;
       font-size: 14px; color: #6b7280; line-height: 1.75;
     }
+    .highlight-box strong { color: #1a1a1a; font-weight: 600; }
 
     /* ─── Flow diagram ──────────────────────────────────────── */
     .flow-diagram {
@@ -152,48 +153,20 @@
       font-size: 13px; color: #6b7280; line-height: 1.65;
     }
 
-    /* ─── Parallel items ────────────────────────────────────── */
-    .flow-parallel {
-      margin-top: 1rem;
-    }
-    .flow-parallel-label {
-      font-size: 11px; font-weight: 600; letter-spacing: 0.06em;
-      text-transform: uppercase; color: #9ca3af; margin-bottom: 0.5rem;
-    }
-    .flow-parallel-items {
-      display: flex; gap: 0.6rem; flex-wrap: wrap;
-    }
-    .flow-parallel-item {
-      flex: 1; min-width: 160px;
-      background: #fafafa; border: 1px solid #efefef;
-      border-radius: 10px; padding: 0.75rem 0.9rem;
-      font-size: 13px; color: #6b7280; line-height: 1.55;
-    }
-
-    /* ─── Check list ────────────────────────────────────────── */
-    .check-list {
+    /* ─── Benefit list ──────────────────────────────────────── */
+    .benefit-list {
       list-style: none;
       margin: 0.5rem 0 1.25rem;
-      display: flex; flex-direction: column; gap: 0.5rem;
+      display: flex; flex-direction: column; gap: 0.6rem;
     }
-    .check-list li {
-      font-size: 14px; color: #6b7280;
+    .benefit-list li {
+      font-size: 14px; color: #4b5563;
       line-height: 1.6;
-      display: flex; align-items: baseline; gap: 0.6rem;
+      display: flex; align-items: baseline; gap: 0.7rem;
     }
-    .check-list li::before {
-      content: '–'; color: #9ca3af; flex-shrink: 0;
-    }
-
-    /* ─── Tech pills ────────────────────────────────────────── */
-    .tech-pills {
-      display: flex; flex-wrap: wrap; gap: 0.4rem;
-      margin: 0.75rem 0 1.5rem;
-    }
-    .tech-pill {
-      background: #f3f4f6; color: #6b7280;
-      border-radius: 6px; padding: 3px 10px;
-      font-size: 12px; font-weight: 500;
+    .benefit-list li::before {
+      content: '✓'; color: #16a34a; font-weight: 600;
+      flex-shrink: 0; font-size: 13px;
     }
 
     /* ─── Divider ───────────────────────────────────────────── */
@@ -265,7 +238,6 @@
       }
       .nav-links.open { display: flex; }
       .nav-hamburger { display: flex; }
-      .flow-parallel-items { flex-direction: column; }
       .footer-nav { gap: 1.5rem; }
     }
 
@@ -315,103 +287,89 @@
 
     <a href="/" class="content-back">← Zurück</a>
     <span class="section-label">Praxis-Beispiel</span>
-    <h1>Kontaktformular mit automatischer Lead-Erfassung</h1>
+    <h1>Keine Anfrage geht verloren</h1>
 
-    <p class="content-lead">Jede Anfrage über das Kontaktformular landet sofort im CRM, erzeugt eine Aufgabe in Notion und bestätigt dem Interessenten automatisch den Eingang – ohne einen einzigen manuellen Schritt.</p>
+    <p class="content-lead">Jede neue Anfrage wird automatisch erfasst, weitergeleitet und zur richtigen Aufgabe. So bleibt Zeit für Kunden – statt für manuelle Verwaltung.</p>
 
-    <h3>Die Ausgangssituation</h3>
-    <p>Der Kunde erhält Anfragen über ein einfaches Kontaktformular auf seiner Website. Bisher: Formular abschicken, E-Mail kommt an, irgendwann manuell ins CRM eintippen, irgendwann an eine Follow-up-Aufgabe denken. Zwischen Eingang und Reaktion vergehen oft Stunden – oder Anfragen gehen im Alltag unter.</p>
+    <h3>Ausgangssituation</h3>
+    <p>Neue Anfragen kamen über ein Kontaktformular auf der Website. Danach begann der manuelle Teil: E-Mail prüfen, Daten übertragen, Aufgabe erstellen, Rückmeldung senden. Lauter kleine Schritte – aber täglich Zeitverlust und immer das Risiko, dass zwischen zwei Terminen etwas liegen bleibt.</p>
     <div class="highlight-box">
-      Ziel: Jede Kontaktanfrage wird sofort erfasst, strukturiert gespeichert und löst automatisch die richtigen Folgeschritte aus. Der Kunde merkt vom Hintergrund nichts – er sieht nur: Aufgabe ist da, Interessent wurde bereits bestätigt.
+      <strong>Ziel:</strong> Jede Anfrage soll ohne Zutun im richtigen System landen, die passende Aufgabe auslösen und den Interessenten sofort bestätigen. Nichts verschwindet mehr im Postfach.
     </div>
 
-    <h3>Wie funktioniert es?</h3>
-    <p>Hinter dem Kontaktformular steckt kein Plugin und kein SaaS-Tool. Stattdessen schickt das Formular die Daten an einen n8n-Webhook. Ab da übernimmt ein Workflow, der in Sekunden fünf Schritte abarbeitet – vollständig automatisch.</p>
+    <h3>Die Lösung</h3>
+    <p>Ein einfacher, automatisierter Ablauf übernimmt die wiederkehrenden Schritte. Vom Absenden des Formulars bis zur fertigen Aufgabe vergehen nur Sekunden – ohne dass jemand etwas anstoßen muss.</p>
 
     <div class="flow-diagram">
       <div class="flow-step">
         <div class="flow-left">
-          <div class="flow-icon">📝</div>
+          <div class="flow-icon">📥</div>
           <div class="flow-connector"></div>
         </div>
         <div class="flow-content">
-          <strong>Formular abgeschickt</strong>
-          <span>Der Interessent füllt Name, E-Mail, Nachricht und optionalen Betreff aus. Das Formular sendet die Daten per POST an einen n8n-Webhook-Endpunkt. Ein Honeypot-Feld filtert Bot-Anfragen heraus, bevor irgendetwas weiterverarbeitet wird.</span>
+          <strong>Anfrage kommt rein</strong>
+          <span>Ein Interessent füllt das Formular aus und schickt es ab. Mehr muss auf seiner Seite nicht passieren.</span>
         </div>
       </div>
       <div class="flow-step">
         <div class="flow-left">
-          <div class="flow-icon">🔍</div>
+          <div class="flow-icon">⚙️</div>
           <div class="flow-connector"></div>
         </div>
         <div class="flow-content">
-          <strong>Eingaben validieren & bereinigen</strong>
-          <span>n8n prüft, ob alle Pflichtfelder vorhanden sind, bereinigt Whitespace und normalisiert die E-Mail-Adresse. Unvollständige Einträge werden verworfen – kein Datenmüll im CRM.</span>
+          <strong>Daten werden automatisch verarbeitet</strong>
+          <span>Die Angaben werden geprüft, strukturiert abgelegt und mit bestehenden Kontakten abgeglichen – ohne Datenmüll und ohne Doppeleinträge.</span>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-left">
+          <div class="flow-icon">📋</div>
+          <div class="flow-connector"></div>
+        </div>
+        <div class="flow-content">
+          <strong>Aufgabe entsteht automatisch</strong>
+          <span>Der richtige nächste Schritt landet mit klarer Frist beim Team. So weiß jeder sofort, wer sich worum kümmert.</span>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-left">
+          <div class="flow-icon">✉️</div>
+          <div class="flow-connector"></div>
+        </div>
+        <div class="flow-content">
+          <strong>Kunde bekommt sofort Rückmeldung</strong>
+          <span>Eine automatische Bestätigung geht raus – inklusive Link zur Terminbuchung. Der Interessent fühlt sich direkt abgeholt.</span>
         </div>
       </div>
       <div class="flow-step">
         <div class="flow-left">
           <div class="flow-icon">🗂️</div>
-          <div class="flow-connector"></div>
         </div>
         <div class="flow-content">
-          <strong>Duplikat-Check im CRM</strong>
-          <span>NocoDB wird nach der E-Mail-Adresse abgefragt. Bekannte Kontakte werden erkannt und trotzdem als neue Aufgabe angelegt – ohne einen doppelten CRM-Eintrag zu erzeugen.</span>
-        </div>
-      </div>
-      <div class="flow-step">
-        <div class="flow-left">
-          <div class="flow-icon">💾</div>
-          <div class="flow-connector"></div>
-        </div>
-        <div class="flow-content">
-          <strong>CRM-Record anlegen</strong>
-          <span>Neue Interessenten erhalten einen vollständigen Eintrag in NocoDB mit Status „Lead", Eingangsdatum und allen Formulardaten. Bekannte Kontakte bleiben unverändert – nur der Zeitstempel wird aktualisiert.</span>
-        </div>
-      </div>
-      <div class="flow-step">
-        <div class="flow-left">
-          <div class="flow-icon">⚡</div>
-        </div>
-        <div class="flow-content">
-          <strong>Drei Aktionen gleichzeitig</strong>
-          <span>Sobald der CRM-Record steht, laufen drei Schritte parallel ab – keiner wartet auf den anderen:</span>
-          <div class="flow-parallel">
-            <div class="flow-parallel-label">Parallel</div>
-            <div class="flow-parallel-items">
-              <div class="flow-parallel-item">Benachrichtigung per Gmail an den Betreiber – mit allen Formulardaten und direktem Link zum CRM-Record</div>
-              <div class="flow-parallel-item">Automatische Bestätigungs-E-Mail an den Interessenten mit Terminbuchungs-Link</div>
-              <div class="flow-parallel-item">Notion-Aufgabe anlegen – Status: New Lead, Fälligkeit in 2 Tagen</div>
-            </div>
-          </div>
+          <strong>Alles ist dokumentiert</strong>
+          <span>Jede Anfrage ist nachvollziehbar festgehalten. Keine geht mehr im Postfach verloren, nichts hängt an einem einzelnen Kopf.</span>
         </div>
       </div>
     </div>
 
-    <h3>Was der Kunde davon hat</h3>
-    <ul class="check-list">
-      <li>Jede Anfrage landet sofort als strukturierter CRM-Eintrag – kein manuelles Eintippen</li>
-      <li>Parallel entsteht eine Notion-Aufgabe mit 2-Tage-Deadline – kein Lead wird vergessen</li>
-      <li>Der Interessent bekommt innerhalb von Sekunden eine persönliche Bestätigungs-E-Mail</li>
-      <li>Bekannte E-Mails werden erkannt – kein doppelter CRM-Eintrag, trotzdem neue Aufgabe</li>
-      <li>Bot-Anfragen werden durch den Honeypot-Filter herausgefiltert, bevor sie das CRM erreichen</li>
-      <li>Alles läuft self-hosted – volle Datenkontrolle, keine laufenden Plattform-Kosten</li>
+    <p>Umgesetzt mit modernen, flexiblen Werkzeugen – passend zur bestehenden IT-Landschaft und ohne teure Speziallösung.</p>
+
+    <h3>Der Nutzen</h3>
+    <ul class="benefit-list">
+      <li>Schnellere Reaktion auf neue Anfragen</li>
+      <li>Weniger manuelle Arbeit im Tagesgeschäft</li>
+      <li>Keine verlorenen Leads mehr</li>
+      <li>Transparenter Prozess statt persönlichem Erinnern</li>
+      <li>Einfach erweiterbar, wenn das Unternehmen wächst</li>
     </ul>
 
-    <h3>Tech-Stack</h3>
-    <div class="tech-pills">
-      <span class="tech-pill">n8n</span>
-      <span class="tech-pill">Webhook</span>
-      <span class="tech-pill">NocoDB</span>
-      <span class="tech-pill">Notion API</span>
-      <span class="tech-pill">Gmail SMTP</span>
-      <span class="tech-pill">Honeypot-Filter</span>
-      <span class="tech-pill">Hetzner VPS</span>
+    <div class="highlight-box">
+      Übrigens: Genau so funktioniert das Kontaktformular auf dieser Seite. Ihre Anfrage würde denselben Weg nehmen – automatisch erfasst und beantwortet.
     </div>
 
     <hr class="content-divider">
 
-    <p>Klingt nach etwas, das auch in Ihrem Betrieb Sinn macht?</p>
+    <p>Viele Unternehmen haben genau solche kleinen Reibungsverluste im Alltag. Gemeinsam finden wir die Prozesse, bei denen Automatisierung echten Nutzen bringt – und fangen dort an, wo es sich am schnellsten lohnt.</p>
     <a href="https://calendar.app.google/vXAGb7DQjwTJtg9t6" target="_blank" rel="noopener" class="btn-dark">
       Kostenloses Erstgespräch →
     </a>
