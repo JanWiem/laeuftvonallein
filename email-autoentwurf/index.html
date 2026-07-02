@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Kundenanfragen automatisch beantworten – läuft von allein</title>
-  <meta name="description" content="Wie ein Dienstleister mit n8n und ChatGPT eingehende Kundenanfragen automatisch als Entwurf beantwortet – konfigurierbar per Google Sheet, kein IT-Wissen nötig.">
+  <title>Kundenanfragen beantworten – ohne bei jeder Mail neu anzufangen | läuft von allein</title>
+  <meta name="description" content="Auf jede echte Kundenanfrage wartet in Sekunden ein fertiger Antwort-Entwurf im Postfach. Prüfen, anpassen, senden – der Ton bleibt einheitlich, die Kontrolle bleibt bei Ihnen.">
   <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <link rel="shortcut icon" href="/favicon.ico" />
@@ -118,6 +118,19 @@
       margin: 1.25rem 0;
       font-size: 14px; color: #6b7280; line-height: 1.75;
     }
+    .highlight-box strong { color: #1a1a1a; font-weight: 600; }
+
+    /* ─── Insight box (Kernidee) ────────────────────────────── */
+    .insight-box {
+      background: #fafafa;
+      border: 1px solid #efefef;
+      border-left: 3px solid #0d9488;
+      border-radius: 10px;
+      padding: 1.1rem 1.4rem;
+      margin: 1.75rem 0;
+      font-size: 14px; color: #4b5563; line-height: 1.75;
+    }
+    .insight-box strong { color: #1a1a1a; font-weight: 600; }
 
     /* ─── Flow diagram ──────────────────────────────────────── */
     .flow-diagram {
@@ -139,8 +152,7 @@
     }
     .flow-connector {
       width: 1px; flex: 1; min-height: 24px;
-      background: #efefef;
-      margin: 3px 0;
+      background: #efefef; margin: 3px 0;
     }
     .flow-content {
       padding: 0.1rem 0 1.25rem;
@@ -152,76 +164,21 @@
     .flow-content span {
       font-size: 13px; color: #6b7280; line-height: 1.65;
     }
-    .flow-branch {
-      display: flex; gap: 0.6rem; margin-top: 1rem; flex-wrap: wrap;
-    }
-    .flow-branch-item {
-      flex: 1; min-width: 180px;
-      background: #fafafa; border: 1px solid #efefef;
-      border-radius: 10px; padding: 0.9rem 1rem;
-    }
-    .flow-branch-label {
-      font-size: 11px; font-weight: 600; letter-spacing: 0.05em;
-      text-transform: uppercase; color: #9ca3af; margin-bottom: 0.35rem;
-    }
-    .flow-branch-item p {
-      font-size: 13px !important; color: #6b7280;
-      line-height: 1.6; margin-bottom: 0 !important;
-    }
 
-    /* ─── Sheet table ───────────────────────────────────────── */
-    .sheet-table {
-      width: 100%; border-collapse: collapse;
-      margin: 1rem 0 1.5rem; font-size: 13px;
-      border-radius: 10px; overflow: hidden;
-      border: 1px solid #efefef;
-    }
-    .sheet-table th {
-      background: #f3f4f6; color: #6b7280;
-      font-weight: 600; font-size: 11px; letter-spacing: 0.05em;
-      text-transform: uppercase; padding: 0.6rem 1rem; text-align: left;
-      border-bottom: 1px solid #efefef;
-    }
-    .sheet-table td {
-      padding: 0.6rem 1rem; color: #6b7280;
-      line-height: 1.5; border-bottom: 1px solid #f3f4f6;
-      vertical-align: top;
-    }
-    .sheet-table tr:last-child td { border-bottom: none; }
-    .sheet-table tr:hover td { background: #fafafa; }
-    .typ-badge {
-      display: inline-block;
-      background: #f3f4f6; color: #6b7280;
-      border-radius: 5px; padding: 1px 7px;
-      font-size: 11px; font-weight: 600;
-    }
-
-    /* ─── Check list ────────────────────────────────────────── */
-    .check-list {
+    /* ─── Benefit list ──────────────────────────────────────── */
+    .benefit-list {
       list-style: none;
       margin: 0.5rem 0 1.25rem;
-      display: flex; flex-direction: column; gap: 0.5rem;
+      display: flex; flex-direction: column; gap: 0.6rem;
     }
-    .check-list li {
-      font-size: 14px; color: #6b7280;
+    .benefit-list li {
+      font-size: 14px; color: #4b5563;
       line-height: 1.6;
-      display: flex; align-items: baseline; gap: 0.6rem;
+      display: flex; align-items: baseline; gap: 0.7rem;
     }
-    .check-list li::before {
-      content: '–';
-      color: #9ca3af;
-      flex-shrink: 0;
-    }
-
-    /* ─── Tech pills ────────────────────────────────────────── */
-    .tech-pills {
-      display: flex; flex-wrap: wrap; gap: 0.4rem;
-      margin: 0.75rem 0 1.5rem;
-    }
-    .tech-pill {
-      background: #f3f4f6; color: #6b7280;
-      border-radius: 6px; padding: 3px 10px;
-      font-size: 12px; font-weight: 500;
+    .benefit-list li::before {
+      content: '✓'; color: #16a34a; font-weight: 600;
+      flex-shrink: 0; font-size: 13px;
     }
 
     /* ─── Divider ───────────────────────────────────────────── */
@@ -293,9 +250,6 @@
       }
       .nav-links.open { display: flex; }
       .nav-hamburger { display: flex; }
-      .flow-branch { flex-direction: column; }
-      .sheet-table { font-size: 12px; }
-      .sheet-table th, .sheet-table td { padding: 0.5rem 0.75rem; }
       .footer-nav { gap: 1.5rem; }
     }
 
@@ -345,18 +299,18 @@
 
     <a href="/" class="content-back">← Zurück</a>
     <span class="section-label">Praxis-Beispiel</span>
-    <h1>Kundenanfragen automatisch und intelligent beantworten</h1>
+    <h1>Kundenanfragen beantworten – ohne bei jeder Mail neu anzufangen</h1>
 
-    <p class="content-lead">Eingehende E-Mails lesen, einordnen, passend antworten – das kostet täglich wertvolle Zeit. Hier zeige ich, wie ein Dienstleister diesen Prozess mit KI und n8n automatisiert hat.</p>
+    <p class="content-lead">Eingehende E-Mails lesen, einordnen, passend formulieren – das kostet jeden Tag Zeit. Hier wartet auf jede echte Anfrage schon ein fertiger Antwort-Entwurf im Postfach. Prüfen, bei Bedarf anpassen, senden.</p>
 
-    <h3>Die Ausgangssituation</h3>
-    <p>Der Kunde erhält täglich mehrere Anfragen per E-Mail – Preisfragen, Terminwünsche, allgemeine Fragen. Jede Anfrage muss gelesen, eingeordnet und beantwortet werden. Das klingt nach wenig, kostet in Summe aber viel Zeit täglich – und die Antworten müssen trotzdem professionell und konsistent klingen.</p>
+    <h3>Ausgangssituation</h3>
+    <p>Ein Dienstleister bekommt täglich Anfragen per E-Mail – Preisfragen, Terminwünsche, allgemeine Fragen. Jede muss gelesen, eingeordnet und beantwortet werden. Einzeln ist das wenig, in Summe kostet es täglich viel Zeit – und die Antworten sollen trotzdem professionell und einheitlich klingen, auch wenn es gerade stressig ist.</p>
     <div class="highlight-box">
-      Ziel: Jede eingehende Anfrage bekommt innerhalb von Sekunden einen fertigen Antwort-Entwurf. Der Kunde prüft, passt bei Bedarf an – und sendet. Kein leeres Textfeld mehr, kein Nachdenken über Formulierungen.
+      <strong>Ziel:</strong> Jede eingehende Anfrage bekommt in Sekunden einen fertigen Antwort-Entwurf. Geprüft und gesendet wird weiterhin von Hand – kein leeres Textfeld mehr, kein Grübeln über die richtige Formulierung.
     </div>
 
-    <h3>Wie funktioniert es?</h3>
-    <p>Das System prüft jede Minute das Postfach auf neue ungelesene E-Mails. Kommt eine rein, lädt n8n gleichzeitig die vollständige Mail und die aktuellen Antwort-Regeln aus einem Google Sheet – dem „Gehirn" des Systems. Ein Code-Node baut daraus den vollständigen Prompt für ChatGPT zusammen.</p>
+    <h3>Die Lösung</h3>
+    <p>Ein automatischer Ablauf übernimmt die Vorarbeit: mitlesen, einordnen, passend formulieren. Was am Ende rausgeht, entscheiden weiterhin Sie – aber Sie starten nie wieder bei einem leeren Feld.</p>
 
     <div class="flow-diagram">
       <div class="flow-step">
@@ -365,123 +319,70 @@
           <div class="flow-connector"></div>
         </div>
         <div class="flow-content">
-          <strong>Neue E-Mail erkennen</strong>
-          <span>Gmail Trigger prüft jede Minute auf ungelesene Mails im Postfach. Nur Mails an die Kunden-Adresse werden weiterverarbeitet – direkte interne Mails werden ignoriert.</span>
+          <strong>Neue Anfrage erkennen</strong>
+          <span>Das System behält das Postfach im Blick und erkennt neue Kundenanfragen automatisch – ohne dass jemand ständig auf den Posteingang schauen muss.</span>
         </div>
       </div>
       <div class="flow-step">
         <div class="flow-left">
-          <div class="flow-icon">📋</div>
+          <div class="flow-icon">🔎</div>
           <div class="flow-connector"></div>
         </div>
         <div class="flow-content">
-          <strong>Regeln laden</strong>
-          <span>Parallel zur vollständigen Mail lädt n8n die aktuellen Antwort-Anweisungen aus einem Google Sheet: Firmendaten, Kategorien, Ton, FAQs und Beispiel-Antworten.</span>
+          <strong>Verstehen, worum es geht</strong>
+          <span>Jede Mail wird eingeordnet: Preisfrage, Terminwunsch, allgemeine Frage – oder Werbung und Newsletter, die gar keine Antwort brauchen und automatisch aussortiert werden.</span>
         </div>
       </div>
       <div class="flow-step">
         <div class="flow-left">
-          <div class="flow-icon">🤖</div>
+          <div class="flow-icon">✍️</div>
           <div class="flow-connector"></div>
         </div>
         <div class="flow-content">
-          <strong>Antwort generieren</strong>
-          <span>ChatGPT (gpt-4o-mini) erhält den vollständigen Kontext und generiert eine passende Antwort – inklusive Signatur, korrektem Ton und Buchungslink bei Terminanfragen.</span>
+          <strong>Passenden Entwurf schreiben</strong>
+          <span>Zu jeder echten Anfrage entsteht ein fertig formulierter Antwort-Entwurf – im richtigen Ton, mit Signatur und bei Terminanfragen samt Buchungslink.</span>
         </div>
       </div>
       <div class="flow-step">
         <div class="flow-left">
-          <div class="flow-icon">🔀</div>
+          <div class="flow-icon">👤</div>
+          <div class="flow-connector"></div>
         </div>
         <div class="flow-content">
-          <strong>Einordnen: echte Anfrage oder Spam?</strong>
-          <span>Erkennt ChatGPT die Mail als Newsletter, Werbung oder automatische System-Mail, gibt es nur das Signal <code style="background:#f3f4f6;padding:1px 5px;border-radius:4px;font-size:12px;">KEIN_ENTWURF</code> zurück.</span>
-          <div class="flow-branch">
-            <div class="flow-branch-item">
-              <div class="flow-branch-label">✓ Echte Anfrage</div>
-              <p>Gmail-Entwurf wird angelegt, Mail als gelesen markiert. Der Kunde sieht den fertigen Text direkt im Postfach.</p>
-            </div>
-            <div class="flow-branch-item">
-              <div class="flow-branch-label">— Spam / Newsletter</div>
-              <p>Kein Entwurf. Mail bleibt als ungelesen markiert – der Kunde kann selbst entscheiden, was damit passiert.</p>
-            </div>
-          </div>
+          <strong>Sie prüfen und senden</strong>
+          <span>Der Entwurf liegt fertig im Postfach. Kurz drüberlesen, bei Bedarf anpassen – und abschicken. Die Entscheidung bleibt bei Ihnen.</span>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-left">
+          <div class="flow-icon">🎛️</div>
+        </div>
+        <div class="flow-content">
+          <strong>Regeln in Ihrer Hand</strong>
+          <span>Wie geantwortet wird – Ton, Standardantworten, was nie zugesagt werden darf – bestimmen Sie selbst und ändern es jederzeit in Sekunden. Ganz ohne IT.</span>
         </div>
       </div>
     </div>
 
-    <h3>Das Google Sheet als Steuerzentrale</h3>
-    <p>Das Besondere: Der Kunde muss nie den Workflow anfassen. Alle Antwort-Regeln stehen in einem einfachen Google Sheet mit drei Spalten – Typ, Schlüssel, Inhalt. Ändern heißt: Zelle öffnen, Text anpassen, fertig. Das System reagiert sofort.</p>
+    <div class="insight-box">
+      <strong>Der Kern:</strong> Das System antwortet nie von allein. Es liest, ordnet ein und formuliert vor – gesendet wird immer von Ihnen. So sparen Sie die Tipparbeit, behalten aber die Kontrolle über jedes Wort, das Ihr Haus verlässt.
+    </div>
 
-    <table class="sheet-table">
-      <thead>
-        <tr>
-          <th>Typ</th>
-          <th>Schlüssel</th>
-          <th>Was es steuert</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><span class="typ-badge">firma</span></td>
-          <td>name, telefon, website</td>
-          <td>Erscheint in jeder Signatur automatisch</td>
-        </tr>
-        <tr>
-          <td><span class="typ-badge">firma</span></td>
-          <td>kalender_link</td>
-          <td>Buchungslink – wird bei Terminanfragen automatisch eingefügt</td>
-        </tr>
-        <tr>
-          <td><span class="typ-badge">kategorie</span></td>
-          <td>preisanfrage, terminwunsch, beschwerde…</td>
-          <td>Wie ChatGPT auf verschiedene Anfrage-Typen reagiert</td>
-        </tr>
-        <tr>
-          <td><span class="typ-badge">faq</span></td>
-          <td>Frage als Schlüssel</td>
-          <td>Häufige Fragen mit fertiger Antwort – ChatGPT nutzt diese direkt</td>
-        </tr>
-        <tr>
-          <td><span class="typ-badge">ton</span></td>
-          <td>anweisung</td>
-          <td>Schreibstil: kurz, direkt, kein Konjunktiv – exakt so wie der Kunde schreibt</td>
-        </tr>
-        <tr>
-          <td><span class="typ-badge">beispiel</span></td>
-          <td>Anfrage-Typ</td>
-          <td>Echte Beispiel-Antworten als Stilvorlage – je mehr, desto besser</td>
-        </tr>
-        <tr>
-          <td><span class="typ-badge">ausschluss</span></td>
-          <td>Regel</td>
-          <td>Was ChatGPT niemals zusagen darf: Rabatte, konkrete Preise, Liefertermine</td>
-        </tr>
-      </tbody>
-    </table>
-
-    <h3>Was der Kunde davon hat</h3>
-    <ul class="check-list">
+    <h3>Der Nutzen</h3>
+    <ul class="benefit-list">
       <li>Jede echte Anfrage hat in Sekunden einen fertigen Entwurf im Postfach</li>
-      <li>Ton und Stil bleiben immer konsistent – auch wenn es stressig ist</li>
-      <li>Spam und Newsletter werden automatisch herausgefiltert</li>
-      <li>Preisanfragen bekommen automatisch einen Terminbuchungslink</li>
-      <li>Anpassungen brauchen keine IT: einfach das Sheet editieren</li>
-      <li>Das System läuft 24/7 – auch außerhalb der Geschäftszeiten</li>
+      <li>Ton und Stil bleiben einheitlich – auch wenn es stressig ist</li>
+      <li>Werbung und Newsletter werden automatisch aussortiert</li>
+      <li>Terminanfragen bekommen direkt den Buchungslink mit</li>
+      <li>Anpassungen brauchen keine IT – die Regeln ändern Sie selbst</li>
+      <li>Läuft rund um die Uhr, auch außerhalb der Geschäftszeiten</li>
     </ul>
 
-    <h3>Tech-Stack</h3>
-    <div class="tech-pills">
-      <span class="tech-pill">n8n</span>
-      <span class="tech-pill">Gmail API</span>
-      <span class="tech-pill">Google Sheets API</span>
-      <span class="tech-pill">OpenAI gpt-4o-mini</span>
-      <span class="tech-pill">Hetzner VPS</span>
-    </div>
+    <p>Umgesetzt mit modernen, flexiblen Werkzeugen – direkt im vorhandenen E-Mail-Postfach, ohne neue Software für Ihr Team.</p>
 
     <hr class="content-divider">
 
-    <p>Klingt nach etwas, das auch in Ihrem Betrieb Sinn macht?</p>
+    <p>Fast jeder Betrieb beantwortet täglich ähnliche Anfragen immer wieder neu. Gemeinsam finden wir die Stellen, an denen ein fertiger Entwurf die meiste Zeit spart – ohne dass Ihre Kunden je das Gefühl haben, mit einer Maschine zu schreiben.</p>
     <a href="https://calendar.app.google/vXAGb7DQjwTJtg9t6" target="_blank" rel="noopener" class="btn-dark">
       Kostenloses Erstgespräch →
     </a>
@@ -515,9 +416,10 @@
         <div class="footer-nav-col">
           <h4>Beispiele</h4>
           <ul>
-            <li><a href="/email-autoentwurf">Kundenanfragen</a></li>
-            <li><a href="/preismonitoring">Preismonitoring</a></li>
             <li><a href="/kontaktformular">Kontaktformular</a></li>
+            <li><a href="/produktpflege">Produktpflege</a></li>
+            <li><a href="/preismonitoring">Preismonitoring</a></li>
+            <li><a href="/email-autoentwurf">Kundenanfragen</a></li>
           </ul>
         </div>
         <div class="footer-nav-col">
