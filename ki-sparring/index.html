@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KI-Sparring für Entscheider – läuft von allein</title>
+  <meta name="description" content="Orientierung in der KI-Entwicklung für Geschäftsführungen, Inhaber:innen und Entscheider:innen kleinerer Unternehmen. Sparring statt Strategie-Folien.">
+  <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="shortcut icon" href="/favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <link rel="manifest" href="/site.webmanifest" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+      background: #fff;
+      color: #1a1a1a;
+      font-size: 16px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ─── Nav ───────────────────────────────────────────────── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(255, 255, 255, 0.96);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border-bottom: 1px solid #f0f0f0;
+      height: 56px;
+      transition: border-color 0.2s;
+    }
+    .nav-inner {
+      max-width: 960px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 100%; padding: 0 1.5rem;
+    }
+    .nav-logo {
+      display: flex; align-items: center; gap: 8px;
+      text-decoration: none; color: #1a1a1a;
+      font-size: 14px; font-weight: 500; letter-spacing: -0.01em;
+    }
+    .nav-links {
+      display: flex; align-items: center;
+      gap: 1.75rem; list-style: none;
+    }
+    .nav-links a {
+      font-size: 13px; color: #6b7280;
+      text-decoration: none; transition: color 0.15s;
+    }
+    .nav-links a:hover { color: #1a1a1a; }
+    .nav-cta {
+      font-size: 13px !important; font-weight: 500 !important;
+      color: #1a1a1a !important; background: #f3f4f6;
+      border-radius: 8px; padding: 6px 14px;
+      transition: background 0.15s !important;
+    }
+    .nav-cta:hover { background: #e5e7eb !important; color: #1a1a1a !important; }
+    .nav-hamburger {
+      display: none; flex-direction: column; gap: 4px;
+      background: none; border: none; cursor: pointer; padding: 4px;
+    }
+    .nav-hamburger span {
+      display: block; width: 20px; height: 1.5px;
+      background: #1a1a1a; border-radius: 2px; transition: all 0.2s;
+    }
+
+    /* ─── Page content ──────────────────────────────────────── */
+    .content-page {
+      padding: 5.5rem 1.5rem 5rem;
+      min-height: 100vh;
+    }
+    .content-inner {
+      max-width: 680px;
+      margin: 0 auto;
+    }
+    .content-back {
+      display: inline-flex; align-items: center; gap: 5px;
+      font-size: 13px; color: #9ca3af;
+      text-decoration: none; margin-bottom: 2.5rem;
+      transition: color 0.15s;
+    }
+    .content-back:hover { color: #1a1a1a; }
+    .section-label {
+      display: block;
+      font-size: 11px; font-weight: 500;
+      letter-spacing: 0.07em; text-transform: uppercase;
+      color: #9ca3af; margin-bottom: 0.6rem;
+    }
+    .content-inner h1 {
+      font-size: clamp(22px, 3.5vw, 30px);
+      font-weight: 500; letter-spacing: -0.02em;
+      color: #1a1a1a; margin-bottom: 1rem; line-height: 1.2;
+    }
+    .content-lead {
+      font-size: 15px; color: #6b7280;
+      line-height: 1.75; margin-bottom: 2.5rem;
+    }
+    .content-inner h3 {
+      font-size: 14px; font-weight: 600;
+      color: #1a1a1a; margin: 2rem 0 0.5rem;
+    }
+    .content-inner p {
+      font-size: 14px; color: #6b7280;
+      line-height: 1.75; margin-bottom: 0.75rem;
+    }
+    .content-inner a { color: #1a1a1a; text-decoration: underline; text-underline-offset: 2px; }
+    .content-inner a:hover { color: #374151; }
+
+    /* ─── Highlight box ─────────────────────────────────────── */
+    .highlight-box {
+      background: #fafafa;
+      border: 1px solid #efefef;
+      border-radius: 10px;
+      padding: 1.1rem 1.4rem;
+      margin: 1.25rem 0;
+      font-size: 14px; color: #6b7280; line-height: 1.75;
+    }
+    .highlight-box.muted {
+      background: #fafafa;
+      border-color: #efefef;
+    }
+
+    /* ─── Question list ─────────────────────────────────────── */
+    .question-list {
+      list-style: none;
+      margin: 0.5rem 0 1.25rem;
+      display: flex; flex-direction: column; gap: 0.5rem;
+    }
+    .question-list li {
+      font-size: 14px; color: #6b7280;
+      line-height: 1.6;
+      display: flex; align-items: baseline; gap: 0.6rem;
+    }
+    .question-list li::before {
+      content: '–';
+      color: #9ca3af;
+      flex-shrink: 0;
+    }
+
+    /* ─── Format cards ──────────────────────────────────────── */
+    .format-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.75rem;
+      margin: 1rem 0 1.5rem;
+    }
+    .format-card {
+      background: #fff;
+      border: 1px solid #efefef;
+      border-radius: 12px;
+      padding: 1.25rem 1.1rem;
+      display: flex; flex-direction: column; gap: 0.4rem;
+      transition: border-color 0.15s, box-shadow 0.15s;
+    }
+    .format-card:hover {
+      border-color: #d1d5db;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    }
+    .format-card-tag {
+      font-size: 10px; font-weight: 500;
+      letter-spacing: 0.07em; text-transform: uppercase;
+      color: #9ca3af; margin-bottom: 0.25rem;
+    }
+    .format-card h4 {
+      font-size: 13px; font-weight: 600;
+      color: #1a1a1a; line-height: 1.3;
+    }
+    .format-card-meta {
+      font-size: 12px; color: #9ca3af;
+      margin-bottom: 0.25rem;
+    }
+    .format-card p {
+      font-size: 13px !important;
+      color: #6b7280; line-height: 1.65;
+      margin-bottom: 0 !important;
+    }
+
+    /* ─── Divider ───────────────────────────────────────────── */
+    .content-divider {
+      border: none; border-top: 1px solid #f0f0f0;
+      margin: 2.5rem 0;
+    }
+
+    /* ─── CTA button ────────────────────────────────────────── */
+    .btn-dark {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: #1a1a1a; color: #fff !important;
+      padding: 10px 20px; border-radius: 10px;
+      font-size: 14px; font-weight: 500;
+      text-decoration: none !important; transition: background 0.15s;
+      margin-top: 0.75rem;
+    }
+    .btn-dark:hover { background: #374151; color: #fff !important; }
+
+    /* ─── Footer ────────────────────────────────────────────── */
+    footer {
+      border-top: 1px solid #f0f0f0;
+      padding: 2.5rem 1.5rem 2rem;
+    }
+    .footer-inner { max-width: 800px; margin: 0 auto; }
+    .footer-top {
+      display: flex; justify-content: space-between;
+      align-items: flex-start; flex-wrap: wrap; gap: 1.75rem;
+      padding-bottom: 1.75rem;
+      border-bottom: 1px solid #f0f0f0;
+    }
+    .footer-brand { display: flex; flex-direction: column; gap: 5px; }
+    .footer-logo {
+      display: flex; align-items: center; gap: 7px;
+      text-decoration: none; color: #1a1a1a;
+      font-size: 13px; font-weight: 500;
+    }
+    .footer-brand-sub { font-size: 12px; color: #9ca3af; }
+    .footer-nav { display: flex; gap: 2.5rem; flex-wrap: wrap; }
+    .footer-nav-col h4 {
+      font-size: 10px; font-weight: 500;
+      letter-spacing: 0.07em; text-transform: uppercase;
+      color: #d1d5db; margin-bottom: 0.65rem;
+    }
+    .footer-nav-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.45rem; }
+    .footer-nav-col a {
+      font-size: 12px; color: #9ca3af;
+      text-decoration: none; transition: color 0.15s;
+    }
+    .footer-nav-col a:hover { color: #1a1a1a; }
+    .footer-bottom {
+      display: flex; justify-content: space-between;
+      flex-wrap: wrap; gap: 0.5rem;
+      font-size: 11px; color: #d1d5db;
+      padding-top: 1.5rem;
+    }
+    .footer-bottom a { color: #9ca3af; text-decoration: none; }
+    .footer-bottom a:hover { color: #1a1a1a; }
+
+    /* ─── Responsive ────────────────────────────────────────── */
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none; flex-direction: column;
+        position: absolute; top: 56px; left: 0; right: 0;
+        background: #fff; padding: 1.25rem 1.5rem;
+        border-bottom: 1px solid #f0f0f0;
+        box-shadow: 0 8px 16px rgba(0,0,0,0.04);
+        gap: 1rem;
+      }
+      .nav-links.open { display: flex; }
+      .nav-hamburger { display: flex; }
+      .format-grid { grid-template-columns: 1fr; }
+      .footer-nav { gap: 1.5rem; }
+    }
+
+    /* ─── Footer partner badge ──────────────────────────────── */
+    .footer-partner {
+      display: flex; align-items: center; gap: 1.25rem;
+      padding: 1.25rem 0;
+      border-bottom: 1px solid #f0f0f0;
+    }
+    .footer-partner img {
+      height: 40px; width: auto; flex-shrink: 0;
+    }
+    .footer-partner-text {
+      font-size: 11px; color: #9ca3af; line-height: 1.55;
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══ NAV ═══════════════════════════════════════════════════════ -->
+<nav id="nav">
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">
+      <svg width="20" height="20" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <circle cx="49.3" cy="22" r="3.5" fill="#1a1a1a"/>
+        <path d="M 49.3,22 A 20,20 0 1,1 29.2,12.2" stroke="#1a1a1a" stroke-width="3.5" stroke-linecap="round"/>
+        <polygon points="38,11 30,16 29,8" fill="#1a1a1a"/>
+      </svg>
+      läuft von allein
+    </a>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="/#leistungen">Leistungen</a></li>
+      <li><a href="/#ki-sparring">KI-Sparring</a></li>
+      <li><a href="/#ueber">Über mich</a></li>
+      <li><a href="/#kontakt">Kontakt</a></li>
+      <li><a href="https://calendar.app.google/vXAGb7DQjwTJtg9t6" target="_blank" rel="noopener" class="nav-cta">Termin buchen</a></li>
+    </ul>
+    <button class="nav-hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menü">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- ═══ CONTENT ══════════════════════════════════════════════════ -->
+<div class="content-page">
+  <div class="content-inner">
+
+    <a href="/" class="content-back">← Zurück</a>
+    <span class="section-label">KI-Orientierung</span>
+    <h1>KI-Sparring für Entscheider:innen</h1>
+
+    <p class="content-lead">KI ist kein Selbstzweck. Die spannende Frage ist nicht, was technisch möglich ist – sondern was für Ihr Unternehmen wirklich einen Unterschied macht. Im KI-Sparring sortieren wir gemeinsam, welche Themen relevant sind, wo die größten Hebel liegen und welche nächsten Schritte sinnvoll sind.</p>
+
+    <div class="highlight-box">
+      Sparring statt Strategie-Folien. Orientierung statt Aktionismus. Ein pragmatischer Blick von außen, der hilft, bessere Entscheidungen zu treffen – ohne langes Konzeptpapier und ohne unnötige Komplexität.
+    </div>
+
+    <h3>Am Ende wissen Sie</h3>
+    <ul class="question-list">
+      <li>welche KI-Themen für Ihr Unternehmen tatsächlich relevant sind</li>
+      <li>wo der erste sinnvolle Hebel für Zeitersparnis oder bessere Abläufe liegt</li>
+      <li>was Sie selbst umsetzen können und wo externe Unterstützung sinnvoll ist</li>
+      <li>welche ersten Schritte statt eines großen Transformationsprojekts sinnvoll sind</li>
+      <li>wie KI praktisch und verantwortungsvoll im Unternehmen eingesetzt werden kann</li>
+    </ul>
+
+    <h3>Format</h3>
+    <p>Drei Möglichkeiten, gestaffelt nach Tiefe – bewusst überschaubar gehalten:</p>
+
+    <div class="format-grid">
+      <div class="format-card">
+        <span class="format-card-tag">Kostenlos</span>
+        <h4>Erstgespräch</h4>
+        <div class="format-card-meta">30 Minuten · Google Meet</div>
+        <p>Sie bringen Ihre konkrete Frage. Wir schauen, ob Sparring überhaupt das richtige Format ist – und wenn nicht, sage ich Ihnen das offen.</p>
+      </div>
+      <div class="format-card">
+        <span class="format-card-tag">Einzelsession</span>
+        <h4>Eine Frage, fokussiert</h4>
+        <div class="format-card-meta">90 Minuten · remote oder vor Ort</div>
+        <p>Wir nehmen ein konkretes Thema vor und arbeiten es durch. Im Anschluss bekommen Sie eine 1-Seite mit Einordnung und Empfehlung – kein Foliendeck.</p>
+      </div>
+      <div class="format-card">
+        <span class="format-card-tag">Sparring-Paket</span>
+        <h4>Drei Sessions, 4–6 Wochen</h4>
+        <div class="format-card-meta">Use-Cases · Priorisierung · Empfehlung</div>
+        <p>Für etwas größere Themen: Use-Cases identifizieren, priorisieren und in eine erste Empfehlung übersetzen. Output: Roadmap auf 1–2 Seiten.</p>
+      </div>
+    </div>
+
+    <h3>Passt besonders gut für</h3>
+    <div class="highlight-box muted">
+      Das Format ist ideal für Unternehmen, die KI nutzen möchten, aber noch sortieren wollen: Welche Anwendungen bringen echten Nutzen? Wo sollte man starten? Und welche Entscheidungen sollten jetzt getroffen werden?
+    </div>
+
+    <h3>Warum mit mir</h3>
+    <p>Ich arbeite seit vielen Jahren in digitalen Unternehmen – in Produkt-, Management- und Transformationsrollen. Dadurch verbinde ich technisches Verständnis mit der Perspektive von Führungskräften und Entscheidern.</p>
+    <p>Ich spreche nicht nur über Digitalisierung und KI, sondern setze Dinge auch praktisch um. Mit <a href="https://alltagsapps.de">alltagsapps.de</a> entwickle ich kleine digitale Werkzeuge für konkrete Probleme – mit dem Fokus auf Lösungen, die im Alltag wirklich funktionieren.</p>
+
+    <hr class="content-divider">
+
+    <p>Sie wollen sich orientieren, sind sich aber nicht sicher, ob das passt? Im 30-minütigen Erstgespräch klären wir genau das – kostenlos und ohne Verpflichtung.</p>
+    <a href="https://calendar.app.google/vXAGb7DQjwTJtg9t6" target="_blank" rel="noopener" class="btn-dark">
+      Kostenloses Erstgespräch →
+    </a>
+
+  </div>
+</div>
+
+<!-- ═══ FOOTER ═══════════════════════════════════════════════════ -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="/" class="footer-logo">
+          <svg width="16" height="16" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <circle cx="49.3" cy="22" r="3.5" fill="#9ca3af"/>
+            <path d="M 49.3,22 A 20,20 0 1,1 29.2,12.2" stroke="#9ca3af" stroke-width="3.5" stroke-linecap="round"/>
+            <polygon points="38,11 30,16 29,8" fill="#9ca3af"/>
+          </svg>
+          läuft von allein
+        </a>
+        <span class="footer-brand-sub">Digitalisierung · Automatisierung · Management · München</span>
+      </div>
+      <div class="footer-nav">
+        <div class="footer-nav-col">
+          <h4>Angebote</h4>
+          <ul>
+            <li><a href="/#leistungen">Automatisierung</a></li>
+            <li><a href="/ki-sparring">KI-Sparring</a></li>
+            <li><a href="https://alltagsapps.de" target="_blank" rel="noopener">alltagsapps.de</a></li>
+          </ul>
+        </div>
+        <div class="footer-nav-col">
+          <h4>Beispiele</h4>
+          <ul>
+            <li><a href="/kontaktformular">Kontaktformular</a></li>
+            <li><a href="/produktpflege">Produktpflege</a></li>
+            <li><a href="/preismonitoring">Preismonitoring</a></li>
+            <li><a href="/email-autoentwurf">Kundenanfragen</a></li>
+          </ul>
+        </div>
+        <div class="footer-nav-col">
+          <h4>Kontakt</h4>
+          <ul>
+            <li><a href="mailto:info@laeuftvonallein.de">info@laeuftvonallein.de</a></li>
+            <li><a href="https://www.linkedin.com/in/janwiemann" target="_blank" rel="noopener">LinkedIn</a></li>
+          </ul>
+        </div>
+        <div class="footer-nav-col">
+          <h4>Rechtliches</h4>
+          <ul>
+            <li><a href="/impressum">Impressum</a></li>
+            <li><a href="/datenschutz">Datenschutz</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-partner">
+      <a href="https://www.packmasdigital.de" target="_blank" rel="noopener" style="flex-shrink:0;">
+        <img src="packmasdigital.png" alt="Pack ma's digital – IHK-Initiative">
+      </a>
+      <span class="footer-partner-text">Wir unterstützen die IHK-Initiative Pack ma's digital, um der Wirtschaft in Oberbayern bei der Digitalisierung weiter zu helfen und die Zukunft des Standorts zu sichern.</span>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 läuft von allein · Jan-Hendrik Wiemann</span>
+      <span>München</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  window.addEventListener('scroll', () => {
+    document.getElementById('nav').style.borderBottomColor =
+      window.scrollY > 10 ? '#e5e7eb' : '#f0f0f0';
+  });
+  function toggleMenu() {
+    document.getElementById('nav-links').classList.toggle('open');
+  }
+  document.querySelectorAll('.nav-links a').forEach(a => {
+    a.addEventListener('click', () => {
+      document.getElementById('nav-links').classList.remove('open');
+    });
+  });
+</script>
+</body>
+</html>

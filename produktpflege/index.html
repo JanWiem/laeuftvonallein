@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Produktdaten prüfen ohne Handarbeit – Praxisbeispiel | läuft von allein</title>
+  <meta name="description" content="Tausende Produktdaten aktuell und korrekt halten, ohne jede Zeile von Hand zu prüfen: Die Maschine bereitet vor, der Mensch entscheidet per Klick – nur dort, wo es zählt.">
+  <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="shortcut icon" href="/favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <link rel="manifest" href="/site.webmanifest" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+      background: #fff;
+      color: #1a1a1a;
+      font-size: 16px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ─── Nav ───────────────────────────────────────────────── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(255, 255, 255, 0.96);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border-bottom: 1px solid #f0f0f0;
+      height: 56px;
+      transition: border-color 0.2s;
+    }
+    .nav-inner {
+      max-width: 960px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 100%; padding: 0 1.5rem;
+    }
+    .nav-logo {
+      display: flex; align-items: center; gap: 8px;
+      text-decoration: none; color: #1a1a1a;
+      font-size: 14px; font-weight: 500; letter-spacing: -0.01em;
+    }
+    .nav-links {
+      display: flex; align-items: center;
+      gap: 1.75rem; list-style: none;
+    }
+    .nav-links a {
+      font-size: 13px; color: #6b7280;
+      text-decoration: none; transition: color 0.15s;
+    }
+    .nav-links a:hover { color: #1a1a1a; }
+    .nav-cta {
+      font-size: 13px !important; font-weight: 500 !important;
+      color: #1a1a1a !important; background: #f3f4f6;
+      border-radius: 8px; padding: 6px 14px;
+      transition: background 0.15s !important;
+    }
+    .nav-cta:hover { background: #e5e7eb !important; color: #1a1a1a !important; }
+    .nav-hamburger {
+      display: none; flex-direction: column; gap: 4px;
+      background: none; border: none; cursor: pointer; padding: 4px;
+    }
+    .nav-hamburger span {
+      display: block; width: 20px; height: 1.5px;
+      background: #1a1a1a; border-radius: 2px; transition: all 0.2s;
+    }
+
+    /* ─── Page content ──────────────────────────────────────── */
+    .content-page {
+      padding: 5.5rem 1.5rem 5rem;
+      min-height: 100vh;
+    }
+    .content-inner {
+      max-width: 680px;
+      margin: 0 auto;
+    }
+    .content-back {
+      display: inline-flex; align-items: center; gap: 5px;
+      font-size: 13px; color: #9ca3af;
+      text-decoration: none; margin-bottom: 2.5rem;
+      transition: color 0.15s;
+    }
+    .content-back:hover { color: #1a1a1a; }
+    .section-label {
+      display: block;
+      font-size: 11px; font-weight: 500;
+      letter-spacing: 0.07em; text-transform: uppercase;
+      color: #9ca3af; margin-bottom: 0.6rem;
+    }
+    .content-inner h1 {
+      font-size: clamp(22px, 3.5vw, 30px);
+      font-weight: 500; letter-spacing: -0.02em;
+      color: #1a1a1a; margin-bottom: 1rem; line-height: 1.2;
+    }
+    .content-lead {
+      font-size: 15px; color: #6b7280;
+      line-height: 1.75; margin-bottom: 2.5rem;
+    }
+    .content-inner h3 {
+      font-size: 14px; font-weight: 600;
+      color: #1a1a1a; margin: 2rem 0 0.5rem;
+    }
+    .content-inner p {
+      font-size: 14px; color: #6b7280;
+      line-height: 1.75; margin-bottom: 0.75rem;
+    }
+    .content-inner a { color: #1a1a1a; text-decoration: underline; text-underline-offset: 2px; }
+    .content-inner a:hover { color: #374151; }
+
+    /* ─── Highlight box ─────────────────────────────────────── */
+    .highlight-box {
+      background: #fafafa;
+      border: 1px solid #efefef;
+      border-radius: 10px;
+      padding: 1.1rem 1.4rem;
+      margin: 1.25rem 0;
+      font-size: 14px; color: #6b7280; line-height: 1.75;
+    }
+    .highlight-box strong { color: #1a1a1a; font-weight: 600; }
+
+    /* ─── Insight box (Kernidee) ────────────────────────────── */
+    .insight-box {
+      background: #fafafa;
+      border: 1px solid #efefef;
+      border-left: 3px solid #0d9488;
+      border-radius: 10px;
+      padding: 1.1rem 1.4rem;
+      margin: 1.75rem 0;
+      font-size: 14px; color: #4b5563; line-height: 1.75;
+    }
+    .insight-box strong { color: #1a1a1a; font-weight: 600; }
+
+    /* ─── Flow diagram ──────────────────────────────────────── */
+    .flow-diagram {
+      margin: 1.25rem 0 1.75rem;
+      display: flex; flex-direction: column; gap: 0;
+    }
+    .flow-step {
+      display: flex; align-items: flex-start; gap: 1rem;
+    }
+    .flow-left {
+      display: flex; flex-direction: column; align-items: center;
+      flex-shrink: 0; padding-top: 0.15rem;
+    }
+    .flow-icon {
+      width: 32px; height: 32px; border-radius: 50%;
+      background: #f3f4f6; border: 1px solid #efefef;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 14px; flex-shrink: 0;
+    }
+    .flow-connector {
+      width: 1px; flex: 1; min-height: 24px;
+      background: #efefef; margin: 3px 0;
+    }
+    .flow-content {
+      padding: 0.1rem 0 1.25rem;
+    }
+    .flow-content strong {
+      display: block; font-size: 13px; font-weight: 600;
+      color: #1a1a1a; margin-bottom: 0.2rem;
+    }
+    .flow-content span {
+      font-size: 13px; color: #6b7280; line-height: 1.65;
+    }
+
+    /* ─── Benefit list ──────────────────────────────────────── */
+    .benefit-list {
+      list-style: none;
+      margin: 0.5rem 0 1.25rem;
+      display: flex; flex-direction: column; gap: 0.6rem;
+    }
+    .benefit-list li {
+      font-size: 14px; color: #4b5563;
+      line-height: 1.6;
+      display: flex; align-items: baseline; gap: 0.7rem;
+    }
+    .benefit-list li::before {
+      content: '✓'; color: #16a34a; font-weight: 600;
+      flex-shrink: 0; font-size: 13px;
+    }
+
+    /* ─── Divider ───────────────────────────────────────────── */
+    .content-divider {
+      border: none; border-top: 1px solid #f0f0f0;
+      margin: 2.5rem 0;
+    }
+
+    /* ─── CTA button ────────────────────────────────────────── */
+    .btn-dark {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: #1a1a1a; color: #fff !important;
+      padding: 10px 20px; border-radius: 10px;
+      font-size: 14px; font-weight: 500;
+      text-decoration: none !important; transition: background 0.15s;
+      margin-top: 0.75rem;
+    }
+    .btn-dark:hover { background: #374151; color: #fff !important; }
+
+    /* ═══ Oberflächen-Illustration (nachgebaut) ═══════════════ */
+    .rv-shot { margin: 1.5rem 0 0.5rem; }
+    .rv-window {
+      border: 1px solid #e5e7eb; border-radius: 14px;
+      background: #f8fafc; overflow: hidden;
+      box-shadow: 0 12px 28px -18px rgba(15,23,42,0.35);
+    }
+    .rv-bar {
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 0.75rem;
+      padding: 0.7rem 0.9rem;
+      background: #fff; border-bottom: 1px solid #eef2f6;
+    }
+    .rv-brand {
+      display: flex; align-items: center; gap: 0.5rem;
+      font-size: 13px; font-weight: 600; color: #0f1729;
+      letter-spacing: -0.01em;
+    }
+    .rv-brand-mark {
+      width: 22px; height: 22px; border-radius: 6px;
+      background: #0d9488; color: #fff;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 13px; flex-shrink: 0;
+    }
+    .rv-tabs { display: flex; gap: 2px; background: #f1f5f9; border-radius: 8px; padding: 3px; }
+    .rv-tab {
+      font-size: 11px; font-weight: 500; color: #64748b;
+      padding: 3px 8px; border-radius: 6px;
+      display: inline-flex; align-items: center; gap: 5px;
+    }
+    .rv-tab.active { background: #fff; color: #0f1729; box-shadow: 0 1px 2px rgba(15,23,42,0.08); }
+    .rv-tab-count {
+      font-size: 10px; font-weight: 700; border-radius: 5px;
+      padding: 1px 5px; background: #e2e8f0; color: #64748b;
+    }
+    .rv-tab.active .rv-tab-count { background: #f0fdfa; color: #0f766e; }
+
+    .rv-body { padding: 0.9rem; display: flex; flex-direction: column; gap: 0.75rem; }
+    .rv-card {
+      background: #fff; border: 1px solid #e6ebf1; border-radius: 12px;
+      padding: 0.9rem 1rem;
+    }
+    .rv-card-head {
+      display: flex; align-items: flex-start; justify-content: space-between;
+      gap: 0.75rem; padding-bottom: 0.7rem; border-bottom: 1px solid #f1f5f9;
+    }
+    .rv-mfr {
+      font-size: 10px; font-weight: 700; letter-spacing: 0.08em;
+      text-transform: uppercase; color: #0d9488;
+    }
+    .rv-name { font-size: 14px; font-weight: 600; color: #0f1729; margin-top: 1px; }
+    .rv-sku-wrap { text-align: right; flex-shrink: 0; }
+    .rv-sku-label {
+      font-size: 9px; font-weight: 700; letter-spacing: 0.06em;
+      text-transform: uppercase; color: #94a3b8;
+    }
+    .rv-sku {
+      display: inline-block; margin-top: 2px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: 11px; color: #475569;
+      background: #f8fafc; border: 1px solid #e6ebf1;
+      border-radius: 6px; padding: 2px 7px;
+    }
+    .rv-rows { display: flex; flex-direction: column; }
+    .rv-row {
+      display: flex; align-items: center; flex-wrap: wrap;
+      gap: 0.55rem; padding: 0.6rem 0;
+    }
+    .rv-row + .rv-row { border-top: 1px solid #f1f5f9; }
+    .rv-label {
+      width: 74px; flex-shrink: 0;
+      font-size: 10px; font-weight: 700; letter-spacing: 0.05em;
+      text-transform: uppercase; color: #94a3b8;
+    }
+    .rv-old, .rv-new {
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: 13px; letter-spacing: -0.01em;
+    }
+    .rv-old { color: #94a3b8; }
+    .rv-new { color: #0f1729; }
+    .rv-new.rv-muted { color: #94a3b8; }
+    .rv-arrow { color: #cbd5e1; font-size: 12px; }
+    .rv-empty { color: #cbd5e1; font-style: italic; font-family: inherit; font-size: 12px; }
+    .rv-new mark {
+      background: #fde68a; color: #92400e;
+      border-radius: 3px; padding: 0 1px;
+    }
+    .rv-badge {
+      font-size: 9px; font-weight: 700; letter-spacing: 0.05em;
+      border-radius: 5px; padding: 2px 6px; margin-left: auto;
+    }
+    .rv-changed   { background: #fffbeb; color: #b45309; }
+    .rv-new-b     { background: #ecfdf5; color: #047857; }
+    .rv-identical { background: #f1f5f9; color: #64748b; }
+    .rv-actions { display: flex; gap: 0.5rem; margin-top: 0.7rem; }
+    .rv-btn {
+      flex: 1; text-align: center;
+      font-size: 12px; font-weight: 600;
+      border-radius: 8px; padding: 0.5rem 0;
+      display: inline-flex; align-items: center; justify-content: center; gap: 5px;
+    }
+    .rv-reject { background: #fff; color: #e11d48; border: 1px solid #fecdd3; }
+    .rv-approve { background: #059669; color: #fff; }
+    figcaption {
+      font-size: 12px; color: #9ca3af; line-height: 1.6;
+      margin-top: 0.7rem; text-align: center;
+    }
+
+    /* ─── Footer ────────────────────────────────────────────── */
+    footer {
+      border-top: 1px solid #f0f0f0;
+      padding: 2.5rem 1.5rem 2rem;
+    }
+    .footer-inner { max-width: 800px; margin: 0 auto; }
+    .footer-top {
+      display: flex; justify-content: space-between;
+      align-items: flex-start; flex-wrap: wrap; gap: 1.75rem;
+      padding-bottom: 1.75rem;
+      border-bottom: 1px solid #f0f0f0;
+    }
+    .footer-brand { display: flex; flex-direction: column; gap: 5px; }
+    .footer-logo {
+      display: flex; align-items: center; gap: 7px;
+      text-decoration: none; color: #1a1a1a;
+      font-size: 13px; font-weight: 500;
+    }
+    .footer-brand-sub { font-size: 12px; color: #9ca3af; }
+    .footer-nav { display: flex; gap: 2.5rem; flex-wrap: wrap; }
+    .footer-nav-col h4 {
+      font-size: 10px; font-weight: 500;
+      letter-spacing: 0.07em; text-transform: uppercase;
+      color: #d1d5db; margin-bottom: 0.65rem;
+    }
+    .footer-nav-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.45rem; }
+    .footer-nav-col a {
+      font-size: 12px; color: #9ca3af;
+      text-decoration: none; transition: color 0.15s;
+    }
+    .footer-nav-col a:hover { color: #1a1a1a; }
+    .footer-bottom {
+      display: flex; justify-content: space-between;
+      flex-wrap: wrap; gap: 0.5rem;
+      font-size: 11px; color: #d1d5db;
+      padding-top: 1.5rem;
+    }
+    .footer-bottom a { color: #9ca3af; text-decoration: none; }
+    .footer-bottom a:hover { color: #1a1a1a; }
+
+    /* ─── Responsive ────────────────────────────────────────── */
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none; flex-direction: column;
+        position: absolute; top: 56px; left: 0; right: 0;
+        background: #fff; padding: 1.25rem 1.5rem;
+        border-bottom: 1px solid #f0f0f0;
+        box-shadow: 0 8px 16px rgba(0,0,0,0.04);
+        gap: 1rem;
+      }
+      .nav-links.open { display: flex; }
+      .nav-hamburger { display: flex; }
+      .footer-nav { gap: 1.5rem; }
+      .rv-tabs { order: 2; }
+    }
+
+    /* ─── Footer partner badge ──────────────────────────────── */
+    .footer-partner {
+      display: flex; align-items: center; gap: 1.25rem;
+      padding: 1.25rem 0;
+      border-bottom: 1px solid #f0f0f0;
+    }
+    .footer-partner img {
+      height: 40px; width: auto; flex-shrink: 0;
+    }
+    .footer-partner-text {
+      font-size: 11px; color: #9ca3af; line-height: 1.55;
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══ NAV ═══════════════════════════════════════════════════════ -->
+<nav id="nav">
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">
+      <svg width="20" height="20" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <circle cx="49.3" cy="22" r="3.5" fill="#1a1a1a"/>
+        <path d="M 49.3,22 A 20,20 0 1,1 29.2,12.2" stroke="#1a1a1a" stroke-width="3.5" stroke-linecap="round"/>
+        <polygon points="38,11 30,16 29,8" fill="#1a1a1a"/>
+      </svg>
+      läuft von allein
+    </a>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="/#leistungen">Leistungen</a></li>
+      <li><a href="/#ki-sparring">KI-Sparring</a></li>
+      <li><a href="/#ueber">Über mich</a></li>
+      <li><a href="/#kontakt">Kontakt</a></li>
+      <li><a href="https://calendar.app.google/vXAGb7DQjwTJtg9t6" target="_blank" rel="noopener" class="nav-cta">Termin buchen</a></li>
+    </ul>
+    <button class="nav-hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menü">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- ═══ CONTENT ══════════════════════════════════════════════════ -->
+<div class="content-page">
+  <div class="content-inner">
+
+    <a href="/" class="content-back">← Zurück</a>
+    <span class="section-label">Praxis-Beispiel</span>
+    <h1>Tausende Produktdaten prüfen – ohne den Überblick zu verlieren</h1>
+
+    <p class="content-lead">Neue Produktdaten müssen stimmen, bevor sie im Online-Shop landen. Statt lange Tabellen Zeile für Zeile zu vergleichen, bereitet ein Tool alles vor – und ein Mensch entscheidet per Klick, nur dort, wo es wirklich nötig ist.</p>
+
+    <h3>Ausgangssituation</h3>
+    <p>Ein Online-Shop lebt von korrekten Produktdaten. GTIN / EAN und Herstellernummern müssen exakt stimmen – sonst geraten falsche Artikel in Bestellungen, Preisportale oder Retouren. Diese Werte kommen aus verschiedenen Quellen und ändern sich laufend.</p>
+    <p>Bei mehreren tausend Artikeln hieß das bisher: endlose Excel-Listen, alten Wert gegen neuen halten, Ziffer für Ziffer. Zeitraubend, ermüdend – und eine einzige übersehene Ziffer reicht, damit ein falscher Barcode online geht.</p>
+    <div class="highlight-box">
+      <strong>Ziel:</strong> Produktdaten aktuell und korrekt halten, ohne jede Zeile von Hand zu prüfen – und ohne die Kontrolle aus der Hand zu geben. Nichts landet im Shop, das nicht ein Mensch bewusst freigegeben hat.
+    </div>
+
+    <h3>Die Lösung</h3>
+    <p>Ein Prüf-Werkzeug führt alte und neue Werte zusammen, stellt sie gegenüber und markiert genau die Unterschiede. Die Routine läuft automatisch – die eigentliche Entscheidung bleibt beim Menschen, kostet dort aber nur noch einen Klick.</p>
+
+    <figure class="rv-shot">
+      <div class="rv-window">
+        <div class="rv-bar">
+          <div class="rv-brand">
+            <span class="rv-brand-mark">✓</span>
+            Produktdaten-Review
+          </div>
+          <div class="rv-tabs">
+            <span class="rv-tab active">Geändert <span class="rv-tab-count">3</span></span>
+            <span class="rv-tab">Neu <span class="rv-tab-count">12</span></span>
+            <span class="rv-tab">Identisch <span class="rv-tab-count">40</span></span>
+          </div>
+        </div>
+        <div class="rv-body">
+
+          <div class="rv-card">
+            <div class="rv-card-head">
+              <div>
+                <div class="rv-mfr">Hersteller A</div>
+                <div class="rv-name">Flächendesinfektion 1 l</div>
+              </div>
+              <div class="rv-sku-wrap">
+                <div class="rv-sku-label">SKU</div>
+                <div class="rv-sku">ART-100234</div>
+              </div>
+            </div>
+            <div class="rv-rows">
+              <div class="rv-row">
+                <span class="rv-label">GTIN / EAN</span>
+                <span class="rv-old">2004417800253</span>
+                <span class="rv-arrow">→</span>
+                <span class="rv-new">2004417<mark>3</mark>00253</span>
+                <span class="rv-badge rv-changed">GEÄNDERT</span>
+              </div>
+              <div class="rv-row">
+                <span class="rv-label">MPN</span>
+                <span class="rv-old">MP-33920</span>
+                <span class="rv-arrow">→</span>
+                <span class="rv-new rv-muted">MP-33920</span>
+                <span class="rv-badge rv-identical">IDENTISCH</span>
+              </div>
+            </div>
+            <div class="rv-actions">
+              <span class="rv-btn rv-reject">✕ Ablehnen</span>
+              <span class="rv-btn rv-approve">✓ Freigeben</span>
+            </div>
+          </div>
+
+          <div class="rv-card">
+            <div class="rv-card-head">
+              <div>
+                <div class="rv-mfr">Hersteller B</div>
+                <div class="rv-name">Einmalhandschuhe Nitril (M, 100 St.)</div>
+              </div>
+              <div class="rv-sku-wrap">
+                <div class="rv-sku-label">SKU</div>
+                <div class="rv-sku">ART-100571</div>
+              </div>
+            </div>
+            <div class="rv-rows">
+              <div class="rv-row">
+                <span class="rv-label">GTIN / EAN</span>
+                <span class="rv-old rv-empty">(leer)</span>
+                <span class="rv-arrow">→</span>
+                <span class="rv-new">2009930410088</span>
+                <span class="rv-badge rv-new-b">NEU</span>
+              </div>
+            </div>
+            <div class="rv-actions">
+              <span class="rv-btn rv-reject">✕ Ablehnen</span>
+              <span class="rv-btn rv-approve">✓ Freigeben</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <figcaption>So sieht die Prüfoberfläche aus: alt gegen neu, die abweichende Stelle hervorgehoben – die Entscheidung ist ein Klick.</figcaption>
+    </figure>
+
+    <div class="flow-diagram">
+      <div class="flow-step">
+        <div class="flow-left">
+          <div class="flow-icon">🗂️</div>
+          <div class="flow-connector"></div>
+        </div>
+        <div class="flow-content">
+          <strong>Alles an einem Ort</strong>
+          <span>Die aktuellen Werte aus dem Shop und die neuen Werte aus den Quellen landen automatisch nebeneinander – kein Zusammensuchen aus mehreren Dateien.</span>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-left">
+          <div class="flow-icon">🔍</div>
+          <div class="flow-connector"></div>
+        </div>
+        <div class="flow-content">
+          <strong>Unterschiede auf einen Blick</strong>
+          <span>Das Tool zeigt alt neben neu und hebt genau die Stelle hervor, die sich geändert hat. Kein Vergleichen im Kopf, kein Verrutschen in der Zeile.</span>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-left">
+          <div class="flow-icon">⚡</div>
+          <div class="flow-connector"></div>
+        </div>
+        <div class="flow-content">
+          <strong>Routine läuft automatisch</strong>
+          <span>Was neu oder unverändert ist, wird gebündelt in einem Klick erledigt. Mit den Hunderten einfachen Fällen muss sich niemand einzeln beschäftigen.</span>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-left">
+          <div class="flow-icon">👤</div>
+          <div class="flow-connector"></div>
+        </div>
+        <div class="flow-content">
+          <strong>Der Mensch entscheidet, wo es zählt</strong>
+          <span>Nur die echten Änderungen kommen zur Prüfung vor Augen. Freigeben oder ablehnen – die Karte verschwindet, die nächste rückt nach.</span>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-left">
+          <div class="flow-icon">✅</div>
+        </div>
+        <div class="flow-content">
+          <strong>Nur Geprüftes geht live</strong>
+          <span>Ausschließlich bewusst freigegebene Werte fließen zurück in den Shop. Jede Entscheidung ist nachvollziehbar festgehalten.</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="insight-box">
+      <strong>Der Kern:</strong> Nicht alles sollte vollautomatisch laufen. Manche Entscheidungen gehören in Menschenhand – gerade dort, wo Daten stimmen müssen. Der Trick ist, alles <em>drumherum</em> von allein laufen zu lassen, damit die eigentliche Entscheidung nur noch Sekunden kostet.
+    </div>
+
+    <h3>Der Nutzen</h3>
+    <ul class="benefit-list">
+      <li>Tausende Artikel in einem Bruchteil der bisherigen Zeit geprüft</li>
+      <li>Aufmerksamkeit nur dort, wo eine echte Entscheidung nötig ist</li>
+      <li>Keine falschen GTIN/EAN oder Herstellernummern mehr im Shop</li>
+      <li>Nichts wird blind überschrieben – die Kontrolle bleibt im Haus</li>
+      <li>Jeder Stand ist dokumentiert und nachvollziehbar</li>
+    </ul>
+
+    <p>Umgesetzt mit modernen, flexiblen Werkzeugen – eng an das bestehende Shopsystem angebunden, ohne in den laufenden Betrieb einzugreifen.</p>
+
+    <hr class="content-divider">
+
+    <p>Solche Prüf- und Freigabeschritte gibt es in vielen Unternehmen – überall dort, wo Daten stimmen müssen, aber nicht blind automatisiert werden dürfen. Gemeinsam finden wir die Stellen, an denen ein solcher Ablauf die meiste Zeit spart, ohne dass Sie die Kontrolle abgeben.</p>
+    <a href="https://calendar.app.google/vXAGb7DQjwTJtg9t6" target="_blank" rel="noopener" class="btn-dark">
+      Kostenloses Erstgespräch →
+    </a>
+
+  </div>
+</div>
+
+<!-- ═══ FOOTER ═══════════════════════════════════════════════════ -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="/" class="footer-logo">
+          <svg width="16" height="16" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <circle cx="49.3" cy="22" r="3.5" fill="#9ca3af"/>
+            <path d="M 49.3,22 A 20,20 0 1,1 29.2,12.2" stroke="#9ca3af" stroke-width="3.5" stroke-linecap="round"/>
+            <polygon points="38,11 30,16 29,8" fill="#9ca3af"/>
+          </svg>
+          läuft von allein
+        </a>
+        <span class="footer-brand-sub">Digitalisierung · Automatisierung · Management · München</span>
+      </div>
+      <div class="footer-nav">
+        <div class="footer-nav-col">
+          <h4>Angebote</h4>
+          <ul>
+            <li><a href="/#leistungen">Automatisierung</a></li>
+            <li><a href="/ki-sparring">KI-Sparring</a></li>
+            <li><a href="https://alltagsapps.de" target="_blank" rel="noopener">alltagsapps.de</a></li>
+          </ul>
+        </div>
+        <div class="footer-nav-col">
+          <h4>Beispiele</h4>
+          <ul>
+            <li><a href="/kontaktformular">Kontaktformular</a></li>
+            <li><a href="/produktpflege">Produktpflege</a></li>
+            <li><a href="/preismonitoring">Preismonitoring</a></li>
+            <li><a href="/email-autoentwurf">Kundenanfragen</a></li>
+          </ul>
+        </div>
+        <div class="footer-nav-col">
+          <h4>Kontakt</h4>
+          <ul>
+            <li><a href="mailto:info@laeuftvonallein.de">info@laeuftvonallein.de</a></li>
+            <li><a href="https://www.linkedin.com/in/janwiemann" target="_blank" rel="noopener">LinkedIn</a></li>
+          </ul>
+        </div>
+        <div class="footer-nav-col">
+          <h4>Rechtliches</h4>
+          <ul>
+            <li><a href="/impressum">Impressum</a></li>
+            <li><a href="/datenschutz">Datenschutz</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-partner">
+      <a href="https://www.packmasdigital.de" target="_blank" rel="noopener" style="flex-shrink:0;">
+        <img src="packmasdigital.png" alt="Pack ma's digital – IHK-Initiative">
+      </a>
+      <span class="footer-partner-text">Wir unterstützen die IHK-Initiative Pack ma's digital, um der Wirtschaft in Oberbayern bei der Digitalisierung weiter zu helfen und die Zukunft des Standorts zu sichern.</span>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 läuft von allein · Jan-Hendrik Wiemann</span>
+      <span>München</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  window.addEventListener('scroll', () => {
+    document.getElementById('nav').style.borderBottomColor =
+      window.scrollY > 10 ? '#e5e7eb' : '#f0f0f0';
+  });
+  function toggleMenu() {
+    document.getElementById('nav-links').classList.toggle('open');
+  }
+  document.querySelectorAll('.nav-links a').forEach(a => {
+    a.addEventListener('click', () => {
+      document.getElementById('nav-links').classList.remove('open');
+    });
+  });
+</script>
+</body>
+</html>

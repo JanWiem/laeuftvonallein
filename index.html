@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="shortcut icon" href="/favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <link rel="manifest" href="/site.webmanifest" />
+  <title>läuft von allein – Prozessautomatisierung & KI-Orientierung</title>
+  <meta name="description" content="Prozessautomatisierung und KI-Orientierung für kleine Unternehmen. Wiederkehrende Abläufe automatisieren, KI sinnvoll einsetzen – ohne IT-Abteilung.">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+      background: #fff;
+      color: #1a1a1a;
+      font-size: 16px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ─── Container ─────────────────────────────────────────── */
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    /* ─── Nav ───────────────────────────────────────────────── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(255, 255, 255, 0.96);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border-bottom: 1px solid #f0f0f0;
+      height: 56px;
+      transition: border-color 0.2s;
+    }
+    .nav-inner {
+      max-width: 960px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 100%; padding: 0 1.5rem;
+    }
+    .nav-logo {
+      display: flex; align-items: center; gap: 8px;
+      text-decoration: none; color: #1a1a1a;
+      font-size: 14px; font-weight: 500; letter-spacing: -0.01em;
+    }
+    .nav-links {
+      display: flex; align-items: center;
+      gap: 1.75rem; list-style: none;
+    }
+    .nav-links a {
+      font-size: 13px; color: #6b7280;
+      text-decoration: none; transition: color 0.15s;
+    }
+    .nav-links a:hover { color: #1a1a1a; }
+    .nav-cta {
+      font-size: 13px !important; font-weight: 500 !important;
+      color: #1a1a1a !important; background: #f3f4f6;
+      border-radius: 8px; padding: 6px 14px;
+      transition: background 0.15s !important;
+    }
+    .nav-cta:hover { background: #e5e7eb !important; color: #1a1a1a !important; }
+    .nav-hamburger {
+      display: none; flex-direction: column; gap: 4px;
+      background: none; border: none; cursor: pointer; padding: 4px;
+    }
+    .nav-hamburger span {
+      display: block; width: 20px; height: 1.5px;
+      background: #1a1a1a; border-radius: 2px; transition: all 0.2s;
+    }
+
+    /* ─── Sections ──────────────────────────────────────────── */
+    .section {
+      padding: 4.5rem 1.5rem;
+    }
+    .section + .section {
+      border-top: 1px solid #f0f0f0;
+    }
+    .section-label {
+      display: block;
+      font-size: 11px; font-weight: 500;
+      letter-spacing: 0.07em; text-transform: uppercase;
+      color: #9ca3af; margin-bottom: 0.75rem;
+    }
+    .section-h2 {
+      font-size: clamp(20px, 3vw, 24px);
+      font-weight: 500; letter-spacing: -0.02em;
+      line-height: 1.25; color: #1a1a1a;
+      margin-bottom: 0.6rem;
+    }
+    .section-sub {
+      font-size: 14px; color: #6b7280;
+      line-height: 1.65; max-width: 520px;
+    }
+
+    /* ─── Hero ──────────────────────────────────────────────── */
+    #hero {
+      padding-top: 6.5rem;
+      padding-bottom: 4.5rem;
+      border-top: none !important;
+    }
+    #hero h1 {
+      font-size: clamp(26px, 4.5vw, 36px);
+      font-weight: 500; letter-spacing: -0.03em;
+      line-height: 1.18; color: #1a1a1a;
+      margin-bottom: 1.1rem;
+    }
+    .hero-sub {
+      font-size: 15px; color: #6b7280;
+      line-height: 1.7; max-width: 500px;
+      margin-bottom: 2rem;
+    }
+    .hero-btns { display: flex; gap: 0.65rem; flex-wrap: wrap; }
+
+    /* ─── Buttons ───────────────────────────────────────────── */
+    .btn-dark {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: #1a1a1a; color: #fff;
+      font-size: 13px; font-weight: 500; font-family: inherit;
+      padding: 9px 18px; border-radius: 8px;
+      text-decoration: none; border: none; cursor: pointer;
+      transition: background 0.15s;
+    }
+    .btn-dark:hover { background: #333; }
+    .btn-outline {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: transparent; color: #374151;
+      font-size: 13px; font-weight: 400; font-family: inherit;
+      padding: 9px 18px; border-radius: 8px;
+      text-decoration: none; cursor: pointer;
+      border: 1px solid #e5e7eb;
+      transition: border-color 0.15s, background 0.15s;
+    }
+    .btn-outline:hover { border-color: #9ca3af; background: #fafafa; }
+
+    /* ─── Divider ───────────────────────────────────────────── */
+    .divider { border: none; border-top: 1px solid #f0f0f0; margin: 0; }
+
+    /* ─── Cards grid ────────────────────────────────────────── */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 10px; margin-top: 1.25rem;
+    }
+    .card {
+      background: #fff; border: 1px solid #efefef;
+      border-radius: 12px; padding: 1.1rem 1.2rem;
+      text-decoration: none; display: flex; flex-direction: column;
+      color: inherit;
+      transition: border-color 0.15s, background 0.15s;
+    }
+    .card:hover { border-color: #d1d5db; background: #fafafa; }
+    .card-icon {
+      display: block; color: #9ca3af;
+      margin-bottom: 10px;
+    }
+    .card-name {
+      font-size: 14px; font-weight: 500;
+      color: #1a1a1a; margin-bottom: 4px; line-height: 1.35;
+    }
+    .card-desc {
+      font-size: 12px; color: #6b7280; line-height: 1.5;
+      flex: 1;
+    }
+    .card-link {
+      display: inline-flex; align-items: center; gap: 4px;
+      margin-top: auto; padding-top: 10px;
+      font-size: 11px; color: #c4c9d4;
+      transition: color 0.15s;
+    }
+    .card:hover .card-link { color: #6b7280; }
+    .was-more {
+      margin-top: 1rem; font-size: 13px;
+      color: #9ca3af; font-style: italic;
+    }
+
+    /* ─── KI-Sparring ───────────────────────────────────────── */
+    #ki-sparring { background: #fafafa; }
+    .sparring-layout {
+      display: grid; grid-template-columns: 1fr 1.2fr;
+      gap: 3.5rem; align-items: start;
+    }
+    .sparring-tags {
+      display: flex; flex-wrap: wrap; gap: 6px; margin: 0.85rem 0 0;
+    }
+    .sparring-tag {
+      font-size: 11px; color: #6b7280;
+      background: #fff; border: 1px solid #e5e7eb;
+      border-radius: 20px; padding: 3px 10px;
+    }
+    .text-muted {
+      font-size: 14px; color: #6b7280;
+      line-height: 1.7; margin-bottom: 0.85rem;
+    }
+    .text-link {
+      display: inline-flex; align-items: center; gap: 5px;
+      font-size: 13px; color: #1a1a1a; font-weight: 500;
+      text-decoration: none; transition: gap 0.15s;
+    }
+    .text-link:hover { gap: 9px; }
+
+    /* ─── Über mich ─────────────────────────────────────────── */
+    .ueber-layout {
+      display: grid; grid-template-columns: auto 1fr;
+      gap: 2rem; align-items: start; margin-top: 1.5rem;
+    }
+    .about-box {
+      width: 64px; height: 64px; background: #f3f4f6;
+      border-radius: 10px; display: flex;
+      align-items: center; justify-content: center;
+      font-size: 13px; font-weight: 500; color: #9ca3af;
+      letter-spacing: -0.5px; flex-shrink: 0;
+    }
+    .ueber-text p {
+      font-size: 14px; color: #6b7280;
+      line-height: 1.7; margin-bottom: 0.75rem;
+    }
+    .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 1rem; }
+    .tag {
+      font-size: 11px; color: #6b7280;
+      background: #f3f4f6; border-radius: 20px; padding: 3px 10px;
+    }
+
+    /* ─── Kontaktformular ───────────────────────────────────── */
+    #kontakt { background: #fafafa; }
+    .form-wrap {
+      background: #fff; border: 1px solid #efefef;
+      border-radius: 12px; padding: 1.75rem;
+      margin-top: 1.25rem;
+    }
+    .form-row { margin-bottom: 14px; }
+    .form-row-2 {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 14px; margin-bottom: 14px;
+    }
+    .form-label {
+      display: block; font-size: 12px;
+      color: #6b7280; margin-bottom: 5px;
+    }
+    .form-req { color: #9ca3af; }
+    .form-input, .form-textarea {
+      width: 100%; font-size: 14px; font-family: inherit;
+      border: 1px solid #e5e7eb; border-radius: 8px;
+      padding: 9px 12px; color: #1a1a1a; background: #fff;
+      outline: none; transition: border-color 0.15s;
+    }
+    .form-input:focus, .form-textarea:focus { border-color: #9ca3af; }
+    .form-input::placeholder, .form-textarea::placeholder { color: #d1d5db; }
+    .form-textarea { resize: vertical; min-height: 100px; line-height: 1.55; }
+    .interest-wrap {
+      display: flex; flex-wrap: wrap; gap: 6px; margin-top: 5px;
+    }
+    .interest-label {
+      display: flex; align-items: center; gap: 5px;
+      padding: 5px 12px; background: #fff;
+      border: 1px solid #e5e7eb; border-radius: 20px;
+      cursor: pointer; font-size: 12px; color: #6b7280;
+      transition: all 0.15s; user-select: none;
+    }
+    .interest-label:hover { border-color: #9ca3af; color: #1a1a1a; }
+    .interest-label input { display: none; }
+    .interest-label:has(input:checked) {
+      background: #f3f4f6; border-color: #9ca3af;
+      color: #1a1a1a; font-weight: 500;
+    }
+    .form-hp { display: none !important; }
+    .form-footer {
+      display: flex; align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap; gap: 1rem; margin-top: 1.25rem;
+    }
+    .form-privacy {
+      font-size: 11px; color: #9ca3af;
+      line-height: 1.55; max-width: 320px;
+    }
+    .form-privacy a { color: #6b7280; text-decoration: none; }
+    .form-privacy a:hover { color: #1a1a1a; }
+    .form-submit {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: #1a1a1a; color: #fff;
+      font-size: 13px; font-weight: 500; font-family: inherit;
+      padding: 9px 20px; border-radius: 8px;
+      border: none; cursor: pointer;
+      transition: background 0.15s; white-space: nowrap;
+    }
+    .form-submit:hover { background: #333; }
+    .form-submit:disabled { opacity: 0.4; cursor: not-allowed; }
+    .form-error {
+      display: none; font-size: 12px; color: #b91c1c;
+      background: #fef2f2; border: 1px solid #fecaca;
+      border-radius: 8px; padding: 10px 12px; margin-top: 12px;
+    }
+    .form-success {
+      display: none; text-align: center; padding: 2rem 1rem;
+    }
+    .form-success-icon { font-size: 20px; color: #16a34a; margin-bottom: 8px; }
+    .form-success h3 {
+      font-size: 15px; font-weight: 500;
+      color: #1a1a1a; margin-bottom: 4px;
+    }
+    .form-success p { font-size: 13px; color: #6b7280; }
+
+    /* ─── Footer ────────────────────────────────────────────── */
+    footer {
+      border-top: 1px solid #f0f0f0;
+      padding: 2.5rem 1.5rem 2rem;
+    }
+    .footer-inner { max-width: 800px; margin: 0 auto; }
+    .footer-top {
+      display: flex; justify-content: space-between;
+      align-items: flex-start; flex-wrap: wrap; gap: 1.75rem;
+      padding-bottom: 1.75rem;
+      border-bottom: 1px solid #f0f0f0;
+    }
+    .footer-brand { display: flex; flex-direction: column; gap: 5px; }
+    .footer-logo {
+      display: flex; align-items: center; gap: 7px;
+      text-decoration: none; color: #1a1a1a;
+      font-size: 13px; font-weight: 500;
+    }
+    .footer-brand-sub { font-size: 12px; color: #9ca3af; }
+    .footer-nav { display: flex; gap: 2.5rem; flex-wrap: wrap; }
+    .footer-nav-col h4 {
+      font-size: 10px; font-weight: 500;
+      letter-spacing: 0.07em; text-transform: uppercase;
+      color: #d1d5db; margin-bottom: 0.65rem;
+    }
+    .footer-nav-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.45rem; }
+    .footer-nav-col a {
+      font-size: 12px; color: #9ca3af;
+      text-decoration: none; transition: color 0.15s;
+    }
+    .footer-nav-col a:hover { color: #1a1a1a; }
+    .footer-bottom {
+      display: flex; justify-content: space-between;
+      flex-wrap: wrap; gap: 0.5rem;
+      font-size: 11px; color: #d1d5db;
+      padding-top: 1.5rem;
+    }
+    .footer-bottom a { color: #9ca3af; text-decoration: none; }
+    .footer-bottom a:hover { color: #1a1a1a; }
+
+    /* ─── Responsive ────────────────────────────────────────── */
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none; flex-direction: column;
+        position: absolute; top: 56px; left: 0; right: 0;
+        background: #fff; padding: 1.25rem 1.5rem;
+        border-bottom: 1px solid #f0f0f0;
+        box-shadow: 0 8px 16px rgba(0,0,0,0.04);
+        gap: 1rem;
+      }
+      .nav-links.open { display: flex; }
+      .nav-hamburger { display: flex; }
+      .sparring-layout { grid-template-columns: 1fr; gap: 1.5rem; }
+    }
+    @media (max-width: 600px) {
+      .form-row-2 { grid-template-columns: 1fr; }
+      .form-wrap { padding: 1.25rem; }
+      .form-footer { flex-direction: column; }
+      .form-submit { width: 100%; justify-content: center; }
+    }
+    @media (max-width: 480px) {
+      .cards-grid { grid-template-columns: 1fr 1fr; }
+      .ueber-layout { grid-template-columns: 1fr; }
+      .about-box { display: none; }
+    }
+
+    /* ─── Footer partner badge ──────────────────────────────── */
+    .footer-partner {
+      display: flex; align-items: center; gap: 1.25rem;
+      padding: 1.25rem 0;
+      border-bottom: 1px solid #f0f0f0;
+    }
+    .footer-partner img {
+      height: 40px; width: auto; flex-shrink: 0;
+    }
+    .footer-partner-text {
+      font-size: 11px; color: #9ca3af; line-height: 1.55;
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══ NAV ═══════════════════════════════════════════════════════ -->
+<nav id="nav">
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">
+      <svg width="20" height="20" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <circle cx="49.3" cy="22" r="3.5" fill="#1a1a1a"/>
+        <path d="M 49.3,22 A 20,20 0 1,1 29.2,12.2" stroke="#1a1a1a" stroke-width="3.5" stroke-linecap="round"/>
+        <polygon points="38,11 30,16 29,8" fill="#1a1a1a"/>
+      </svg>
+      läuft von allein
+    </a>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="#leistungen">Leistungen</a></li>
+      <li><a href="#ki-sparring">KI-Sparring</a></li>
+      <li><a href="#ueber">Über mich</a></li>
+      <li><a href="#kontakt">Kontakt</a></li>
+      <li><a href="https://calendar.app.google/vXAGb7DQjwTJtg9t6" target="_blank" rel="noopener" class="nav-cta">Termin buchen</a></li>
+    </ul>
+    <button class="nav-hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menü">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- ═══ HERO ════════════════════════════════════════════════════ -->
+<section class="section" id="hero">
+  <div class="container">
+    <span class="section-label">Digitalisierung · Interim Management</span>
+    <h1>Mehr Zeit für das,<br>was wirklich zählt.</h1>
+    <p class="hero-sub">Ich unterstütze Unternehmen dabei, Dinge einfacher und effizienter zu machen: durch bessere Prozesse, pragmatische Digitalisierung, kleine digitale Werkzeuge und operative Unterstützung im Management.</p>
+    <div class="hero-btns">
+      <a href="https://calendar.app.google/vXAGb7DQjwTJtg9t6" target="_blank" rel="noopener" class="btn-dark">
+        Kostenloses Erstgespräch
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+      <a href="#leistungen" class="btn-outline">Leistungen ansehen</a>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ═══ LEISTUNGEN / BEISPIELE ══════════════════════════════════ -->
+<section class="section" id="leistungen">
+  <div class="container">
+    <span class="section-label">Lösungen</span>
+    <h2 class="section-h2">Pragmatische Lösungen für den Alltag von Unternehmen</h2>
+    <p class="section-sub">Ich kombiniere Management-Erfahrung, Digitalisierung und moderne Werkzeuge, um konkrete Herausforderungen einfach und wirksam zu lösen.</p>
+    <div class="cards-grid">
+
+      <a href="/kontaktformular" class="card">
+        <span class="card-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="22 12 16 12 14 15 10 15 8 12 2 12"/>
+            <path d="M5.45 5.11 2 12v6a2 2 0 002 2h16a2 2 0 002-2v-6l-3.45-6.89A2 2 0 0016.76 4H7.24a2 2 0 00-1.79 1.11z"/>
+          </svg>
+        </span>
+        <div class="card-name">Kontaktformular &amp; Lead-Erfassung</div>
+        <div class="card-desc">Jede Anfrage wird automatisch erfasst, weitergeleitet und beantwortet – keine geht verloren.</div>
+        <span class="card-link">Details ansehen →</span>
+      </a>
+
+      <a href="/produktpflege" class="card">
+        <span class="card-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <rect width="8" height="4" x="8" y="2" rx="1" ry="1"/>
+            <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/>
+            <path d="m9 14 2 2 4-4"/>
+          </svg>
+        </span>
+        <div class="card-name">Produktpflege</div>
+        <div class="card-desc">Tausende Produktdaten prüfen – die Maschine bereitet vor, der Mensch entscheidet per Klick.</div>
+        <span class="card-link">Details ansehen →</span>
+      </a>
+
+      <a href="/preismonitoring" class="card">
+        <span class="card-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/>
+            <polyline points="16 7 22 7 22 13"/>
+          </svg>
+        </span>
+        <div class="card-name">Preismonitoring</div>
+        <div class="card-desc">Täglich Preise über mehrere Shops vergleichen – das Ergebnis jeden Morgen als E-Mail.</div>
+        <span class="card-link">Details ansehen →</span>
+      </a>
+
+      <a href="/email-autoentwurf" class="card">
+        <span class="card-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="4" width="20" height="16" rx="2"/>
+            <path d="m2 7 10 7 10-7"/>
+          </svg>
+        </span>
+        <div class="card-name">Kundenanfragen beantworten</div>
+        <div class="card-desc">Anfragen automatisch analysieren, kategorisieren und mit passenden Entwürfen vorbereiten.</div>
+        <span class="card-link">Details ansehen →</span>
+      </a>
+
+    </div>
+    <p class="was-more">Und vieles mehr – abhängig von Ihren Prozessen und Tools.</p>
+  </div>
+</section>
+
+<!-- ═══ KI-SPARRING ══════════════════════════════════════════════ -->
+<section class="section" id="ki-sparring">
+  <div class="container">
+    <div class="sparring-layout">
+      <div>
+       <span class="section-label">KI-Orientierung</span>
+<h2 class="section-h2">KI-Sparring<br>für Entscheider</h2>
+
+<p class="text-muted">
+Nicht jeder KI-Trend ist relevant. Ich helfe Ihnen dabei, die richtigen Fragen zu stellen, sinnvolle Anwendungsfälle zu finden und konkrete nächste Schritte abzuleiten.
+</p>
+
+<a href="/ki-sparring" class="text-link">
+          Mehr zu KI-Sparring
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ ÜBER MICH ════════════════════════════════════════════════ -->
+<section class="section" id="ueber">
+  <div class="container">
+    <span class="section-label">Über mich</span>
+    <h2 class="section-h2">Jan-Hendrik Wiemann</h2>
+    <div class="ueber-layout">
+      <div class="about-box">JHW</div>
+      <div class="ueber-text">
+        <p>Ich arbeite seit vielen Jahren in digitalen Unternehmen – in Produkt-, Management- und Transformationsrollen. Dabei habe ich Teams aufgebaut, Prozesse verändert und digitale Lösungen umgesetzt.</p>
+        <p>Heute verbinde ich diese Erfahrung mit modernen Werkzeugen wie KI und Automatisierung, um Unternehmen pragmatisch voranzubringen – von kleinen Prozessverbesserungen bis zur operativen Unterstützung im Management.</p>
+        <div class="tags">
+          <span class="tag">n8n</span>
+          <span class="tag">Make.com</span>
+          <span class="tag">No-Code / Low-Code</span>
+          <span class="tag">KI-Automatisierung</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ KONTAKT ══════════════════════════════════════════════════ -->
+<section class="section" id="kontakt">
+  <div class="container">
+    <span class="section-label">Anfrage stellen</span>
+    <h2 class="section-h2">Schreiben Sie mir direkt</h2>
+    <p class="section-sub">Kein Termin nötig – beschreiben Sie kurz, was Sie beschäftigt. Ich melde mich innerhalb von 24&nbsp;Stunden.</p>
+    <div class="form-wrap" id="form-wrap">
+      <div id="form-fields">
+        <div class="form-row-2">
+          <div class="form-row" style="margin-bottom:0">
+            <label class="form-label" for="kf-name">Name <span class="form-req">*</span></label>
+            <input class="form-input" type="text" id="kf-name" name="name" placeholder="Ihr Name" autocomplete="name" required>
+          </div>
+          <div class="form-row" style="margin-bottom:0">
+            <label class="form-label" for="kf-firma">Unternehmen</label>
+            <input class="form-input" type="text" id="kf-firma" name="firma" placeholder="Optional" autocomplete="organization">
+          </div>
+        </div>
+        <div class="form-row-2" style="margin-top:14px">
+          <div class="form-row" style="margin-bottom:0">
+            <label class="form-label" for="kf-email">E-Mail <span class="form-req">*</span></label>
+            <input class="form-input" type="email" id="kf-email" name="email" placeholder="sie@unternehmen.de" autocomplete="email" required>
+          </div>
+          <div class="form-row" style="margin-bottom:0">
+            <label class="form-label" for="kf-telefon">Telefon</label>
+            <input class="form-input" type="tel" id="kf-telefon" name="telefon" placeholder="Optional" autocomplete="tel">
+          </div>
+        </div>
+        <div class="form-row" style="margin-top:14px">
+          <label class="form-label">Worum geht es? <span class="form-req">*</span></label>
+          <div class="interest-wrap" id="kf-interests">
+            <label class="interest-label">
+              <input type="checkbox" name="interesse" value="Erstgespräch"> Erstgespräch
+            </label>
+            <label class="interest-label">
+              <input type="checkbox" name="interesse" value="Automatisierungsprojekt"> Automatisierungsprojekt
+            </label>
+            <label class="interest-label">
+              <input type="checkbox" name="interesse" value="KI-Sparring"> KI-Sparring
+            </label>
+            <label class="interest-label">
+              <input type="checkbox" name="interesse" value="Sonstiges"> Sonstiges
+            </label>
+          </div>
+        </div>
+        <div class="form-row" style="margin-top:14px">
+          <label class="form-label" for="kf-nachricht">Nachricht <span class="form-req">*</span></label>
+          <textarea class="form-textarea" id="kf-nachricht" name="nachricht" placeholder="Was beschäftigt Sie? Wo liegt der größte Zeitfresser in Ihrem Betrieb?" required></textarea>
+        </div>
+        <div class="form-hp" aria-hidden="true">
+          <input type="text" name="_hp" tabindex="-1" autocomplete="off">
+        </div>
+        <div class="form-error" id="kf-error"></div>
+        <div class="form-footer">
+          <p class="form-privacy">
+            Mit dem Absenden stimmen Sie der Verarbeitung Ihrer Daten zur Bearbeitung Ihrer Anfrage zu.
+            Mehr dazu in der <a href="/datenschutz">Datenschutzerklärung</a>.
+          </p>
+          <button type="button" class="form-submit" id="kf-submit" onclick="submitKontakt()">
+            Anfrage senden
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+        </div>
+      </div>
+      <div class="form-success" id="kf-success">
+        <div class="form-success-icon">✓</div>
+        <h3>Anfrage eingegangen</h3>
+        <p>Danke – ich melde mich innerhalb von 24&nbsp;Stunden bei Ihnen.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FOOTER ═══════════════════════════════════════════════════ -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="/" class="footer-logo">
+          <svg width="16" height="16" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <circle cx="49.3" cy="22" r="3.5" fill="#9ca3af"/>
+            <path d="M 49.3,22 A 20,20 0 1,1 29.2,12.2" stroke="#9ca3af" stroke-width="3.5" stroke-linecap="round"/>
+            <polygon points="38,11 30,16 29,8" fill="#9ca3af"/>
+          </svg>
+          läuft von allein
+        </a>
+        <span class="footer-brand-sub">Digitalisierung · Automatisierung · Management · München</span>
+      </div>
+      <div class="footer-nav">
+        <div class="footer-nav-col">
+          <h4>Angebote</h4>
+          <ul>
+            <li><a href="#leistungen">Automatisierung</a></li>
+            <li><a href="/ki-sparring">KI-Sparring</a></li>
+            <li><a href="https://alltagsapps.de" target="_blank" rel="noopener">alltagsapps.de</a></li>
+          </ul>
+        </div>
+        <div class="footer-nav-col">
+          <h4>Beispiele</h4>
+          <ul>
+            <li><a href="/kontaktformular">Kontaktformular</a></li>
+            <li><a href="/produktpflege">Produktpflege</a></li>
+            <li><a href="/preismonitoring">Preismonitoring</a></li>
+            <li><a href="/email-autoentwurf">Kundenanfragen</a></li>
+          </ul>
+        </div>
+        <div class="footer-nav-col">
+          <h4>Kontakt</h4>
+          <ul>
+            <li><a href="mailto:info@laeuftvonallein.de">info@laeuftvonallein.de</a></li>
+            <li><a href="https://www.linkedin.com/in/janwiemann" target="_blank" rel="noopener">LinkedIn</a></li>
+          </ul>
+        </div>
+        <div class="footer-nav-col">
+          <h4>Rechtliches</h4>
+          <ul>
+            <li><a href="/impressum">Impressum</a></li>
+            <li><a href="/datenschutz">Datenschutz</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-partner">
+      <a href="https://www.packmasdigital.de" target="_blank" rel="noopener" style="flex-shrink:0;">
+        <img src="packmasdigital.png" alt="Pack ma's digital – IHK-Initiative">
+      </a>
+      <span class="footer-partner-text">Wir unterstützen die IHK-Initiative Pack ma's digital, um der Wirtschaft in Oberbayern bei der Digitalisierung weiter zu helfen und die Zukunft des Standorts zu sichern.</span>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 läuft von allein · Jan-Hendrik Wiemann</span>
+      <span>München</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // ─── Kontaktformular ───────────────────────────────────────────
+  async function submitKontakt() {
+    const btn = document.getElementById('kf-submit');
+    const errorEl = document.getElementById('kf-error');
+    errorEl.style.display = 'none';
+
+    const hp = document.querySelector('input[name="_hp"]');
+    if (hp && hp.value) return;
+
+    const name = document.getElementById('kf-name').value.trim();
+    const email = document.getElementById('kf-email').value.trim();
+    const nachricht = document.getElementById('kf-nachricht').value.trim();
+
+    if (!name || !email || !nachricht) {
+      errorEl.textContent = 'Bitte füllen Sie alle Pflichtfelder aus (Name, E-Mail, Nachricht).';
+      errorEl.style.display = 'block';
+      return;
+    }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      errorEl.textContent = 'Bitte geben Sie eine gültige E-Mail-Adresse ein.';
+      errorEl.style.display = 'block';
+      return;
+    }
+
+    const interests = [...document.querySelectorAll('.interest-label input:checked')]
+      .map(i => i.value);
+
+    const payload = {
+      name, email,
+      firma: document.getElementById('kf-firma').value.trim() || null,
+      telefon: document.getElementById('kf-telefon').value.trim() || null,
+      interesse: interests.join(', ') || 'Keine Angabe',
+      nachricht,
+      quelle: 'laeuftvonallein.de',
+      timestamp: new Date().toISOString()
+    };
+
+    btn.disabled = true;
+    btn.textContent = 'Wird gesendet…';
+
+    try {
+      const res = await fetch('https://n8n.laeuftvonallein.de/webhook/kontakt-lva', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      document.getElementById('form-fields').style.display = 'none';
+      document.getElementById('kf-success').style.display = 'block';
+    } catch (err) {
+      errorEl.textContent = 'Etwas ist schiefgelaufen. Bitte schreiben Sie direkt an info@laeuftvonallein.de';
+      errorEl.style.display = 'block';
+      btn.disabled = false;
+      btn.innerHTML = 'Anfrage senden <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>';
+    }
+  }
+
+  // ─── Nav scroll border ─────────────────────────────────────────
+  window.addEventListener('scroll', () => {
+    document.getElementById('nav').style.borderBottomColor =
+      window.scrollY > 10 ? '#e5e7eb' : '#f0f0f0';
+  });
+
+  // ─── Mobile menu ───────────────────────────────────────────────
+  function toggleMenu() {
+    document.getElementById('nav-links').classList.toggle('open');
+  }
+
+  document.querySelectorAll('.nav-links a').forEach(a => {
+    a.addEventListener('click', () => {
+      document.getElementById('nav-links').classList.remove('open');
+    });
+  });
+
+  // ─── Smooth scroll for internal anchors ───────────────────────
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const id = a.getAttribute('href').slice(1);
+      const el = document.getElementById(id);
+      if (el) {
+        e.preventDefault();
+        const offset = 64;
+        const top = el.getBoundingClientRect().top + window.scrollY - offset;
+        window.scrollTo({ top, behavior: 'smooth' });
+      }
+    });
+  });
+</script>
+</body>
+</html>
