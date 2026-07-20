@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Produktdaten prüfen ohne Handarbeit – Praxisbeispiel | läuft von allein</title>
-  <meta name="description" content="Tausende Produktdaten aktuell und korrekt halten, ohne jede Zeile von Hand zu prüfen: Die Maschine bereitet vor, der Mensch entscheidet per Klick – nur dort, wo es zählt.">
+  <title>Produktdaten und Medien pflegen ohne Handarbeit – Praxisbeispiel | läuft von allein</title>
+  <meta name="description" content="Nummern, Datenblätter und Produktbilder für tausende Artikel aktuell halten: Die Maschine sammelt, vergleicht und schlägt vor – der Mensch entscheidet per Klick, nur dort, wo es zählt.">
   <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <link rel="shortcut icon" href="/favicon.ico" />
@@ -306,6 +306,84 @@
       margin-top: 0.7rem; text-align: center;
     }
 
+    /* ═══ Mock: Dokumenten-Review ═════════════════════════════ */
+    .dl-bulk {
+      font-size: 11px; font-weight: 700; color: #fff;
+      background: #059669; border-radius: 7px; padding: 4px 10px;
+      display: inline-flex; align-items: center;
+    }
+    .dl-slot { border: 1px solid #f1f5f9; border-radius: 10px; padding: 0.7rem 0.8rem; }
+    .dl-slot + .dl-slot { margin-top: 0.6rem; }
+    .dl-slot-head { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.55rem; }
+    .dl-slot-head .rv-badge { margin-left: 0; }
+    .dl-slot-title {
+      font-size: 10px; font-weight: 700; letter-spacing: 0.05em;
+      text-transform: uppercase; color: #94a3b8;
+    }
+    .dl-tiles { display: flex; align-items: stretch; gap: 0.5rem; flex-wrap: wrap; }
+    .dl-tile {
+      flex: 1 1 180px; border: 1px solid #e6ebf1; border-radius: 10px;
+      background: #fff; padding: 0.55rem 0.7rem; min-width: 0;
+    }
+    .dl-tile.muted { background: #f8fafc; }
+    .dl-tile-label {
+      font-size: 9px; font-weight: 700; letter-spacing: 0.06em;
+      text-transform: uppercase; color: #94a3b8; margin-bottom: 2px;
+    }
+    .dl-doc { font-size: 12.5px; font-weight: 600; color: #0f1729; }
+    .dl-file {
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: 10.5px; color: #64748b; margin-top: 1px; word-break: break-all;
+    }
+    .dl-open { display: inline-flex; gap: 3px; font-size: 11px; font-weight: 600; color: #2563eb; margin-top: 4px; }
+    .dl-empty { font-size: 12px; color: #cbd5e1; font-style: italic; }
+    .dl-arrow { display: flex; align-items: center; color: #cbd5e1; font-size: 14px; }
+    @media (max-width: 560px) { .dl-arrow { display: none; } }
+
+    /* ═══ Mock: Produktbilder-Board ═══════════════════════════ */
+    .bi-variant { border: 1px solid #f1f5f9; background: #fbfcfe; border-radius: 10px; padding: 0.7rem 0.8rem; }
+    .bi-variant + .bi-variant { margin-top: 0.6rem; }
+    .bi-row { display: flex; align-items: flex-start; gap: 0.7rem; flex-wrap: wrap; }
+    .bi-meta { width: 96px; flex-shrink: 0; padding-top: 14px; }
+    .bi-name { font-size: 12.5px; font-weight: 600; color: #0f1729; }
+    .bi-sub {
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: 10px; color: #94a3b8; margin-top: 1px;
+    }
+    .bi-col { text-align: center; flex-shrink: 0; }
+    .bi-col-label {
+      font-size: 9px; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.06em; color: #94a3b8; margin-bottom: 3px; white-space: nowrap;
+    }
+    .bi-col-label.green { color: #059669; }
+    .bi-thumb {
+      width: 52px; height: 52px; border-radius: 8px;
+      border: 2px solid #e2e8f0; background: #fff;
+      display: flex; align-items: center; justify-content: center;
+      position: relative; margin: 0 auto;
+    }
+    .bi-thumb svg { width: 68%; height: 68%; }
+    .bi-thumb.cover { border-color: #059669; }
+    .bi-thumb.empty { border-style: dashed; }
+    .bi-thumb.slider-on { border-color: #3b82f6; }
+    .bi-check {
+      position: absolute; top: -7px; right: -7px;
+      width: 16px; height: 16px; border-radius: 50%;
+      background: #059669; color: #fff; font-size: 10px;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 1px 2px rgba(15,23,42,0.25);
+    }
+    .bi-check.blue { background: #3b82f6; }
+    .bi-arrow { color: #cbd5e1; font-size: 16px; padding-top: 20px; }
+    .bi-pool { flex: 1; min-width: 150px; }
+    .bi-pool-label { font-size: 10px; font-weight: 600; color: #64748b; margin-bottom: 4px; }
+    .bi-pool-strip { display: flex; gap: 6px; flex-wrap: wrap; }
+    .bi-pool .bi-thumb, .bi-slider-box .bi-thumb { width: 44px; height: 44px; margin: 0; }
+    .bi-hint { font-size: 10.5px; margin-top: 5px; }
+    .bi-hint.ok { color: #059669; }
+    .bi-slider-box { margin-top: 0.7rem; padding-top: 0.6rem; border-top: 1px solid #f1f5f9; }
+    @media (max-width: 560px) { .bi-arrow { display: none; } .bi-meta { width: 100%; padding-top: 0; } }
+
     /* ─── Footer ────────────────────────────────────────────── */
     footer {
       border-top: 1px solid #f0f0f0;
@@ -408,19 +486,23 @@
 
     <a href="/" class="content-back">← Zurück</a>
     <span class="section-label">Praxis-Beispiel</span>
-    <h1>Tausende Produktdaten prüfen – ohne den Überblick zu verlieren</h1>
+    <h1>Tausende Produktdaten und Medien pflegen – ohne den Überblick zu verlieren</h1>
 
-    <p class="content-lead">Neue Produktdaten müssen stimmen, bevor sie im Online-Shop landen. Statt lange Tabellen Zeile für Zeile zu vergleichen, bereitet ein Tool alles vor – und ein Mensch entscheidet per Klick, nur dort, wo es wirklich nötig ist.</p>
+    <p class="content-lead">Neue Nummern, aktualisierte Datenblätter, bessere Produktbilder – Produktpflege heißt: tausende Kleinigkeiten müssen stimmen. Statt Tabellen zu wälzen und Herstellerseiten zu durchsuchen, bereitet die Maschine alles vor – und ein Mensch entscheidet per Klick, nur dort, wo es wirklich nötig ist.</p>
 
     <h3>Ausgangssituation</h3>
     <p>Ein Online-Shop lebt von korrekten Produktdaten. GTIN / EAN und Herstellernummern müssen exakt stimmen – sonst geraten falsche Artikel in Bestellungen, Preisportale oder Retouren. Diese Werte kommen aus verschiedenen Quellen und ändern sich laufend.</p>
     <p>Bei mehreren tausend Artikeln hieß das bisher: endlose Excel-Listen, alten Wert gegen neuen halten, Ziffer für Ziffer. Zeitraubend, ermüdend – und eine einzige übersehene Ziffer reicht, damit ein falscher Barcode online geht.</p>
+    <p>Und mit den Nummern ist es nicht getan: Hersteller aktualisieren laufend Datenblätter, Broschüren und Produktfotos. Die liegen verstreut in Herstellerportalen – wer sie aktuell halten will, muss für jedes Produkt suchen, herunterladen, umbenennen, hochladen und richtig zuordnen. Genau diese Fleißarbeit bleibt im Tagesgeschäft liegen.</p>
     <div class="highlight-box">
-      <strong>Ziel:</strong> Produktdaten aktuell und korrekt halten, ohne jede Zeile von Hand zu prüfen – und ohne die Kontrolle aus der Hand zu geben. Nichts landet im Shop, das nicht ein Mensch bewusst freigegeben hat.
+      <strong>Ziel:</strong> Produktdaten <em>und</em> Medien aktuell und korrekt halten, ohne jede Zeile und jede Datei von Hand zu prüfen – und ohne die Kontrolle aus der Hand zu geben. Nichts landet im Shop, das nicht ein Mensch bewusst freigegeben hat.
     </div>
 
     <h3>Die Lösung</h3>
-    <p>Ein Prüf-Werkzeug führt alte und neue Werte zusammen, stellt sie gegenüber und markiert genau die Unterschiede. Die Routine läuft automatisch – die eigentliche Entscheidung bleibt beim Menschen, kostet dort aber nur noch einen Klick.</p>
+    <p>Drei Prüf-Werkzeuge nach demselben Prinzip: Die Routine – sammeln, vergleichen, zuordnen, benennen – läuft automatisch. Die eigentliche Entscheidung bleibt beim Menschen, kostet dort aber nur noch einen Klick. (Alle Ansichten nachgestellt, mit fiktiven Daten.)</p>
+
+    <h3>1 · Stammdaten: alt gegen neu</h3>
+    <p>Das Prüf-Werkzeug führt alte und neue Werte zusammen, stellt sie gegenüber und markiert genau die Stelle, die sich geändert hat.</p>
 
     <figure class="rv-shot">
       <div class="rv-window">
@@ -501,6 +583,232 @@
       <figcaption>So sieht die Prüfoberfläche aus: alt gegen neu, die abweichende Stelle hervorgehoben – die Entscheidung ist ein Klick.</figcaption>
     </figure>
 
+    <h3>2 · Dokumente: Datenblätter, Zertifikate, Broschüren</h3>
+    <p>Hersteller-Dokumente werden automatisch eingesammelt und je Produkt in feste Plätze gelegt: Was ersetzt ein vorhandenes Dokument, was kommt neu dazu, was bleibt unverändert? Alt und neu stehen nebeneinander, jede neue Datei lässt sich vorab öffnen – freigegeben wird je Produkt oder gesammelt.</p>
+
+    <figure class="rv-shot">
+      <div class="rv-window">
+        <div class="rv-bar">
+          <div class="rv-brand">
+            <span class="rv-brand-mark">⇩</span>
+            Dokumenten-Review
+          </div>
+          <div class="rv-tabs" style="align-items:center;">
+            <span class="rv-tab active">Offen <span class="rv-tab-count">5</span></span>
+            <span class="dl-bulk">Alle freigeben</span>
+          </div>
+        </div>
+        <div class="rv-body">
+
+          <div class="rv-card">
+            <div class="rv-card-head">
+              <div>
+                <div class="rv-mfr">Hersteller A</div>
+                <div class="rv-name">Artikel 100234 · Gebinde 1 l</div>
+              </div>
+              <div class="rv-sku-wrap">
+                <div class="rv-sku-label">SKU</div>
+                <div class="rv-sku">ART-100234</div>
+              </div>
+            </div>
+
+            <div style="margin-top:0.7rem;">
+              <div class="dl-slot">
+                <div class="dl-slot-head"><span class="dl-slot-title">Platz 1</span><span class="rv-badge rv-changed">ERSETZEN</span></div>
+                <div class="dl-tiles">
+                  <div class="dl-tile muted">
+                    <div class="dl-tile-label">Aktuell</div>
+                    <div class="dl-doc">Produktdatenblatt</div>
+                    <div class="dl-file">datenblatt_2019.pdf</div>
+                  </div>
+                  <div class="dl-arrow">→</div>
+                  <div class="dl-tile">
+                    <div class="dl-tile-label">Neu</div>
+                    <div class="dl-doc">Produktdatenblatt</div>
+                    <div class="dl-file">datenblatt_2026.pdf</div>
+                    <span class="dl-open">Neue PDF öffnen ↗</span>
+                  </div>
+                </div>
+              </div>
+              <div class="dl-slot">
+                <div class="dl-slot-head"><span class="dl-slot-title">Platz 2</span><span class="rv-badge rv-new-b">NEU</span></div>
+                <div class="dl-tiles">
+                  <div class="dl-tile muted">
+                    <div class="dl-tile-label">Aktuell</div>
+                    <div class="dl-empty">leer</div>
+                  </div>
+                  <div class="dl-arrow">→</div>
+                  <div class="dl-tile">
+                    <div class="dl-tile-label">Neu</div>
+                    <div class="dl-doc">Zertifikat</div>
+                    <div class="dl-file">zertifikat_100234.pdf</div>
+                    <span class="dl-open">Neue PDF öffnen ↗</span>
+                  </div>
+                </div>
+              </div>
+              <div class="dl-slot" style="opacity:.65;">
+                <div class="dl-slot-head"><span class="dl-slot-title">Platz 3</span><span class="rv-badge rv-identical">UNVERÄNDERT</span></div>
+                <div class="dl-tiles">
+                  <div class="dl-tile muted">
+                    <div class="dl-tile-label">Aktuell</div>
+                    <div class="dl-doc">Broschüre</div>
+                    <div class="dl-file">broschuere_serie-a.pdf</div>
+                  </div>
+                  <div class="dl-arrow">→</div>
+                  <div class="dl-tile muted" style="display:flex;align-items:center;justify-content:center;">
+                    <span class="dl-empty">bleibt unverändert</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="rv-actions">
+              <span class="rv-btn rv-reject">✕ Ablehnen</span>
+              <span class="rv-btn rv-approve">✓ Freigeben</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <figcaption>Dokumente je Produkt in festen Plätzen: ersetzen, neu, unverändert – Routinefälle gehen per Sammel-Freigabe, der Rest mit einem Klick.</figcaption>
+    </figure>
+
+    <h3>3 · Produktbilder: zuordnen statt suchen</h3>
+    <p>Bei Bildern hilft kein simpler Vergleich – dasselbe Foto kann zu mehreren Varianten eines Produkts passen, und die Dateinamen der Hersteller folgen keinem festen Muster. Deshalb sammelt das System je Produktfamilie alle verfügbaren Bilder in einem Pool und schlägt automatisch vor, welches Bild zu welcher Variante gehört – anhand von Nummern und Größenangaben. Der Mensch bestätigt oder wählt per Klick um; gemeinsame Zusatzbilder gelten für die ganze Familie.</p>
+
+    <figure class="rv-shot">
+      <div class="rv-window">
+        <div class="rv-bar">
+          <div class="rv-brand">
+            <span class="rv-brand-mark">▦</span>
+            Produktbilder-Board
+          </div>
+          <div class="rv-tabs">
+            <span class="rv-tab active">Offen <span class="rv-tab-count">3</span></span>
+          </div>
+        </div>
+        <div class="rv-body">
+
+          <div class="rv-card">
+            <div class="rv-card-head">
+              <div>
+                <div class="rv-mfr">Hersteller A</div>
+                <div class="rv-name">Artikel-Familie 1002</div>
+              </div>
+              <div class="rv-sku-wrap">
+                <div class="rv-sku-label">Pool</div>
+                <div class="rv-sku">2 Varianten · 4 Bilder</div>
+              </div>
+            </div>
+
+            <div style="margin-top:0.7rem;">
+              <div class="bi-variant">
+                <div class="bi-row">
+                  <div class="bi-meta">
+                    <div class="bi-name">Gebinde 1 l</div>
+                    <div class="bi-sub">ART-100234</div>
+                  </div>
+                  <div class="bi-col">
+                    <div class="bi-col-label">Aktuell</div>
+                    <div class="bi-thumb">
+                      <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="9.5" y="2.5" width="5" height="3.5" rx="1" fill="#e2e8f0"/><rect x="7" y="7" width="10" height="15" rx="2" fill="#e2e8f0"/><rect x="8.5" y="12" width="7" height="5" rx="1" fill="#f8fafc"/></svg>
+                    </div>
+                  </div>
+                  <div class="bi-arrow">→</div>
+                  <div class="bi-col">
+                    <div class="bi-col-label green">Neu (Cover)</div>
+                    <div class="bi-thumb cover">
+                      <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="9.5" y="2.5" width="5" height="3.5" rx="1" fill="#cbd5e1"/><rect x="7" y="7" width="10" height="15" rx="2" fill="#cbd5e1"/><rect x="8.5" y="12" width="7" height="5" rx="1" fill="#f8fafc"/></svg>
+                      <span class="bi-check">✓</span>
+                    </div>
+                  </div>
+                  <div class="bi-pool">
+                    <div class="bi-pool-label">Cover wählen (klicken):</div>
+                    <div class="bi-pool-strip">
+                      <div class="bi-thumb cover">
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="9.5" y="2.5" width="5" height="3.5" rx="1" fill="#cbd5e1"/><rect x="7" y="7" width="10" height="15" rx="2" fill="#cbd5e1"/><rect x="8.5" y="12" width="7" height="5" rx="1" fill="#f8fafc"/></svg>
+                        <span class="bi-check">✓</span>
+                      </div>
+                      <div class="bi-thumb">
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="10" y="2.5" width="5" height="3" rx="1" fill="#cbd5e1"/><rect x="4.5" y="6" width="15" height="16" rx="2" fill="#cbd5e1"/><rect x="7" y="11" width="10" height="6" rx="1" fill="#f8fafc"/></svg>
+                      </div>
+                      <div class="bi-thumb">
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="8" y="9" width="8" height="13" rx="2" fill="#cbd5e1"/><rect x="10.5" y="5" width="3" height="4" fill="#cbd5e1"/><rect x="10.5" y="3" width="6.5" height="2.5" rx="1" fill="#cbd5e1"/></svg>
+                      </div>
+                      <div class="bi-thumb">
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="8" width="8" height="14" rx="1.5" fill="#cbd5e1"/><rect x="5.5" y="4.5" width="4" height="3" rx="1" fill="#cbd5e1"/><rect x="13.5" y="11" width="7" height="11" rx="1.5" fill="#dbe2ea"/><rect x="15.5" y="8" width="3" height="2.5" rx="0.8" fill="#dbe2ea"/></svg>
+                      </div>
+                    </div>
+                    <div class="bi-hint ok">✓ Auto-Vorschlag übernommen · Treffer: EAN + Größe</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="bi-variant">
+                <div class="bi-row">
+                  <div class="bi-meta">
+                    <div class="bi-name">Gebinde 5 l</div>
+                    <div class="bi-sub">ART-100235</div>
+                  </div>
+                  <div class="bi-col">
+                    <div class="bi-col-label">Aktuell</div>
+                    <div class="bi-thumb empty"><span class="dl-empty">leer</span></div>
+                  </div>
+                  <div class="bi-arrow">→</div>
+                  <div class="bi-col">
+                    <div class="bi-col-label green">Neu (Cover)</div>
+                    <div class="bi-thumb cover">
+                      <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="10" y="2.5" width="5" height="3" rx="1" fill="#cbd5e1"/><rect x="4.5" y="6" width="15" height="16" rx="2" fill="#cbd5e1"/><rect x="7" y="11" width="10" height="6" rx="1" fill="#f8fafc"/></svg>
+                      <span class="bi-check">✓</span>
+                    </div>
+                  </div>
+                  <div class="bi-pool">
+                    <div class="bi-pool-label">Cover wählen (klicken):</div>
+                    <div class="bi-pool-strip">
+                      <div class="bi-thumb">
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="9.5" y="2.5" width="5" height="3.5" rx="1" fill="#cbd5e1"/><rect x="7" y="7" width="10" height="15" rx="2" fill="#cbd5e1"/><rect x="8.5" y="12" width="7" height="5" rx="1" fill="#f8fafc"/></svg>
+                      </div>
+                      <div class="bi-thumb cover">
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="10" y="2.5" width="5" height="3" rx="1" fill="#cbd5e1"/><rect x="4.5" y="6" width="15" height="16" rx="2" fill="#cbd5e1"/><rect x="7" y="11" width="10" height="6" rx="1" fill="#f8fafc"/></svg>
+                        <span class="bi-check">✓</span>
+                      </div>
+                      <div class="bi-thumb">
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="8" y="9" width="8" height="13" rx="2" fill="#cbd5e1"/><rect x="10.5" y="5" width="3" height="4" fill="#cbd5e1"/><rect x="10.5" y="3" width="6.5" height="2.5" rx="1" fill="#cbd5e1"/></svg>
+                      </div>
+                      <div class="bi-thumb">
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="8" width="8" height="14" rx="1.5" fill="#cbd5e1"/><rect x="5.5" y="4.5" width="4" height="3" rx="1" fill="#cbd5e1"/><rect x="13.5" y="11" width="7" height="11" rx="1.5" fill="#dbe2ea"/><rect x="15.5" y="8" width="3" height="2.5" rx="0.8" fill="#dbe2ea"/></svg>
+                      </div>
+                    </div>
+                    <div class="bi-hint ok">✓ Auto-Vorschlag übernommen · Treffer: Herstellernummer</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="bi-slider-box">
+                <div class="bi-pool-label">Zusatzbilder – gelten für alle Varianten der Familie</div>
+                <div class="bi-pool-strip">
+                  <div class="bi-thumb slider-on">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="8" width="8" height="14" rx="1.5" fill="#cbd5e1"/><rect x="5.5" y="4.5" width="4" height="3" rx="1" fill="#cbd5e1"/><rect x="13.5" y="11" width="7" height="11" rx="1.5" fill="#dbe2ea"/><rect x="15.5" y="8" width="3" height="2.5" rx="0.8" fill="#dbe2ea"/></svg>
+                    <span class="bi-check blue">✓</span>
+                  </div>
+                  <div class="bi-thumb" style="opacity:.55;">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="8" y="9" width="8" height="13" rx="2" fill="#cbd5e1"/><rect x="10.5" y="5" width="3" height="4" fill="#cbd5e1"/><rect x="10.5" y="3" width="6.5" height="2.5" rx="1" fill="#cbd5e1"/></svg>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="rv-actions">
+              <span class="rv-btn rv-reject">Familie überspringen</span>
+              <span class="rv-btn rv-approve">✓ Familie freigeben</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <figcaption>Je Variante: aktuelles Bild gegen neues Cover, daneben der Bilder-Pool des Herstellers. Der Vorschlag ist vorbelegt – zuordnen ist ein Klick, keine Suche.</figcaption>
+    </figure>
+
     <div class="flow-diagram">
       <div class="flow-step">
         <div class="flow-left">
@@ -509,7 +817,7 @@
         </div>
         <div class="flow-content">
           <strong>Alles an einem Ort</strong>
-          <span>Die aktuellen Werte aus dem Shop und die neuen Werte aus den Quellen landen automatisch nebeneinander – kein Zusammensuchen aus mehreren Dateien.</span>
+          <span>Die aktuellen Werte, Dokumente und Bilder aus dem Shop und die neuen aus den Herstellerquellen landen automatisch nebeneinander – kein Zusammensuchen aus Dateien und Portalen.</span>
         </div>
       </div>
       <div class="flow-step">
@@ -518,8 +826,8 @@
           <div class="flow-connector"></div>
         </div>
         <div class="flow-content">
-          <strong>Unterschiede auf einen Blick</strong>
-          <span>Das Tool zeigt alt neben neu und hebt genau die Stelle hervor, die sich geändert hat. Kein Vergleichen im Kopf, kein Verrutschen in der Zeile.</span>
+          <strong>Unterschiede und Vorschläge auf einen Blick</strong>
+          <span>Das Tool zeigt alt neben neu und hebt genau die Stelle hervor, die sich geändert hat. Bei Bildern und Dokumenten kommt der Zuordnungs-Vorschlag gleich mit – kein Vergleichen im Kopf, kein Suchen im Ordner.</span>
         </div>
       </div>
       <div class="flow-step">
@@ -529,7 +837,7 @@
         </div>
         <div class="flow-content">
           <strong>Routine läuft automatisch</strong>
-          <span>Was neu oder unverändert ist, wird gebündelt in einem Klick erledigt. Mit den Hunderten einfachen Fällen muss sich niemand einzeln beschäftigen.</span>
+          <span>Herunterladen, umbenennen, Formate optimieren, hochladen, verknüpfen – die Fleißarbeit übernimmt das System. Was neu oder unverändert ist, wird gebündelt in einem Klick erledigt.</span>
         </div>
       </div>
       <div class="flow-step">
@@ -562,6 +870,8 @@
       <li>Tausende Artikel in einem Bruchteil der bisherigen Zeit geprüft</li>
       <li>Aufmerksamkeit nur dort, wo eine echte Entscheidung nötig ist</li>
       <li>Keine falschen GTIN/EAN oder Herstellernummern mehr im Shop</li>
+      <li>Datenblätter und Zertifikate aktuell – ohne Klickerei durch Herstellerportale</li>
+      <li>Produktbilder einheitlich benannt, fürs Web optimiert und richtig zugeordnet</li>
       <li>Nichts wird blind überschrieben – die Kontrolle bleibt im Haus</li>
       <li>Jeder Stand ist dokumentiert und nachvollziehbar</li>
     </ul>
@@ -606,9 +916,9 @@
           <h4>Beispiele</h4>
           <ul>
             <li><a href="/kontaktformular">Kontaktformular</a></li>
+            <li><a href="/email-autoentwurf">Kundenanfragen</a></li>
             <li><a href="/produktpflege">Produktpflege</a></li>
             <li><a href="/preispositionierung">Preispositionierung</a></li>
-            <li><a href="/email-autoentwurf">Kundenanfragen</a></li>
           </ul>
         </div>
         <div class="footer-nav-col">
