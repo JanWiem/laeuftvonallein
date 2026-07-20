@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Produktdaten prüfen ohne Handarbeit – Praxisbeispiel | läuft von allein</title>
-  <meta name="description" content="Tausende Produktdaten aktuell und korrekt halten, ohne jede Zeile von Hand zu prüfen: Die Maschine bereitet vor, der Mensch entscheidet per Klick – nur dort, wo es zählt.">
+  <title>Wissen, wo jeder Preis im Markt steht – Preispositionierung | läuft von allein</title>
+  <meta name="description" content="Ein Dashboard führt eigene Preise, Margen, Absatz und Wettbewerbspreise zusammen: Wo werden Sie unterboten, wo ist Luft nach oben – und was bringt das in Euro pro Jahr.">
   <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <link rel="shortcut icon" href="/favicon.ico" />
@@ -198,112 +198,129 @@
     }
     .btn-dark:hover { background: #374151; color: #fff !important; }
 
-    /* ═══ Oberflächen-Illustration (nachgebaut) ═══════════════ */
-    .rv-shot { margin: 1.5rem 0 0.5rem; }
-    .rv-window {
+    /* ═══ Dashboard-Illustration (nachgebaut, fiktive Daten) ══ */
+    .pp-shot { margin: 1.5rem 0 0.5rem; }
+    .pp-window {
       border: 1px solid #e5e7eb; border-radius: 14px;
       background: #f8fafc; overflow: hidden;
       box-shadow: 0 12px 28px -18px rgba(15,23,42,0.35);
     }
-    .rv-bar {
+    .pp-bar {
       display: flex; align-items: center; justify-content: space-between;
       flex-wrap: wrap; gap: 0.75rem;
       padding: 0.7rem 0.9rem;
       background: #fff; border-bottom: 1px solid #eef2f6;
     }
-    .rv-brand {
+    .pp-brand {
       display: flex; align-items: center; gap: 0.5rem;
       font-size: 13px; font-weight: 600; color: #0f1729;
       letter-spacing: -0.01em;
     }
-    .rv-brand-mark {
+    .pp-brand-mark {
       width: 22px; height: 22px; border-radius: 6px;
       background: #0d9488; color: #fff;
       display: flex; align-items: center; justify-content: center;
       font-size: 13px; flex-shrink: 0;
     }
-    .rv-tabs { display: flex; gap: 2px; background: #f1f5f9; border-radius: 8px; padding: 3px; }
-    .rv-tab {
+    .pp-tabs { display: flex; gap: 2px; background: #f1f5f9; border-radius: 8px; padding: 3px; flex-wrap: wrap; }
+    .pp-tab {
       font-size: 11px; font-weight: 500; color: #64748b;
       padding: 3px 8px; border-radius: 6px;
       display: inline-flex; align-items: center; gap: 5px;
     }
-    .rv-tab.active { background: #fff; color: #0f1729; box-shadow: 0 1px 2px rgba(15,23,42,0.08); }
-    .rv-tab-count {
-      font-size: 10px; font-weight: 700; border-radius: 5px;
-      padding: 1px 5px; background: #e2e8f0; color: #64748b;
-    }
-    .rv-tab.active .rv-tab-count { background: #f0fdfa; color: #0f766e; }
+    .pp-tab.active { background: #fff; color: #0f1729; box-shadow: 0 1px 2px rgba(15,23,42,0.08); }
 
-    .rv-body { padding: 0.9rem; display: flex; flex-direction: column; gap: 0.75rem; }
-    .rv-card {
+    .pp-body { padding: 0.9rem; display: flex; flex-direction: column; gap: 0.75rem; }
+    .pp-kpis {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.6rem;
+    }
+    .pp-kpi {
+      background: #fff; border: 1px solid #e6ebf1; border-radius: 10px;
+      padding: 0.6rem 0.7rem;
+    }
+    .pp-kpi .l {
+      font-size: 9px; font-weight: 700; letter-spacing: 0.05em;
+      text-transform: uppercase; color: #94a3b8; line-height: 1.3;
+    }
+    .pp-kpi .v {
+      font-size: 16px; font-weight: 700; color: #0f1729; margin-top: 2px;
+      letter-spacing: -0.01em;
+    }
+    .pp-kpi .v.pos { color: #059669; }
+    .pp-kpi .v.neg { color: #e11d48; }
+    .pp-kpi .h { font-size: 9.5px; color: #94a3b8; margin-top: 1px; }
+
+    .pp-card {
       background: #fff; border: 1px solid #e6ebf1; border-radius: 12px;
       padding: 0.9rem 1rem;
     }
-    .rv-card-head {
-      display: flex; align-items: flex-start; justify-content: space-between;
-      gap: 0.75rem; padding-bottom: 0.7rem; border-bottom: 1px solid #f1f5f9;
+    .pp-card-title {
+      font-size: 12px; font-weight: 600; color: #0f1729;
     }
-    .rv-mfr {
-      font-size: 10px; font-weight: 700; letter-spacing: 0.08em;
-      text-transform: uppercase; color: #0d9488;
+    .pp-card-sub { font-size: 10.5px; color: #94a3b8; margin-top: 1px; margin-bottom: 0.75rem; }
+
+    /* Gap-Chart (divergierende Balken) */
+    .pp-chart { display: flex; flex-direction: column; gap: 6px; }
+    .pp-crow { display: flex; align-items: center; gap: 0.6rem; }
+    .pp-clabel {
+      width: 92px; flex-shrink: 0; text-align: right;
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: 10px; color: #64748b; white-space: nowrap;
+      overflow: hidden; text-overflow: ellipsis;
     }
-    .rv-name { font-size: 14px; font-weight: 600; color: #0f1729; margin-top: 1px; }
-    .rv-sku-wrap { text-align: right; flex-shrink: 0; }
-    .rv-sku-label {
-      font-size: 9px; font-weight: 700; letter-spacing: 0.06em;
+    .pp-ctrack { flex: 1; display: flex; height: 14px; position: relative; }
+    .pp-ctrack::before {
+      content: ''; position: absolute; left: 50%; top: -3px; bottom: -3px;
+      width: 1px; background: #e2e8f0;
+    }
+    .pp-cneg, .pp-cpos { height: 100%; position: relative; }
+    .pp-cneg { width: 50%; display: flex; justify-content: flex-end; }
+    .pp-cpos { width: 50%; display: flex; justify-content: flex-start; }
+    .pp-cbar { height: 100%; border-radius: 3px; }
+    .pp-cbar.pos { background: #34d39955; border: 1px solid #05966955; border-radius: 0 3px 3px 0; }
+    .pp-cbar.neg { background: #fb718555; border: 1px solid #e11d4855; border-radius: 3px 0 0 3px; }
+    .pp-cval {
+      width: 52px; flex-shrink: 0;
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: 10px;
+    }
+    .pp-cval.pos { color: #059669; }
+    .pp-cval.neg { color: #e11d48; }
+
+    /* Mini-Tabelle */
+    .pp-table { width: 100%; border-collapse: collapse; }
+    .pp-table th {
+      text-align: left; padding: 5px 8px;
+      font-size: 9px; font-weight: 700; letter-spacing: 0.05em;
       text-transform: uppercase; color: #94a3b8;
+      border-bottom: 1px solid #eef2f6; white-space: nowrap;
     }
-    .rv-sku {
-      display: inline-block; margin-top: 2px;
+    .pp-table td {
+      padding: 7px 8px; border-bottom: 1px solid #f1f5f9;
+      font-size: 11.5px; color: #334155; white-space: nowrap;
+    }
+    .pp-table tr:last-child td { border-bottom: none; }
+    .pp-sku {
       font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
       font-size: 11px; color: #475569;
-      background: #f8fafc; border: 1px solid #e6ebf1;
-      border-radius: 6px; padding: 2px 7px;
     }
-    .rv-rows { display: flex; flex-direction: column; }
-    .rv-row {
-      display: flex; align-items: center; flex-wrap: wrap;
-      gap: 0.55rem; padding: 0.6rem 0;
+    .pp-sub { font-size: 9.5px; color: #94a3b8; }
+    .pp-num { text-align: right; font-variant-numeric: tabular-nums; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 11px; }
+    .pp-pill {
+      display: inline-block; padding: 1px 7px; border-radius: 20px;
+      font-size: 10px; font-weight: 700; font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
     }
-    .rv-row + .rv-row { border-top: 1px solid #f1f5f9; }
-    .rv-label {
-      width: 74px; flex-shrink: 0;
-      font-size: 10px; font-weight: 700; letter-spacing: 0.05em;
-      text-transform: uppercase; color: #94a3b8;
-    }
-    .rv-old, .rv-new {
-      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-      font-size: 13px; letter-spacing: -0.01em;
-    }
-    .rv-old { color: #94a3b8; }
-    .rv-new { color: #0f1729; }
-    .rv-new.rv-muted { color: #94a3b8; }
-    .rv-arrow { color: #cbd5e1; font-size: 12px; }
-    .rv-empty { color: #cbd5e1; font-style: italic; font-family: inherit; font-size: 12px; }
-    .rv-new mark {
-      background: #fde68a; color: #92400e;
-      border-radius: 3px; padding: 0 1px;
-    }
-    .rv-badge {
-      font-size: 9px; font-weight: 700; letter-spacing: 0.05em;
-      border-radius: 5px; padding: 2px 6px; margin-left: auto;
-    }
-    .rv-changed   { background: #fffbeb; color: #b45309; }
-    .rv-new-b     { background: #ecfdf5; color: #047857; }
-    .rv-identical { background: #f1f5f9; color: #64748b; }
-    .rv-actions { display: flex; gap: 0.5rem; margin-top: 0.7rem; }
-    .rv-btn {
-      flex: 1; text-align: center;
-      font-size: 12px; font-weight: 600;
-      border-radius: 8px; padding: 0.5rem 0;
-      display: inline-flex; align-items: center; justify-content: center; gap: 5px;
-    }
-    .rv-reject { background: #fff; color: #e11d48; border: 1px solid #fecdd3; }
-    .rv-approve { background: #059669; color: #fff; }
+    .pp-pill.pos { background: #05966918; color: #059669; }
+    .pp-pill.neg { background: #e11d4815; color: #e11d48; }
     figcaption {
       font-size: 12px; color: #9ca3af; line-height: 1.6;
       margin-top: 0.7rem; text-align: center;
+    }
+
+    @media (max-width: 560px) {
+      .pp-kpis { grid-template-columns: repeat(2, 1fr); }
+      .pp-clabel { width: 64px; }
+      .pp-hide-s { display: none; }
     }
 
     /* ─── Footer ────────────────────────────────────────────── */
@@ -359,7 +376,7 @@
       .nav-links.open { display: flex; }
       .nav-hamburger { display: flex; }
       .footer-nav { gap: 1.5rem; }
-      .rv-tabs { order: 2; }
+      .pp-tabs { order: 2; }
     }
 
     /* ─── Footer partner badge ──────────────────────────────── */
@@ -408,108 +425,159 @@
 
     <a href="/" class="content-back">← Zurück</a>
     <span class="section-label">Praxis-Beispiel</span>
-    <h1>Tausende Produktdaten prüfen – ohne den Überblick zu verlieren</h1>
+    <h1>Wissen, wo jeder Preis im Markt steht</h1>
 
-    <p class="content-lead">Neue Produktdaten müssen stimmen, bevor sie im Online-Shop landen. Statt lange Tabellen Zeile für Zeile zu vergleichen, bereitet ein Tool alles vor – und ein Mensch entscheidet per Klick, nur dort, wo es wirklich nötig ist.</p>
+    <p class="content-lead">Preise vergleichen ist nur die halbe Arbeit – die eigentliche Frage lautet: Was folgt daraus? Ein Dashboard führt eigene Preise, Margen, Absatz und Wettbewerbspreise zusammen und macht daraus eine konkrete Liste: wo absichern, wo anheben – und was das in Euro bringt.</p>
 
     <h3>Ausgangssituation</h3>
-    <p>Ein Online-Shop lebt von korrekten Produktdaten. GTIN / EAN und Herstellernummern müssen exakt stimmen – sonst geraten falsche Artikel in Bestellungen, Preisportale oder Retouren. Diese Werte kommen aus verschiedenen Quellen und ändern sich laufend.</p>
-    <p>Bei mehreren tausend Artikeln hieß das bisher: endlose Excel-Listen, alten Wert gegen neuen halten, Ziffer für Ziffer. Zeitraubend, ermüdend – und eine einzige übersehene Ziffer reicht, damit ein falscher Barcode online geht.</p>
+    <p>Bei einem Sortiment mit tausenden Artikeln lässt sich kaum sagen, wo man preislich wirklich steht. Wettbewerbspreise verteilen sich über viele Shops und Preisportale – und selbst wenn man sie mühsam zusammenträgt, beantwortet eine Tabelle voller Zahlen noch keine Fragen: Sind wir zu teuer? Verschenken wir Marge? Wo drohen wir, unterboten zu werden?</p>
     <div class="highlight-box">
-      <strong>Ziel:</strong> Produktdaten aktuell und korrekt halten, ohne jede Zeile von Hand zu prüfen – und ohne die Kontrolle aus der Hand zu geben. Nichts landet im Shop, das nicht ein Mensch bewusst freigegeben hat.
+      <strong>Ziel:</strong> Eine Übersicht, die eigene Preise, Einkauf und Absatz mit dem Markt zusammenbringt – und statt Rohdaten konkrete Kandidaten benennt: hier absichern, dort anheben, mit beziffertem Potenzial.
     </div>
 
     <h3>Die Lösung</h3>
-    <p>Ein Prüf-Werkzeug führt alte und neue Werte zusammen, stellt sie gegenüber und markiert genau die Unterschiede. Die Routine läuft automatisch – die eigentliche Entscheidung bleibt beim Menschen, kostet dort aber nur noch einen Klick.</p>
+    <p>Ein Dashboard im Browser, das sich aus den vorhandenen Daten des Shopsystems und gezielt erhobenen Marktpreisen speist – immer aktuell, ohne Excel-Bastelei. So sieht das aus (nachgestellt, mit fiktiven Daten):</p>
 
-    <figure class="rv-shot">
-      <div class="rv-window">
-        <div class="rv-bar">
-          <div class="rv-brand">
-            <span class="rv-brand-mark">✓</span>
-            Produktdaten-Review
+    <figure class="pp-shot">
+      <div class="pp-window">
+        <div class="pp-bar">
+          <div class="pp-brand">
+            <span class="pp-brand-mark">€</span>
+            Preis-Cockpit
           </div>
-          <div class="rv-tabs">
-            <span class="rv-tab active">Geändert <span class="rv-tab-count">3</span></span>
-            <span class="rv-tab">Neu <span class="rv-tab-count">12</span></span>
-            <span class="rv-tab">Identisch <span class="rv-tab-count">40</span></span>
+          <div class="pp-tabs">
+            <span class="pp-tab active">Wettbewerbsvergleich</span>
+            <span class="pp-tab">Margen</span>
+            <span class="pp-tab">Preisspielraum</span>
           </div>
         </div>
-        <div class="rv-body">
+        <div class="pp-body">
 
-          <div class="rv-card">
-            <div class="rv-card-head">
-              <div>
-                <div class="rv-mfr">Hersteller A</div>
-                <div class="rv-name">Artikel 100234 · Gebinde 1 l</div>
-              </div>
-              <div class="rv-sku-wrap">
-                <div class="rv-sku-label">SKU</div>
-                <div class="rv-sku">ART-100234</div>
-              </div>
+          <div class="pp-kpis">
+            <div class="pp-kpi">
+              <div class="l">Produkte im Vergleich</div>
+              <div class="v">48</div>
+              <div class="h">von 214 aktiven</div>
             </div>
-            <div class="rv-rows">
-              <div class="rv-row">
-                <span class="rv-label">GTIN / EAN</span>
-                <span class="rv-old">2004417800253</span>
-                <span class="rv-arrow">→</span>
-                <span class="rv-new">2004417<mark>3</mark>00253</span>
-                <span class="rv-badge rv-changed">GEÄNDERT</span>
-              </div>
-              <div class="rv-row">
-                <span class="rv-label">MPN</span>
-                <span class="rv-old">MP-33920</span>
-                <span class="rv-arrow">→</span>
-                <span class="rv-new rv-muted">MP-33920</span>
-                <span class="rv-badge rv-identical">IDENTISCH</span>
-              </div>
+            <div class="pp-kpi">
+              <div class="l">Wir günstigster Anbieter</div>
+              <div class="v pos">39</div>
+              <div class="h">von 48 Produkten</div>
             </div>
-            <div class="rv-actions">
-              <span class="rv-btn rv-reject">✕ Ablehnen</span>
-              <span class="rv-btn rv-approve">✓ Freigeben</span>
+            <div class="pp-kpi">
+              <div class="l">Unterboten</div>
+              <div class="v neg">6</div>
+              <div class="h">Absicherung prüfen</div>
+            </div>
+            <div class="pp-kpi">
+              <div class="l">Potenzial p. a.</div>
+              <div class="v">€ 14.200</div>
+              <div class="h">bei moderater Anhebung</div>
             </div>
           </div>
 
-          <div class="rv-card">
-            <div class="rv-card-head">
-              <div>
-                <div class="rv-mfr">Hersteller B</div>
-                <div class="rv-name">Artikel 100571 · VE 100 St.</div>
+          <div class="pp-card">
+            <div class="pp-card-title">Preisabstand zum günstigsten Wettbewerber</div>
+            <div class="pp-card-sub">+ = wir sind günstiger &nbsp;·&nbsp; − = Wettbewerber liegt darunter</div>
+            <div class="pp-chart">
+              <div class="pp-crow">
+                <span class="pp-clabel">A-1043 · 5 l</span>
+                <span class="pp-ctrack"><span class="pp-cneg"></span><span class="pp-cpos"><span class="pp-cbar pos" style="width:76%"></span></span></span>
+                <span class="pp-cval pos">+18,2 %</span>
               </div>
-              <div class="rv-sku-wrap">
-                <div class="rv-sku-label">SKU</div>
-                <div class="rv-sku">ART-100571</div>
+              <div class="pp-crow">
+                <span class="pp-clabel">C-3308 · 10 St.</span>
+                <span class="pp-ctrack"><span class="pp-cneg"></span><span class="pp-cpos"><span class="pp-cbar pos" style="width:60%"></span></span></span>
+                <span class="pp-cval pos">+14,4 %</span>
+              </div>
+              <div class="pp-crow">
+                <span class="pp-clabel">A-1076 · 1 kg</span>
+                <span class="pp-ctrack"><span class="pp-cneg"></span><span class="pp-cpos"><span class="pp-cbar pos" style="width:52%"></span></span></span>
+                <span class="pp-cval pos">+12,4 %</span>
+              </div>
+              <div class="pp-crow">
+                <span class="pp-clabel">D-0512 · 250 ml</span>
+                <span class="pp-ctrack"><span class="pp-cneg"></span><span class="pp-cpos"><span class="pp-cbar pos" style="width:41%"></span></span></span>
+                <span class="pp-cval pos">+9,8 %</span>
+              </div>
+              <div class="pp-crow">
+                <span class="pp-clabel">B-2144 · 20 St.</span>
+                <span class="pp-ctrack"><span class="pp-cneg"></span><span class="pp-cpos"><span class="pp-cbar pos" style="width:27%"></span></span></span>
+                <span class="pp-cval pos">+6,5 %</span>
+              </div>
+              <div class="pp-crow">
+                <span class="pp-clabel">E-4420 · 2 l</span>
+                <span class="pp-ctrack"><span class="pp-cneg"></span><span class="pp-cpos"><span class="pp-cbar pos" style="width:11%"></span></span></span>
+                <span class="pp-cval pos">+2,7 %</span>
+              </div>
+              <div class="pp-crow">
+                <span class="pp-clabel">C-3312 · 50 St.</span>
+                <span class="pp-ctrack"><span class="pp-cneg"><span class="pp-cbar neg" style="width:18%"></span></span><span class="pp-cpos"></span></span>
+                <span class="pp-cval neg">−4,3 %</span>
+              </div>
+              <div class="pp-crow">
+                <span class="pp-clabel">B-0217 · 500 ml</span>
+                <span class="pp-ctrack"><span class="pp-cneg"><span class="pp-cbar neg" style="width:50%"></span></span><span class="pp-cpos"></span></span>
+                <span class="pp-cval neg">−12,1 %</span>
               </div>
             </div>
-            <div class="rv-rows">
-              <div class="rv-row">
-                <span class="rv-label">GTIN / EAN</span>
-                <span class="rv-old rv-empty">(leer)</span>
-                <span class="rv-arrow">→</span>
-                <span class="rv-new">2009930410088</span>
-                <span class="rv-badge rv-new-b">NEU</span>
-              </div>
-            </div>
-            <div class="rv-actions">
-              <span class="rv-btn rv-reject">✕ Ablehnen</span>
-              <span class="rv-btn rv-approve">✓ Freigeben</span>
+          </div>
+
+          <div class="pp-card">
+            <div class="pp-card-title">Produkte im Wettbewerbsvergleich</div>
+            <div class="pp-card-sub">Jeder Preispunkt mit Quelle und Erhebungsdatum hinterlegt</div>
+            <div style="overflow-x:auto;">
+              <table class="pp-table">
+                <thead>
+                  <tr>
+                    <th>Artikel</th>
+                    <th style="text-align:right">Eigener Preis</th>
+                    <th>Günstigster Wettbewerber</th>
+                    <th style="text-align:right">Abstand</th>
+                    <th class="pp-hide-s" style="text-align:right">Umsatz 12 M.</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="pp-sku">A-1043</span><div class="pp-sub">Gebinde 5 l · Hersteller A</div></td>
+                    <td class="pp-num">38,90 €</td>
+                    <td>Shop B <b>45,98 €</b></td>
+                    <td class="pp-num"><span class="pp-pill pos">+18,2 %</span></td>
+                    <td class="pp-num pp-hide-s">€ 21.400</td>
+                  </tr>
+                  <tr>
+                    <td><span class="pp-sku">C-3308</span><div class="pp-sub">10 St. · Hersteller C</div></td>
+                    <td class="pp-num">12,75 €</td>
+                    <td>Preisportal <b>14,59 €</b></td>
+                    <td class="pp-num"><span class="pp-pill pos">+14,4 %</span></td>
+                    <td class="pp-num pp-hide-s">€ 9.850</td>
+                  </tr>
+                  <tr>
+                    <td><span class="pp-sku">B-0217</span><div class="pp-sub">500 ml · Hersteller B</div></td>
+                    <td class="pp-num">6,20 €</td>
+                    <td>Shop A <b>5,45 €</b></td>
+                    <td class="pp-num"><span class="pp-pill neg">−12,1 %</span></td>
+                    <td class="pp-num pp-hide-s">€ 7.120</td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
           </div>
 
         </div>
       </div>
-      <figcaption>So sieht die Prüfoberfläche aus: alt gegen neu, die abweichende Stelle hervorgehoben – die Entscheidung ist ein Klick.</figcaption>
+      <figcaption>Nachgestellte Ansicht mit fiktiven Daten: Marktposition je Produkt auf einen Blick – grün, wo Sie günstiger sind, rot, wo ein Wettbewerber darunter liegt.</figcaption>
     </figure>
 
     <div class="flow-diagram">
       <div class="flow-step">
         <div class="flow-left">
-          <div class="flow-icon">🗂️</div>
+          <div class="flow-icon">🗄️</div>
           <div class="flow-connector"></div>
         </div>
         <div class="flow-content">
-          <strong>Alles an einem Ort</strong>
-          <span>Die aktuellen Werte aus dem Shop und die neuen Werte aus den Quellen landen automatisch nebeneinander – kein Zusammensuchen aus mehreren Dateien.</span>
+          <strong>Vorhandene Daten nutzen</strong>
+          <span>Verkaufspreise, Einkaufspreise und die Bestellhistorie kommen automatisch aus dem Shopsystem. Nichts wird doppelt gepflegt, nichts von Hand exportiert.</span>
         </div>
       </div>
       <div class="flow-step">
@@ -518,59 +586,60 @@
           <div class="flow-connector"></div>
         </div>
         <div class="flow-content">
-          <strong>Unterschiede auf einen Blick</strong>
-          <span>Das Tool zeigt alt neben neu und hebt genau die Stelle hervor, die sich geändert hat. Kein Vergleichen im Kopf, kein Verrutschen in der Zeile.</span>
+          <strong>Marktpreise gezielt erheben</strong>
+          <span>Für die umsatzstärksten Produkte werden Wettbewerbspreise regelmäßig erfasst – aus Shops und Preisportalen, jeweils mit Quelle und Erhebungsdatum. Beobachtet wird, was Umsatz bringt, nicht wahllos alles.</span>
         </div>
       </div>
       <div class="flow-step">
         <div class="flow-left">
-          <div class="flow-icon">⚡</div>
+          <div class="flow-icon">📊</div>
           <div class="flow-connector"></div>
         </div>
         <div class="flow-content">
-          <strong>Routine läuft automatisch</strong>
-          <span>Was neu oder unverändert ist, wird gebündelt in einem Klick erledigt. Mit den Hunderten einfachen Fällen muss sich niemand einzeln beschäftigen.</span>
+          <strong>Drei Sichten, eine Oberfläche</strong>
+          <span><em>Wettbewerbsvergleich:</em> wer liegt wo, je Produkt und je Shop. <em>Margen:</em> wo verdient das Sortiment – und welche umsatzstarken Artikel fallen ab. <em>Preisspielraum:</em> wo ist Luft nach oben, ohne die Position als günstiger Anbieter aufzugeben.</span>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-left">
+          <div class="flow-icon">💶</div>
+          <div class="flow-connector"></div>
+        </div>
+        <div class="flow-content">
+          <strong>Spielraum beziffern</strong>
+          <span>Wo Sie günstigster Anbieter sind, rechnet das Dashboard aus, was eine moderate Anhebung – immer noch unter dem günstigsten Wettbewerber – aufs Jahr brächte. Bewusst konservativ: eine Priorisierung, kein Versprechen.</span>
         </div>
       </div>
       <div class="flow-step">
         <div class="flow-left">
           <div class="flow-icon">👤</div>
-          <div class="flow-connector"></div>
         </div>
         <div class="flow-content">
-          <strong>Der Mensch entscheidet, wo es zählt</strong>
-          <span>Nur die echten Änderungen kommen zur Prüfung vor Augen. Freigeben oder ablehnen – die Karte verschwindet, die nächste rückt nach.</span>
-        </div>
-      </div>
-      <div class="flow-step">
-        <div class="flow-left">
-          <div class="flow-icon">✅</div>
-        </div>
-        <div class="flow-content">
-          <strong>Nur Geprüftes geht live</strong>
-          <span>Ausschließlich bewusst freigegebene Werte fließen zurück in den Shop. Jede Entscheidung ist nachvollziehbar festgehalten.</span>
+          <strong>Entscheiden statt vermuten</strong>
+          <span>Preisänderungen macht weiterhin ein Mensch – aber auf Basis einer priorisierten Liste mit belegten Zahlen statt aus dem Bauch. Jede Zahl lässt sich bis zur Quelle zurückverfolgen.</span>
         </div>
       </div>
     </div>
 
     <div class="insight-box">
-      <strong>Der Kern:</strong> Nicht alles sollte vollautomatisch laufen. Manche Entscheidungen gehören in Menschenhand – gerade dort, wo Daten stimmen müssen. Der Trick ist, alles <em>drumherum</em> von allein laufen zu lassen, damit die eigentliche Entscheidung nur noch Sekunden kostet.
+      <strong>Der Kern:</strong> Die meisten Zahlen sind längst im Haus – Verkaufspreise, Einkaufspreise, Bestellungen. Erst die Verknüpfung mit wenigen, gezielt erhobenen Marktpreisen macht daraus Antworten: nicht „hier sind 150 Preise“, sondern „diese 6 Produkte absichern, bei diesen 12 ist Luft – das wäre ein fünfstelliger Betrag im Jahr“.
     </div>
 
     <h3>Der Nutzen</h3>
     <ul class="benefit-list">
-      <li>Tausende Artikel in einem Bruchteil der bisherigen Zeit geprüft</li>
-      <li>Aufmerksamkeit nur dort, wo eine echte Entscheidung nötig ist</li>
-      <li>Keine falschen GTIN/EAN oder Herstellernummern mehr im Shop</li>
-      <li>Nichts wird blind überschrieben – die Kontrolle bleibt im Haus</li>
-      <li>Jeder Stand ist dokumentiert und nachvollziehbar</li>
+      <li>Marktposition je Produkt auf einen Blick: günstiger, gleichauf oder unterboten</li>
+      <li>Unterbotene Produkte sofort sichtbar – bevor Umsatz wegbricht</li>
+      <li>Umsatzstarke Artikel mit schwacher Marge automatisch priorisiert</li>
+      <li>Preisspielraum in Euro pro Jahr beziffert, nicht nur als Gefühl</li>
+      <li>Jeder Preispunkt mit Quelle und Erhebungsdatum belegt</li>
+      <li>Läuft im Browser mit stets aktuellen Daten – kein Export, keine Pflege</li>
     </ul>
 
-    <p>Umgesetzt mit modernen, flexiblen Werkzeugen – eng an das bestehende Shopsystem angebunden, ohne in den laufenden Betrieb einzugreifen.</p>
+    <p>Umgesetzt mit modernen, flexiblen Werkzeugen – angebunden an das bestehende Shopsystem, ohne in den laufenden Betrieb einzugreifen und ohne neue Software für Ihr Team.</p>
 
     <hr class="content-divider">
 
-    <p>Solche Prüf- und Freigabeschritte gibt es in vielen Unternehmen – überall dort, wo Daten stimmen müssen, aber nicht blind automatisiert werden dürfen. Gemeinsam finden wir die Stellen, an denen ein solcher Ablauf die meiste Zeit spart, ohne dass Sie die Kontrolle abgeben.</p>
+    <p>Ob Preise, Konditionen oder Sortiment – die Daten für gute Entscheidungen liegen oft schon im Unternehmen, nur eben verstreut. Gemeinsam finden wir heraus, welche Verknüpfung bei Ihnen den größten Hebel hat und wie daraus eine Übersicht wird, mit der sich arbeiten lässt.</p>
     <a href="https://calendar.app.google/vXAGb7DQjwTJtg9t6" target="_blank" rel="noopener" class="btn-dark">
       Kostenloses Erstgespräch →
     </a>
